@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Descripcion del proyecto
+
+App desarrollada en Angular para un concurso de fotografia, incluye autenticación, autorización, login, subida de imagenes,likes,comentarios, busquedas de usuarios con su respectiva galeria de fotos y una calificacion a esas fotos por parte del jurado. Todo esto utilizando Angular con Angular Material
