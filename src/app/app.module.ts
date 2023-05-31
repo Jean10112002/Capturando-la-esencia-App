@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
+//Import de Environmenter
+
 
 //Angular Material
 import {MatDialogModule} from '@angular/material/dialog';
@@ -22,12 +24,12 @@ import {MatButtonModule} from '@angular/material/button';
 //Componentes
 import { CrearComponent } from './crear/crear.component';
 
-/* import { CrearModule } from './crear/crear.module'; */
 
 @NgModule({
   declarations: [
     AppComponent,
-    CrearComponent
+    CrearComponent,
+
 
   ],
   imports: [
@@ -45,7 +47,7 @@ import { CrearComponent } from './crear/crear.component';
     MatInputModule,
     MatFormFieldModule,
     MatStepperModule
-
+//
 
   ],
   providers: [],
