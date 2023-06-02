@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
 
-if (this.authService.autenticarUsuario('admi','admin') == true) {
+if (this.authService.autenticarUsuario('admin','admin') == true) {
       return true;
     } else {
       this.router.navigate(['/login']);

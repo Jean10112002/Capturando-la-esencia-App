@@ -7,10 +7,12 @@ import { RouterModule } from '@angular/router';
 
 //componentes
 import { LostComponent } from './components/lost/lost.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    LostComponent
+    LostComponent,
+    NavbarComponent
   ],
   imports: [
     RouterModule,

@@ -2,20 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PrivateComponent } from './private.component';
-import { HomeComponent } from './home/container/home.component';
+import { HomeComponent } from './pages/home/container/home.component';
+import { ProfileComponent } from './pages/profile/container/profile.component';
 
 //Components
 
 
 const routes: Routes = [
-  {path : '',component:PrivateComponent,children:
-  [
-    {path:'home', component : HomeComponent },
 
-  ]}
+  {path:'home', component : HomeComponent },
 
-
-
+  {path:'profile', component : ProfileComponent }
 
 ];
 

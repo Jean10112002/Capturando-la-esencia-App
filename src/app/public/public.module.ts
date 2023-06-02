@@ -5,14 +5,16 @@ import { PublicRoutingModule } from './public-routing.module';
 //Modulos Compartidos
 import { SharedModule } from '../core/shared/shared.module';
 //Componentes
-import { LoginComponent } from './login/container/login.component';
+import { LoginComponent } from './pages/login/container/login.component';
 import { PublicComponent } from './public.component';
+import { ReportComponent } from './pages/report/container/report.component';
 
 
 @NgModule({
   declarations: [
     PublicComponent,
-    LoginComponent
+    LoginComponent,
+    ReportComponent
   ],
   imports: [
     PublicRoutingModule,

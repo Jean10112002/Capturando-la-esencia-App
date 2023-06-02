@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 //Guard
 import { AuthGuard } from './core/shared/guards/auth/auth.guard';
-import { HomeComponent } from './private/home/container/home.component';
+
 import { LostComponent } from './core/shared/components/lost/lost.component';
 
 

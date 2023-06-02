@@ -13,7 +13,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from './core/shared/materialComponents/Material.module';
 
 //Componentes
-import { CrearComponent } from './private/home/components/crear/crear.component';
+
 
 
 
@@ -23,7 +23,7 @@ import { CrearComponent } from './private/home/components/crear/crear.component'
 @NgModule({
   declarations: [
     AppComponent,
-    CrearComponent,
+
 
 
 
@@ -32,9 +32,7 @@ import { CrearComponent } from './private/home/components/crear/crear.component'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-//Angular
-    FormsModule,
-    ReactiveFormsModule,
+
 //Modulos
 
 //Angular Material
