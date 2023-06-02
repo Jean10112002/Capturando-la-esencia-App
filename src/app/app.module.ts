@@ -23,6 +23,9 @@ import { MaterialModule } from './core/shared/materialComponents/Material.module
 
 
 
+<<<<<<< HEAD
+>>>>>>> 8a2d281d37075e0b877d8c1c9378a2ae4905d49e
+=======
 >>>>>>> 8a2d281d37075e0b877d8c1c9378a2ae4905d49e
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { MaterialModule } from './core/shared/materialComponents/Material.module
     AppRoutingModule,
     BrowserAnimationsModule,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8a2d281d37075e0b877d8c1c9378a2ae4905d49e
 
 //Modulos
 
@@ -45,6 +51,9 @@ import { MaterialModule } from './core/shared/materialComponents/Material.module
     MaterialModule
 
 
+<<<<<<< HEAD
+>>>>>>> 8a2d281d37075e0b877d8c1c9378a2ae4905d49e
+=======
 >>>>>>> 8a2d281d37075e0b877d8c1c9378a2ae4905d49e
   ],
   providers: [],
