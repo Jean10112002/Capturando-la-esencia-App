@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 //Importaciones para abrir el Cuadro de Dialogo de Crear
 import { MatDialog } from '@angular/material/dialog';
-import { CrearComponent } from './crear/crear.component';
+import { CrearComponent } from './private/home/components/crear/crear.component';
 
 
 

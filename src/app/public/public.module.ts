@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PublicComponent } from './public.component';
-import { PublicRoutingModule } from './public-routing.module';
 
+import { PublicRoutingModule } from './public-routing.module';
+//Modulos Compartidos
 import { SharedModule } from '../core/shared/shared.module';
+//Componentes
+import { LoginComponent } from './login/container/login.component';
+import { PublicComponent } from './public.component';
+
 
 @NgModule({
   declarations: [
-    PublicComponent
+    PublicComponent,
+    LoginComponent
   ],
   imports: [
+    PublicRoutingModule,
     CommonModule,
-    SharedModule,
-    PublicRoutingModule
+    SharedModule
+
+  ],
+  exports:[
+
   ]
 })
-export class PublicModule { }
+export class PublicModule {
+  constructor(){}
+ }

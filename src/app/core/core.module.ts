@@ -4,13 +4,9 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
-    CommonModule,
-
-
+    CommonModule
   ]
 })
-export class CrearModule { }
+export class CoreModule { }

@@ -8,27 +8,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Importaciones adicionales del mismo angular
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+//Modulos
 
-//Import de Environmenter
-
-
-//Angular Material
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatButtonModule} from '@angular/material/button';
-
-
+import { MaterialModule } from './core/shared/materialComponents/Material.module';
 
 //Componentes
-import { CrearComponent } from './crear/crear.component';
+import { CrearComponent } from './private/home/components/crear/crear.component';
+
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearComponent,
+
 
 
   ],
@@ -39,15 +35,11 @@ import { CrearComponent } from './crear/crear.component';
 //Angular
     FormsModule,
     ReactiveFormsModule,
-
+//Modulos
 
 //Angular Material
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatStepperModule
-//
+    MaterialModule
+
 
   ],
   providers: [],
