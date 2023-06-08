@@ -24,6 +24,8 @@ import { ParticipanteService } from './services/participante.service';
 import { PostService } from './services/post.service';
 import { ImagenService } from './services/imagen.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserInformationService } from './services/user-information.service';
+import { ReportComponent } from './pages/report/container/report.component';
 
 
 
@@ -43,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
      ListUserLikePostComponent,
      ShowPostComponent,
      PhotoGalleryComponent,
-     CalificarPostComponent
+     CalificarPostComponent,
+     ReportComponent
 
   ],
   imports: [
@@ -66,7 +69,7 @@ import { HttpClientModule } from '@angular/common/http';
     ParticipanteService,
     PostService,
     ImagenService,
-
+    UserInformationService
   ]
 })
 export class PrivateModule { }

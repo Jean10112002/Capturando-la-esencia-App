@@ -7,7 +7,6 @@ import { SharedModule } from '../core/shared/shared.module';
 //Componentes
 import { LoginComponent } from './pages/login/container/login.component';
 import { PublicComponent } from './public.component';
-import { ReportComponent } from './pages/report/container/report.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -15,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     PublicComponent,
     LoginComponent,
-    ReportComponent
   ],
   imports: [
     PublicRoutingModule,
