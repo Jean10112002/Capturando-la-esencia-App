@@ -8,6 +8,7 @@ import { SharedModule } from '../core/shared/shared.module';
 import { LoginComponent } from './pages/login/container/login.component';
 import { PublicComponent } from './public.component';
 import { ReportComponent } from './pages/report/container/report.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,12 +20,14 @@ import { ReportComponent } from './pages/report/container/report.component';
   imports: [
     PublicRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
 
   ],
   exports:[
 
-  ]
+  ],
+  providers:[]
 })
 export class PublicModule {
   constructor(){}

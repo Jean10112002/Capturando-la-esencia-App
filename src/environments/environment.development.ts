@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://my-prueba-url'
+  apiUrl: 'https://api-ambiente-saludable-production.up.railway.app/api/'
 };

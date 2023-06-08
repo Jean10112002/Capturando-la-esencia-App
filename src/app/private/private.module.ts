@@ -16,6 +16,14 @@ import { ListUserLikePostComponent } from './pages/home/components/list-user-lik
 import { ShowPostComponent } from './pages/home/components/show-post/show-post.component';
 import { PhotoGalleryComponent } from './pages/profile/components/photo-gallery/photo-gallery.component';
 import { CalificarPostComponent } from './pages/home/components/calificar-post/calificar-post.component';
+import { CalificacionService } from './services/calificacion.service';
+import { CategoriaService } from './services/categoria.service';
+import { ComentarioService } from './services/comentario.service';
+import { InteraccionService } from './services/interaccion.service';
+import { ParticipanteService } from './services/participante.service';
+import { PostService } from './services/post.service';
+import { ImagenService } from './services/imagen.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -41,6 +49,7 @@ import { CalificarPostComponent } from './pages/home/components/calificar-post/c
   imports: [
     PrivateRoutingModule,
     CommonModule,
+    HttpClientModule,
     //Angular
     FormsModule,
     ReactiveFormsModule,
@@ -48,6 +57,16 @@ import { CalificarPostComponent } from './pages/home/components/calificar-post/c
     //Angular Matirial
     MaterialModule
   ],
+  providers:[
+    //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo
+    CalificacionService,
+    CategoriaService,
+    ComentarioService,
+    InteraccionService,
+    ParticipanteService,
+    PostService,
+    ImagenService,
 
+  ]
 })
 export class PrivateModule { }

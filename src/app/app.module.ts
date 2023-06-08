@@ -4,45 +4,44 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 //Importaciones adicionales del mismo angular
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Modulos
 
 import { MaterialModule } from './core/shared/materialComponents/Material.module';
+import { AuthInterceptorInterceptor } from './core/shared/interceptor/auth-interceptor.interceptor';
+import { SpinnerInterceptor } from './core/shared/interceptor/spinner.interceptor';
 
 //Componentes
 
-
-
-
-
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-
-
-
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
-//Modulos
+    //Modulos
 
-//Angular Material
-    MaterialModule
-
-
+    //Angular Material
+    MaterialModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
