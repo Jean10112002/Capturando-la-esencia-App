@@ -7,13 +7,11 @@ import { UserInformationService } from 'src/app/private/services/user-informatio
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private userDataService: UserInformationService){
+  constructor(){
 
   }
   ngOnInit(): void {
-    this.userDataService.getData().subscribe((data)=>{
-      console.log(data)
-    })
+
   }
 
 }
