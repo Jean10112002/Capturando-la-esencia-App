@@ -10,11 +10,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Modulos
-
 import { MaterialModule } from './core/shared/materialComponents/Material.module';
 import { AuthInterceptorInterceptor } from './core/shared/interceptor/auth-interceptor.interceptor';
 import { SpinnerInterceptor } from './core/shared/interceptor/spinner.interceptor';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 //Componentes
 
 @NgModule({
@@ -24,6 +24,9 @@ import { SpinnerInterceptor } from './core/shared/interceptor/spinner.intercepto
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
 
     //Modulos
 

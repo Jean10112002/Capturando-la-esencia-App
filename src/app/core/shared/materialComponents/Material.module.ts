@@ -10,6 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+
+
+
 
 @NgModule({
   imports: [MatButtonModule,
@@ -21,7 +25,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTabsModule,
     MatGridListModule,
     MatStepperModule,
-    MatBadgeModule],
+    MatBadgeModule,
+
+    ],
   exports: [MatButtonModule,
     MatDialogModule,
     MatInputModule,
@@ -32,6 +38,6 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTabsModule,
     MatBadgeModule,],
   declarations: [],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })
 export class MaterialModule { }

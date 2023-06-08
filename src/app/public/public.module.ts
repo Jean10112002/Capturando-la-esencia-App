@@ -9,6 +9,9 @@ import { LoginComponent } from './pages/login/container/login.component';
 import { PublicComponent } from './public.component';
 import { ReportComponent } from './pages/report/container/report.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     PublicRoutingModule,
     CommonModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
 
   ],
   exports:[

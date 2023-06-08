@@ -152,7 +152,7 @@ display: none;
 }
 .input-icon {
   position: absolute;
-  top: 0;
+  top: 3;
   left: 18px;
   height: 48px;
   font-size: 24px;
@@ -190,4 +190,7 @@ display: none;
                      -1px -1px 1px #ffffff,
                      1px -1px 1px #ffffff,
                      -1px 1px 1px #ffffff;
+}
+.error-message {
+  color: red;
 }
