@@ -1,1 +1,43 @@
-<p>profile works!</p>
+
+<mat-card>
+  <mat-card-header>
+    <div class="profile-info">
+      <div class="profile-image">
+        <img src="https://i.blogs.es/c937a5/lisapersonajes/1366_2000.jpeg" alt="Imagen de perfil">
+      </div>
+      <div class="profile-details">
+       <h2>Lisa Simpson</h2>
+        <p>Lisa es muy sensible, susceptible y emocional.</p>
+        <br>
+
+<div class="interaccion">
+  <mat-icon style="margin-left: 6%; color: rgb(0, 132, 255);">thumb_up</mat-icon>
+  <span class="likes" style="margin-left: 2%;">160</span>
+
+  <mat-icon style="margin-left: 6%; color: rgb(255, 0, 0);">comment</mat-icon>
+  <span class="comments" style="margin-left: 2%;">250</span>
+  </div>
+  </div>
+  </div>
+  </mat-card-header>
+
+
+<mat-grid-list cols="3" rowHeight="1:1" gutterSize="10px">
+  <mat-grid-tile *ngFor="let image of gallery">
+    <div class="gallery-image">
+      <img src="{{ image.url }}" alt="{{ image.alt }}">
+      <div class="image-overlay">
+        <span class="likes-count">
+          <mat-icon>thumb_up</mat-icon>
+          {{ image.like }}
+        </span>
+        <span class="comments-count">
+          <mat-icon>comment</mat-icon>
+          {{ image.comentario }}
+        </span>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+</mat-card>
