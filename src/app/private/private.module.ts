@@ -17,7 +17,7 @@ import { ShowPostComponent } from './pages/home/components/show-post/show-post.c
 import { PhotoGalleryComponent } from './pages/profile/components/photo-gallery/photo-gallery.component';
 import { CalificarPostComponent } from './pages/home/components/calificar-post/calificar-post.component';
 
-
+import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
 
 
 @NgModule({
@@ -46,7 +46,9 @@ import { CalificarPostComponent } from './pages/home/components/calificar-post/c
     ReactiveFormsModule,
 
     //Angular Matirial
-    MaterialModule
+    MaterialModule,
+    //Filter
+    NgSelectModule
   ],
 
 })

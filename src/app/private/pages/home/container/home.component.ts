@@ -1,21 +1,33 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 //Importaciones para abrir el Cuadro de Dialogo de Crear
 import { MatDialog } from '@angular/material/dialog';
 import { CrearComponent } from '../components/crear/crear.component';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+
+
 })
 export class HomeComponent {
-  constructor(private dialog: MatDialog) { }
+  
+  showDialog = false;
 
+  openDialog() {
+    this.showDialog = true;
+  }
+
+  closeDialog() {
+    this.showDialog = false;
+  }
   //Funcion para abrir el Crear.Component.html como Cuadro de dialogo
-  openDialog(): void {
+/*   openDialog(): void {
     const dialogRef = this.dialog.open(CrearComponent, {
-      width: '400px',
+
+     // panelClass: 'custom-dialog'
       // Otras opciones de configuración del modal
     });
 
@@ -24,5 +36,5 @@ export class HomeComponent {
       // Realiza alguna acción después de cerrar el cuadro de diálogo si es necesario
       console.log('Resultado del cuadro de diálogo:', result);
     });
-  }
+  }*/
 }
