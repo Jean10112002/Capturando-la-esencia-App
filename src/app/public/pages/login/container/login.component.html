@@ -14,22 +14,22 @@
                   <div class="section text-center">
                     <h4 class="mb-3 pb-3">Bienvenidos Estudiantes</h4>
                     <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
-                      <mat-form-field class="form-group">
-                        <input type="email" class="form-style" placeholder="Correo Electrónico" formControlName="email">
+                      <div class="form-group">
+                        <input type="email" class="form-style" placeholder="Correo Electrónico" formControlName="email" required>
                         <i class="input-icon uil uil-at"></i>
                         <mat-error class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
                           <span *ngIf="myForm.get('email')?.hasError('required')">El correo electrónico es obligatorio.</span>
                           <span *ngIf="myForm.get('email')?.hasError('email')">El correo electrónico es inválido.</span>
                         </mat-error>
-                      </mat-form-field>
+                      </div>
 
-                      <mat-form-field class="form-group mt-2">
-                        <input type="password" class="form-style" placeholder="Contraseña" formControlName="password">
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Contraseña" formControlName="password" required>
                         <i class="input-icon uil uil-lock-alt"></i>
                         <mat-error class="error-message" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
                           <span *ngIf="myForm.get('password')?.hasError('required')">La contraseña es obligatoria.</span>
                         </mat-error>
-                      </mat-form-field>
+                      </div>
 
                       <button mat-button class="btn mt-4" type="submit" [disabled]="myForm.invalid">Ingresar</button>
                     </form>
@@ -40,20 +40,25 @@
                 <div class="center-wrap">
                   <div class="section text-center">
                     <h4 class="mb-3 pb-3">Bienvenidos Jurados</h4>
-                    <form class="example-form">
-                      <mat-form-field class="form-group">
-                      <input   type="email" class="form-style" placeholder="Correo Electronico" formControlName="email">
-                      <i  class="input-icon uil uil-at"></i>
-                      <mat-error class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">El correo electrónico es inválido</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="form-group mt-2">
-                      <input  type="password" class="form-style" placeholder="contraseña" formControlName="password">
-                      <i  class="input-icon uil uil-lock-alt"></i>
-                      <mat-error class="error-message" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">La contraseña es inválida</mat-error>
-                    </mat-form-field>
+                    <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+                      <div class="form-group">
+                        <input type="email" class="form-style" placeholder="Correo Electrónico" formControlName="email" required>
+                        <i class="input-icon uil uil-at"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                          <span *ngIf="myForm.get('email')?.hasError('required')">El correo electrónico es obligatorio.</span>
+                          <span *ngIf="myForm.get('email')?.hasError('email')">El correo electrónico es inválido.</span>
+                        </mat-error>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Contraseña" formControlName="password" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                          <span *ngIf="myForm.get('password')?.hasError('required')">La contraseña es obligatoria.</span>
+                        </mat-error>
+                      </div>
 
-
-                  </form>
+                      <button mat-button class="btn mt-4" type="submit" [disabled]="myForm.invalid">Ingresar</button>
+                    </form>
                       </div>
                     </div>
                   </div>

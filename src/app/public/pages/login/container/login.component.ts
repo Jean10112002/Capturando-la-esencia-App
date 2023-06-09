@@ -30,13 +30,7 @@ onSubmit(form: LoginI) {
 
   } else {
     // El formulario es inválido, muestra los errores o realiza alguna acción
-    console.log();
-  this.aut.loginParticipante(form).subscribe((data)=>{
-    console.log(data);
-  },(e)=>{console.log(e);});
-  this.aut.loginJuradoAdmin(form).subscribe((data)=>{
-    console.log(data);
-  },(e)=>{console.log(e);});
+
 
   }
 }
