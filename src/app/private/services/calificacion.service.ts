@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { CalificacionBodyI, CalificacionReporte } from '../interfaces/calificacion/calificacion.interface';
 import { Observable } from 'rxjs';
+import { config } from 'src/config/config';
 
 @Injectable()
 export class CalificacionService {
-  private readonly api = environment.apiUrl;
+  private readonly api = config.apiUrl;
   constructor(private readonly http: HttpClient) {}
 
   crearCalificacion(calificacion:CalificacionBodyI){

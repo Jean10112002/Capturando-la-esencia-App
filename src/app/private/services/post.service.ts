@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { PostAllPaginateI, PostCreateI } from '../interfaces/post/post.interface';
 import { Observable } from 'rxjs';
 import { PostSearchByCategoryWithoutCalificationI } from '../interfaces/post/post.search-categoria-sincalificar.interface';
 import { PostSearchByCategoryI } from '../interfaces/post/post.search-by-categoria.interface';
 import { PostWithoutCalificationI } from '../interfaces/post/post.withoutCalification.interface';
+import { config } from 'src/config/config';
 
 @Injectable()
 export class PostService {
-  private readonly api = environment.apiUrl;
+  private readonly api = config.apiUrl;
   constructor(private readonly http: HttpClient) {}
   getPosts():Observable<PostAllPaginateI>{
     return this.http.get<PostAllPaginateI>(`${this.api}post`)

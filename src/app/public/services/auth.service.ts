@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { LoginI } from '../interfaces/Login.interface';
 import { LoginResponseI, UserProfileI } from '../interfaces/Login.response.interface';
 import { Observable } from 'rxjs';
+import { config } from 'src/config/config';
 
-@Injectable({
-  providedIn:'root'
-})
+@Injectable()
 export class AuthService {
-  private readonly api = environment.apiUrl;
+  private readonly api = config.apiUrl;
   constructor(private readonly http:HttpClient) {}
 
   //metodos consumo de api
