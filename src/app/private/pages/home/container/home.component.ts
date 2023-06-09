@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearComponent } from '../components/crear/crear.component';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { AuthService } from 'src/app/public/services/auth.service';
-import { LoginResponseI, UserI } from 'src/app/public/interfaces/Login.response.interface';
+import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.interface';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ import { LoginResponseI, UserI } from 'src/app/public/interfaces/Login.response.
 export class HomeComponent  implements OnInit {
   constructor(private dialog: MatDialog, private dataServiceUser:UserInformationService, private authService:AuthService) { }
   ngOnInit(): void {
-    this.authService.userInformation().subscribe((data:LoginResponseI)=>{
+    this.authService.userInformation().subscribe((data:UserProfileI)=>{
       this.dataServiceUser.setInformationUser(data.user);
     });
   }
