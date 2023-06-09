@@ -1,34 +1,133 @@
-<mat-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperNext>Next</button>
+<dir class="ventana-fondo" *ngIf="showVentanaEmergente">
+
+</dir>
+<div class="dialog-overlay">
+    <button class="overlay-close" (click)="onClose()">
+            <img src="/assets/icon/close-dark.png" alt="">
+        </button>
+</div>
+
+<div class="dialog-container">
+    <div class="container-head" [class.container-head-responsive]="isContainer">
+        <button class="container-head-close" *ngIf="divVisible" (click)="onClose()">
+        <img src="/assets/icon/close.png" alt="">
+    </button>
+        <button class="container-head-back" *ngIf="!divVisible" (click)="toggleDivVisibility()">
+      <img src="/assets/icon/back.png" alt="">
+  </button> Publicar fotografia
+        <button class="container-head-continue" *ngIf="SiguienteVisible && divVisible" (click)="toggleDivVisibility()">
+          <img src="/assets/icon/next.png" alt="">
+        </button>
+        <button class="container-head-post" *ngIf="SiguienteVisible && !divVisible">
+          Publicar
+        </button>
+    </div>
+
+    <div class="container" [class.container-responsive]="isContainer">
+        <div class="container-foto" [ngClass]="getClassByContainerValue(fondoCategoria)" [class.container-foto-responsive]="isResponsive">
+            <div [class.container-foto-show-responsive]="isResponsive" class="container-foto-show" (click)="fileInput.click(); $event.stopPropagation(); $event.preventDefault()" (drop)="onFileDropped($event); $event.stopPropagation(); $event.preventDefault()" (dragover)="onDragOver($event); $event.stopPropagation(); $event.preventDefault()">
+                <dir class="container-foto-div">
+                    <div class="container-foto-ng">
+
+                        <ng-container class="container-show-foto" *ngIf="selectedImage">
+                            <img class="foto-show " [class.foto-show-responsive]="isResponsive" [src]="selectedImage">
+                        </ng-container>
+                        <ng-container class="container-selection-foto" *ngIf="!selectedImage">
+                            <img src="/assets/icon/gallery.png" alt="Arrastra o selecciona la foto">
+                        </ng-container>
+                    </div>
+
+                </dir>
+
             </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-        <form [formGroup]="secondFormGroup">
-            <mat-form-field>
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <input type="file" accept="image/*" [disabled]="!divVisible" (change)="onFileSelected($event)" #fileInput style="display: none;">
         </div>
-    </mat-step>
-</mat-stepper>
+
+        <div class="container-descripcion" [class.container-descripcion-responsive]="isContainer" [hidden]="divVisible">
+            <div class="container-descripcion-head">
+                <img class="descripcion-perfil" src="https://i.pinimg.com/originals/ef/60/48/ef6048c539cb70ae55562a9f8be5cc67.jpg" alt="">
+                <h3 class="descripcion-usuario">Philip Chalacama</h3>
+
+            </div>
+
+            <div class="container-descripcion-body">
+                <input type="text" class="descripcion-titulo" placeholder="Titulo de portada">
+                <textarea class="descripcion-pie" [(ngModel)]="textareaContent" (input)="updateCharCount()" maxlength="200" placeholder="Escribe un pie de foto"></textarea>
+                <div class="descripcion-pie-contador">{{ charCount }}/200</div>
+                <div class="container-descripcion-provincia">
+                    <ng-select class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOption ?  provinciaHolder: 'Provincias  ▼' }}" (clear)="onClearSelection()" [disabled]="disableProvincias" [(ngModel)]="selectedProvincia"
+                        (change)="onProvinciaSelected()" (change)="onOptionSelected()">
+                        <ng-template ng-option-tmp let-option=" item " let-index="index ">
+                            <div class="my-custom-option ">
+                                <span>{{ option.label }}</span>
+                                <!-- Contenido personalizado de la opción -->
+                            </div>
+                        </ng-template>
+
+                    </ng-select>
+                    <img src="/assets/icon/ecuador.png " alt=" ">
+
+                    <!-- <img src="/assets/icon/ecuador.png " alt=" "> -->
+
+                </div>
+                <div class="container-descripcion-canton ">
+
+
+                    <ng-select class="my-custom-dropdown" [items]="filteredCantones" bindLabel="label" [searchable]="true" placeholder="{{ selectedOptionCanton ? cantonHolder : 'Cantones  ▼' }}" (clear)="onClearSelectedCanton()" [(ngModel)]="selectedCanton" (change)="onOptionSelectedCanton()">
+                        <ng-template ng-option-tmp let-option=" item " let-index="index ">
+                            <div class="my-custom-option ">
+                                <span>{{ option.label }}</span>
+                                <!-- Contenido personalizado de la opción -->
+                            </div>
+                        </ng-template>
+
+                    </ng-select>
+                    <img src="/assets/icon/canton.png " alt=" ">
+                </div>
+                <div class="container-descripcion-lugar ">
+
+                    <input type="text " class="descripcion-lugar " placeholder="Lugar ">
+
+                    <span class="input-icon ">
+                    <img src="/assets/icon/location.png " alt=" ">
+                  </span>
+
+                </div>
+                <div class="container-descripcion-categoria ">
+                    <ng-select [appendTo]="'body'" class="my-custom-dropdown" [items]="categorias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOptionCategoria ? categoriaHolder : 'Categorias  ▼' }}" (clear)="onClearSelectedCategoria()" [(ngModel)]="selectedCategoria"
+                        (change)="onOptionSelectedCategoria($event)">
+                        <ng-template ng-option-tmp let-option=" item " let-index="index ">
+                            <div class="my-custom-option">
+                                <span class="dropdown-panel">{{ option.label }}</span>
+                                <!-- Contenido personalizado de la opción -->
+                            </div>
+                        </ng-template>
+                    </ng-select>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="ventana-emergente" *ngIf="showVentanaEmergente">
+    <div class="ventana-emergente-titulo">
+        <div>
+            <h2>¿Descartar publicación?</h2>
+            <h5>Si sales, no se guardarán los cambios.</h5>
+        </div>
+
+    </div>
+
+    <button class="ventana-emergente-descartar" (click)="closeVentanaEmergente()">
+      Descartar
+    </button>
+    <button class="ventana-emergente-cancelar" (click)="cancelarVentanaEmergente()">
+      Cerrar
+    </button>
+</div>

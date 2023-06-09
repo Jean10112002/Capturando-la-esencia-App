@@ -4,10 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<<<<<<< HEAD
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 //Importaciones adicionales del mismo angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+=======
+
+
+//Importaciones adicionales del mismo angular
+
+>>>>>>> crear
 
 //Modulos
 import { MaterialModule } from './core/shared/materialComponents/Material.module';
@@ -19,6 +26,12 @@ import { PermissionGuard } from './core/shared/guards/permission/permission.guar
 import { AuthService } from './public/services/auth.service';
 //Componentes
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> crear
 @NgModule({
   declarations: [AppComponent],
   imports: [

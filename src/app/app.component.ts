@@ -16,6 +16,9 @@ export class AppComponent {
   title = 'app_capturando_la_esencia';
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> crear
 }

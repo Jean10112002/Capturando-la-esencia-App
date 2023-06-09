@@ -28,7 +28,7 @@ import { UserInformationService } from './services/user-information.service';
 import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
-
+import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
 
 
 @NgModule({
@@ -60,7 +60,9 @@ import { CalificacionComponent } from './pages/calificacion/container/calificaci
     ReactiveFormsModule,
 
     //Angular Matirial
-    MaterialModule
+    MaterialModule,
+    //Filter
+    NgSelectModule
   ],
   providers:[
     //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo
