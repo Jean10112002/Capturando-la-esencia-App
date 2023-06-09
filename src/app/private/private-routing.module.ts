@@ -12,11 +12,11 @@ import { CalificacionComponent } from './pages/calificacion/container/calificaci
 
 const routes: Routes = [
 
-  {path:'home', component : HomeComponent },
+  {path:'home', component : HomeComponent,title:'Home' },
 
-  {path:'profile', component : ProfileComponent },
-  {path:'reporte', component : ReportComponent },
-  {path:'calificacion', component : CalificacionComponent },
+  {path:'profile', component : ProfileComponent,title:'Profile' },
+  {path:'reporte', component : ReportComponent,title:'Reporte' },
+  {path:'calificacion', component : CalificacionComponent,title:'Calificacion' },
 
 
 ];
