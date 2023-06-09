@@ -1,43 +1,59 @@
-
-<mat-card>
-  <mat-card-header>
-    <div class="profile-info">
-      <div class="profile-image">
-        <img src="https://i.blogs.es/c937a5/lisapersonajes/1366_2000.jpeg" alt="Imagen de perfil">
+<body>
+  <section class="seccion-perfil-usuario">
+      <div class="perfil-usuario-header">
+          <div class="perfil-usuario-portada">
+              <div class="perfil-usuario-avatar">
+                  <img src="https://www.laprensagrafica.com/__export/1590905976187/sites/prensagrafica/img/2020/05/30/20200530_082708849_Simpsons.jpg_423682103.jpg" alt="img-avatar">
+              </div>
+          </div>
       </div>
-      <div class="profile-details">
-       <h2>Lisa Simpson</h2>
-        <p>Lisa es muy sensible, susceptible y emocional.</p>
-        <br>
+      <div class="perfil-usuario-body">
+          <div class="perfil-usuario-bio">
+            <h3 class="titulo">Keyron Damian Aguilar Ortiz</h3>
+            <p class="texto">6to Semestre</p>
+            <div class="redes-sociales">
+              <a href="" class="boton-redes email"><i class="input-icon uil uil-at"></i></a>
+            </div>
+          </div>
+          <div class="perfil-usuario-footer">
 
-<div class="interaccion">
-  <mat-icon style="margin-left: 6%; color: rgb(0, 132, 255);">thumb_up</mat-icon>
-  <span class="likes" style="margin-left: 2%;">160</span>
+            <div class="blog-card spring-fever">
+              <div class="card" style="--i:url(https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80)">
+                <div class="cards">
+                    <h2>Agua</h2>
+                    <div>
+                      <i class="input-icon uil uil-comment-dots">293</i>
+                      <i class="input-icon uil uil-heart">293</i>
+                    </div>
+                </div>
+              </div>
+            </div>
 
-  <mat-icon style="margin-left: 6%; color: rgb(255, 0, 0);">comment</mat-icon>
-  <span class="comments" style="margin-left: 2%;">250</span>
-  </div>
-  </div>
-  </div>
-  </mat-card-header>
+            <div class="blog-card spring-fever">
+              <div class="card" style="--i:url(https://ichef.bbci.co.uk/news/640/cpsprodpb/D445/production/_106414345_playaelsalvador.jpg)">
+                <div class="cards">
+                    <h2>Agua</h2>
+                    <div>
+                      <i class="input-icon uil uil-comment-dots">293</i>
+                      <i class="input-icon uil uil-heart">293</i>
+                    </div>
+                </div>
+              </div>
+            </div>
 
+            <div class="blog-card spring-fever">
+              <div class="card" style="--i:url(https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80)">
+                <div class="cards">
+                    <h2>Agua</h2>
+                    <div>
+                      <i class="input-icon uil uil-comment-dots">293</i>
+                      <i class="input-icon uil uil-heart">293</i>
+                    </div>
+                </div>
+              </div>
+            </div>
 
-<mat-grid-list cols="3" rowHeight="1:1" gutterSize="10px">
-  <mat-grid-tile *ngFor="let image of gallery">
-    <div class="gallery-image">
-      <img src="{{ image.url }}" alt="{{ image.alt }}">
-      <div class="image-overlay">
-        <span class="likes-count">
-          <mat-icon>thumb_up</mat-icon>
-          {{ image.like }}
-        </span>
-        <span class="comments-count">
-          <mat-icon>comment</mat-icon>
-          {{ image.comentario }}
-        </span>
+          </div>
       </div>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
-
-</mat-card>
+  </section>
+</body>
