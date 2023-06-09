@@ -19,8 +19,8 @@ export class AuthService {
   loginParticipante(body: LoginI): Observable<LoginResponseI> {
     return this.http.post<LoginResponseI>(`${this.api}login-participante`, body);
   }
-  userInformation(): Observable<UserI> {
-    return this.http.get<UserI>(this.api + 'user-profile');
+  userInformation(): Observable<LoginResponseI> {
+    return this.http.get<LoginResponseI>(this.api + 'user-profile');
   }
   logout() {
     return this.http.post(this.api + 'logout', {});
