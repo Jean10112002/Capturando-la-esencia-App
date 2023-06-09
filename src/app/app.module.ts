@@ -15,6 +15,7 @@ import { AuthInterceptorInterceptor } from './core/shared/interceptor/auth-inter
 import { SpinnerInterceptor } from './core/shared/interceptor/spinner.interceptor';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { PermissionGuard } from './core/shared/guards/permission/permission.guard';
 //Componentes
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MatCardModule } from '@angular/material/card';
       useClass: SpinnerInterceptor,
       multi: true,
     },
+    PermissionGuard
   ],
   bootstrap: [AppComponent],
 })

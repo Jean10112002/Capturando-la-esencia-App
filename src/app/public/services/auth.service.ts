@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { LoginI } from '../interfaces/Login.interface';
-import { LoginResponseI, UserI } from '../interfaces/Login.response.interface';
+import { LoginResponseI, UserProfileI } from '../interfaces/Login.response.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,8 +19,8 @@ export class AuthService {
   loginParticipante(body: LoginI): Observable<LoginResponseI> {
     return this.http.post<LoginResponseI>(`${this.api}login-participante`, body);
   }
-  userInformation(): Observable<LoginResponseI> {
-    return this.http.get<LoginResponseI>(this.api + 'user-profile');
+  userInformation(): Observable<UserProfileI> {
+    return this.http.get<UserProfileI>(this.api + 'user-profile');
   }
   logout() {
     return this.http.post(this.api + 'logout', {});

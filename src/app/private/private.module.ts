@@ -26,6 +26,7 @@ import { ImagenService } from './services/imagen.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserInformationService } from './services/user-information.service';
 import { ReportComponent } from './pages/report/container/report.component';
+import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
 
 
@@ -46,7 +47,8 @@ import { ReportComponent } from './pages/report/container/report.component';
      ShowPostComponent,
      PhotoGalleryComponent,
      CalificarPostComponent,
-     ReportComponent
+     ReportComponent,
+     CalificacionComponent
 
   ],
   imports: [
@@ -69,7 +71,8 @@ import { ReportComponent } from './pages/report/container/report.component';
     ParticipanteService,
     PostService,
     ImagenService,
-    UserInformationService
+    UserInformationService,
+
   ]
 })
 export class PrivateModule { }
