@@ -41,7 +41,11 @@
                 </dir>
 
             </div>
-            <input type="file" accept="image/*" [disabled]="!divVisible" (change)="onFileSelected($event)" #fileInput style="display: none;">
+            <div>
+              <input type="file" accept="image/png, image/jpeg, image/jpg" [disabled]="!divVisible" (change)="onFileSelected($event)" #fileInput style="display: none;" formControlName="imagen">
+              <span style="color: red;" *ngIf="imagenForm.get('imagen')?.hasError('required')"> El campo de imagen es requerido.</span>
+              <span style="color: red;" *ngIf="imagenForm.get('imagen')?.hasError('invalidExtension')">Solo se permiten archivos PNG, JPG, JPEG y WEB.</span>
+            </div>
         </div>
       </form>
 
