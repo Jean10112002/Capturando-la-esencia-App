@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
-=======
-import { Component} from '@angular/core';
->>>>>>> crear
 
 //Importaciones para abrir el Cuadro de Dialogo de Crear
 import { MatDialog } from '@angular/material/dialog';
@@ -19,19 +15,9 @@ import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/L
 
 
 })
-<<<<<<< HEAD
-export class HomeComponent  implements OnInit {
-  constructor(private dialog: MatDialog, private dataServiceUser:UserInformationService, private authService:AuthService) { }
-  ngOnInit(): void {
-    this.authService.userInformation().subscribe((data:UserProfileI)=>{
-      this.dataServiceUser.setInformationUser(data.user);
-    });
-  }
-=======
 export class HomeComponent {
-  
+
   showDialog = false;
->>>>>>> crear
 
   openDialog() {
     this.showDialog = true;
