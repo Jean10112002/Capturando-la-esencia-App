@@ -62,7 +62,8 @@
               <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('minlength')">El campo Título debe tener al menos 4 caracteres.</span>
               <textarea class="descripcion-pie" [(ngModel)]="textareaContent"  (input)="updateCharCount()"   placeholder="Escribe una Descripcion" formControlName="pie" maxlength="200"></textarea>
               <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('required')">El campo de Descripción es requerido.</span>
-              <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('minlength')">El campo Descripción debe tener al menos 4 caracteres.</span>
+            <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('minlength')">El campo Descripción debe tener al menos 10 caracteres.</span>
+
                 <div class="descripcion-pie-contador">{{ charCount }}/200</div>
                 <div class="container-descripcion-provincia">
                     <ng-select class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOption ?  provinciaHolder: 'Provincias  ▼' }}" (clear)="onClearSelection()" [disabled]="disableProvincias" [(ngModel)]="selectedProvincia"
@@ -96,7 +97,8 @@
                 </div>
                 <div class="container-descripcion-lugar ">
 
-                    <input type="text " class="descripcion-lugar " placeholder="Lugar ">
+                    <input type="text " class="descripcion-lugar " placeholder="Lugar" formControlName="lugar">
+                    <span style="color: red;" *ngIf="imagenForm.get('lugar')?.hasError('required')">El campo de lugar es requerido.</span>
 
                     <span class="input-icon ">
                     <img src="/assets/icon/location.png " alt=" ">

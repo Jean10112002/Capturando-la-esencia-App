@@ -21,7 +21,7 @@ export class CrearComponent implements OnInit{
   this.imagenForm = new FormGroup({
         imagen: new FormControl('', [Validators.required]),
         titulo: new FormControl('',[Validators.required,Validators.minLength(4)]),
-        pie: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(200)]),
+        pie: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(200)]),
     lugar: new FormControl('',[Validators.required]),
       });
 
