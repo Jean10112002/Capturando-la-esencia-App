@@ -22,7 +22,10 @@ export class CrearComponent implements OnInit{
         imagen: new FormControl('', [Validators.required]),
         titulo: new FormControl('',[Validators.required,Validators.minLength(4)]),
         pie: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(200)]),
+        provincia: new FormControl('',[Validators.required]),
+        canton: new FormControl('',[Validators.required]),
     lugar: new FormControl('',[Validators.required]),
+    categoria: new FormControl('',[Validators.required]),
       });
 
   }

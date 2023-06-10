@@ -1,6 +1,6 @@
-<dir class="ventana-fondo" *ngIf="showVentanaEmergente">
+<div class="ventana-fondo" *ngIf="showVentanaEmergente">
 
-</dir>
+</div>
 <div class="dialog-overlay">
     <button class="overlay-close" (click)="onClose()">
             <img src="/assets/icon/close-dark.png" alt="">
@@ -24,10 +24,10 @@
     </div>
 
     <div class="container" [class.container-responsive]="isContainer">
-      <form [formGroup]="imagenForm" (ngSubmit)="submitForm()">
+     <form [formGroup]="imagenForm" (ngSubmit)="submitForm()">
         <div class="container-foto" [ngClass]="getClassByContainerValue(fondoCategoria)" [class.container-foto-responsive]="isResponsive">
             <div [class.container-foto-show-responsive]="isResponsive" class="container-foto-show" (click)="fileInput.click(); $event.stopPropagation(); $event.preventDefault()" (drop)="onFileDropped($event); $event.stopPropagation(); $event.preventDefault()" (dragover)="onDragOver($event); $event.stopPropagation(); $event.preventDefault()">
-                <dir class="container-foto-div">
+                <div class="container-foto-div">
                     <div class="container-foto-ng">
 
                         <ng-container class="container-show-foto" *ngIf="selectedImage">
@@ -38,7 +38,7 @@
                         </ng-container>
                     </div>
 
-                </dir>
+                </div>
 
             </div>
             <div>
@@ -47,7 +47,7 @@
               <span style="color: red;" *ngIf="imagenForm.get('imagen')?.hasError('invalidExtension')">Solo se permiten archivos PNG, JPG, JPEG y WEB.</span>
             </div>
         </div>
-      </form>
+
 
         <div class="container-descripcion" [class.container-descripcion-responsive]="isContainer" [hidden]="divVisible">
             <div class="container-descripcion-head">
@@ -62,38 +62,36 @@
               <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('minlength')">El campo Título debe tener al menos 4 caracteres.</span>
               <textarea class="descripcion-pie" [(ngModel)]="textareaContent"  (input)="updateCharCount()"   placeholder="Escribe una Descripcion" formControlName="pie" maxlength="200"></textarea>
               <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('required')">El campo de Descripción es requerido.</span>
-            <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('minlength')">El campo Descripción debe tener al menos 10 caracteres.</span>
+            <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('minlength')">El campo Descripción debe tener al menos 4 caracteres.</span>
 
                 <div class="descripcion-pie-contador">{{ charCount }}/200</div>
                 <div class="container-descripcion-provincia">
                     <ng-select class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOption ?  provinciaHolder: 'Provincias  ▼' }}" (clear)="onClearSelection()" [disabled]="disableProvincias" [(ngModel)]="selectedProvincia"
-                        (change)="onProvinciaSelected()" (change)="onOptionSelected()">
-                        <ng-template ng-option-tmp let-option=" item " let-index="index ">
+                        (change)="onProvinciaSelected()" (change)="onOptionSelected()" formControlName="provincia">
+                        <ng-template ng-option-tmp let-option=" item" let-index="index">
                             <div class="my-custom-option ">
                                 <span>{{ option.label }}</span>
                                 <!-- Contenido personalizado de la opción -->
                             </div>
                         </ng-template>
-
                     </ng-select>
                     <img src="/assets/icon/ecuador.png " alt=" ">
+                    <span style="color: red;" *ngIf="imagenForm.get('provincia')?.hasError('required')"> El campo de provincia es requerido.</span>
 
                     <!-- <img src="/assets/icon/ecuador.png " alt=" "> -->
 
                 </div>
                 <div class="container-descripcion-canton ">
-
-
-                    <ng-select class="my-custom-dropdown" [items]="filteredCantones" bindLabel="label" [searchable]="true" placeholder="{{ selectedOptionCanton ? cantonHolder : 'Cantones  ▼' }}" (clear)="onClearSelectedCanton()" [(ngModel)]="selectedCanton" (change)="onOptionSelectedCanton()">
-                        <ng-template ng-option-tmp let-option=" item " let-index="index ">
+                    <ng-select class="my-custom-dropdown" [items]="filteredCantones" bindLabel="label" [searchable]="true" placeholder="{{ selectedOptionCanton ? cantonHolder : 'Cantones  ▼' }}" (clear)="onClearSelectedCanton()" [(ngModel)]="selectedCanton" (change)="onOptionSelectedCanton()" formControlName="canton">
+                        <ng-template ng-option-tmp let-option="item" let-index="index">
                             <div class="my-custom-option ">
                                 <span>{{ option.label }}</span>
                                 <!-- Contenido personalizado de la opción -->
                             </div>
                         </ng-template>
-
                     </ng-select>
                     <img src="/assets/icon/canton.png " alt=" ">
+                    <span style="color: red;" *ngIf="imagenForm.get('provincia')?.hasError('required')"> Antes de llenar este campo, selecciona provincia</span>
                 </div>
                 <div class="container-descripcion-lugar ">
 
@@ -107,7 +105,7 @@
                 </div>
                 <div class="container-descripcion-categoria ">
                     <ng-select [appendTo]="'body'" class="my-custom-dropdown" [items]="categorias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOptionCategoria ? categoriaHolder : 'Categorias  ▼' }}" (clear)="onClearSelectedCategoria()" [(ngModel)]="selectedCategoria"
-                        (change)="onOptionSelectedCategoria($event)">
+                        (change)="onOptionSelectedCategoria($event)" formControlName="categoria">
                         <ng-template ng-option-tmp let-option=" item " let-index="index ">
                             <div class="my-custom-option">
                                 <span class="dropdown-panel">{{ option.label }}</span>
@@ -115,15 +113,13 @@
                             </div>
                         </ng-template>
                     </ng-select>
-
+                    <span style="color: red;" *ngIf="imagenForm.get('categoria')?.hasError('required')">El campo de categoria es requerido.</span>
                 </div>
-
             </div>
-
-
-
         </div>
-    </div>
+
+      </form>
+      </div>
 
 </div>
 
