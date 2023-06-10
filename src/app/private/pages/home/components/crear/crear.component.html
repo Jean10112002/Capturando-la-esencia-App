@@ -57,8 +57,12 @@
             </div>
 
             <div class="container-descripcion-body">
-                <input type="text" class="descripcion-titulo" placeholder="Titulo de portada">
-                <textarea class="descripcion-pie" [(ngModel)]="textareaContent" (input)="updateCharCount()" maxlength="200" placeholder="Escribe un pie de foto"></textarea>
+              <input type="text" class="descripcion-titulo" placeholder="Titulo de portada"  formControlName="titulo">
+              <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('required')"> El campo de titulo es requerido.</span>
+              <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('minlength')">El campo Título debe tener al menos 4 caracteres.</span>
+              <textarea class="descripcion-pie" [(ngModel)]="textareaContent"  (input)="updateCharCount()"   placeholder="Escribe una Descripcion" formControlName="pie" maxlength="200"></textarea>
+              <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('required')">El campo de Descripción es requerido.</span>
+              <span style="color: red;" *ngIf="imagenForm.get('pie')?.hasError('minlength')">El campo Descripción debe tener al menos 4 caracteres.</span>
                 <div class="descripcion-pie-contador">{{ charCount }}/200</div>
                 <div class="container-descripcion-provincia">
                     <ng-select class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{ selectedOption ?  provinciaHolder: 'Provincias  ▼' }}" (clear)="onClearSelection()" [disabled]="disableProvincias" [(ngModel)]="selectedProvincia"
