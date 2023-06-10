@@ -21,3 +21,18 @@ h1
   padding-top: 10px;
   font-family: 'Times New Roman', Times, serif;
 }
+.buton{
+  width: 100%;
+}
+
+.boton {
+  border: 1.5px solid #603c1bc4; /*anchura, estilo y color borde*/
+  padding: 7px 25px 7px 25px; /*espacio alrededor texto*/
+  background-color: #2e801fbd; /*color botón*/
+  color: #ffffff; /*color texto*/
+  text-decoration: none; /*decoración texto*/
+  text-transform: uppercase; /*capitalización texto*/
+  font-family: 'Times New Roman', Times, serif; /*tipografía texto*/
+  border-radius: 50px; /*bordes redondos*/
+  width: 200px;
+  }
