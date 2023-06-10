@@ -28,6 +28,9 @@ export class CrearComponent implements OnInit{
   }
 
 //Constructor
+submitForm(){
+
+}
 
 constructor(private breakpointObserver: BreakpointObserver) {}
 

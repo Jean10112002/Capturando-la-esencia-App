@@ -24,6 +24,7 @@
     </div>
 
     <div class="container" [class.container-responsive]="isContainer">
+      <form [formGroup]="imagenForm" (ngSubmit)="submitForm()">
         <div class="container-foto" [ngClass]="getClassByContainerValue(fondoCategoria)" [class.container-foto-responsive]="isResponsive">
             <div [class.container-foto-show-responsive]="isResponsive" class="container-foto-show" (click)="fileInput.click(); $event.stopPropagation(); $event.preventDefault()" (drop)="onFileDropped($event); $event.stopPropagation(); $event.preventDefault()" (dragover)="onDragOver($event); $event.stopPropagation(); $event.preventDefault()">
                 <dir class="container-foto-div">
@@ -42,6 +43,7 @@
             </div>
             <input type="file" accept="image/*" [disabled]="!divVisible" (change)="onFileSelected($event)" #fileInput style="display: none;">
         </div>
+      </form>
 
         <div class="container-descripcion" [class.container-descripcion-responsive]="isContainer" [hidden]="divVisible">
             <div class="container-descripcion-head">
