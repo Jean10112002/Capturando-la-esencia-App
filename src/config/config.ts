@@ -1,4 +1,4 @@
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.development";
 
 export const config={
   apiUrl:environment.apiUrl,

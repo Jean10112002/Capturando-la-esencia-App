@@ -11,8 +11,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-
-
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator'
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatGridListModule,
     MatStepperModule,
     MatBadgeModule,
-
+    MatTableModule,
+    MatPaginatorModule
     ],
   exports: [MatButtonModule,
     MatDialogModule,
@@ -36,7 +37,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatFormFieldModule,
     MatStepperModule,
     MatTabsModule,
-    MatBadgeModule,],
+    MatBadgeModule,MatTableModule,MatPaginatorModule],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })

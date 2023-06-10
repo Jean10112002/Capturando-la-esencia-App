@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PrivateComponent } from './private.component';
 import { HomeComponent } from './pages/home/container/home.component';
 import { ProfileComponent } from './pages/profile/container/profile.component';
 import { ReportComponent } from './pages/report/container/report.component';
