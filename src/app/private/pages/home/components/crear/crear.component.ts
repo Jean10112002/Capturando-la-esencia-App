@@ -1,6 +1,6 @@
 import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -15,9 +15,17 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class CrearComponent implements OnInit{
 
-ngOnInit(): void {
+  imagenForm!: FormGroup;
 
-}
+  ngOnInit(): void {
+  this.imagenForm = new FormGroup({
+        imagen: new FormControl('', [Validators.required]),
+        titulo: new FormControl('',[Validators.required,Validators.minLength(4)]),
+        pie: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(200)]),
+    lugar: new FormControl('',[Validators.required]),
+      });
+
+  }
 
 //Constructor
 
@@ -416,7 +424,7 @@ selectedOptionCanton:any;
     this.selectedOption = true;
   }
   onClearSelection(): void {
-    this.selectedProvincia = null; 
+    this.selectedProvincia = null;
     this.provinciaHolder = 'Provincias ▼';
     this.selectedCanton = null;
     this.cantonHolder = 'Canton ▼';
