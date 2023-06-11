@@ -10,9 +10,9 @@ export class ToastComponent implements OnInit {
 constructor(private notificacion:ToastrService){}
   ngOnInit(): void {
       this.ShowSuccess();
-      this.ShowInfo();
+
       this.ShowError();
-      this.ShowWarning();
+
   }
 
   ShowSuccess(){
@@ -21,10 +21,5 @@ constructor(private notificacion:ToastrService){}
   ShowError(){
     this.notificacion.error('El toast de error esta funcionando corretamente','Proceso Erroneo');
   }
-  ShowWarning(){
-    this.notificacion.warning('El toast de warning esta funcionando corretamente',' Advertencia');
-  }
-  ShowInfo(){
-    this.notificacion.info('El toast de info esta funcionando corretamente','Informacion');
-  }
+
 }

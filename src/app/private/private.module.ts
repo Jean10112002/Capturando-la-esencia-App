@@ -33,6 +33,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
+import { ToastComponent } from '../core/shared/components/toast/toast.component';
 
 
 
@@ -56,7 +57,7 @@ import { ChipCategoryComponent } from './pages/home/components/chip-category/chi
      CalificarPostComponent,
      ReportComponent,
      CalificacionComponent,
-     ChipCategoryComponent
+     ChipCategoryComponent,
   ],
   imports: [
     PrivateRoutingModule,
