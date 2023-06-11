@@ -11,11 +11,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from '../../public/services/auth.service';
 import { AuthInterceptorInterceptor } from './interceptor/auth-interceptor.interceptor';
 import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
     LostComponent,
-    NavbarComponent
+    NavbarComponent,
+    ToastComponent
   ],
   imports: [
     RouterModule,

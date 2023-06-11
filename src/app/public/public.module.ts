@@ -11,12 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastComponent } from '../core/shared/components/toast/toast.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
   declarations: [
     PublicComponent,
     LoginComponent,
+
   ],
   imports: [
     PublicRoutingModule,
@@ -26,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+
 
   ],
   exports:[

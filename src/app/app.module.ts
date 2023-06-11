@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { PermissionGuard } from './core/shared/guards/permission/permission.guard';
 import { AuthService } from './public/services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
 //Componentes
 
 
@@ -36,6 +37,9 @@ import { AuthService } from './public/services/auth.service';
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-top-right",
+    }),
 
     //Modulos
 

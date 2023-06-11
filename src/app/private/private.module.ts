@@ -29,6 +29,8 @@ import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
 import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
+import { ToastComponent } from '../core/shared/components/toast/toast.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
      PhotoGalleryComponent,
      CalificarPostComponent,
      ReportComponent,
-     CalificacionComponent
+     CalificacionComponent,
+
 
   ],
   imports: [
@@ -74,6 +77,7 @@ import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
     PostService,
     ImagenService,
     UserInformationService,
+
 
   ]
 })
