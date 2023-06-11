@@ -31,6 +31,8 @@ import { CalificacionComponent } from './pages/calificacion/container/calificaci
 import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
 import { ToastComponent } from '../core/shared/components/toast/toast.component';
 import { ToastrService } from 'ngx-toastr';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -61,6 +63,7 @@ import { ToastrService } from 'ngx-toastr';
     //Angular
     FormsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
 
     //Angular Matirial
     MaterialModule,

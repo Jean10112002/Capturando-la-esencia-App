@@ -22,7 +22,9 @@ import { ToastComponent } from './components/toast/toast.component';
   imports: [
     RouterModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    
+
 
   ],
   exports:[
