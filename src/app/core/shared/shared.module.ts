@@ -17,7 +17,7 @@ import { ToastComponent } from './components/toast/toast.component';
   declarations: [
     LostComponent,
     NavbarComponent,
-    ToastComponent
+
   ],
   imports: [
     RouterModule,
