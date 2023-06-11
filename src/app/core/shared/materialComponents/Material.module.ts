@@ -11,7 +11,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+import {MatChipsModule} from '@angular/material/chips';
+
+
 
 
 
@@ -26,10 +31,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatGridListModule,
     MatStepperModule,
     MatBadgeModule,
-    MatProgressBarModule
-
-
-
+    MatProgressBarModule,
+    MatChipsModule,
     ],
   exports: [MatButtonModule,
     MatDialogModule,
@@ -39,7 +42,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatFormFieldModule,
     MatStepperModule,
     MatTabsModule,
-    MatBadgeModule,],
+    MatBadgeModule,
+    MatChipsModule,],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })
