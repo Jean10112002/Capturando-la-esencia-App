@@ -28,10 +28,7 @@ import { UserInformationService } from './services/user-information.service';
 import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
-import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
-import { ToastComponent } from '../core/shared/components/toast/toast.component';
-import { ToastrService } from 'ngx-toastr';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
