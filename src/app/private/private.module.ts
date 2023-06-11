@@ -33,11 +33,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
-import { ToastComponent } from '../core/shared/components/toast/toast.component';
-
-
-
-
+import { HeaderProfileComponent } from './pages/profile/components/header-profile/header-profile.component';
+import { PhotoComponent } from './pages/profile/components/photo/photo.component';
+import { SharedModule } from '../core/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -45,19 +43,21 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     HomeComponent,
 
     CrearComponent,
-     ProfileComponent,
-     NavbarComponent,
-     UserInformationComponent,
-     PostComponent,
-     SearchUserComponent,
-     ListUserComponent,
-     ListUserLikePostComponent,
-     ShowPostComponent,
-     PhotoGalleryComponent,
-     CalificarPostComponent,
-     ReportComponent,
-     CalificacionComponent,
-     ChipCategoryComponent,
+    ProfileComponent,
+    NavbarComponent,
+    UserInformationComponent,
+    PostComponent,
+    SearchUserComponent,
+    ListUserComponent,
+    ListUserLikePostComponent,
+    ShowPostComponent,
+    PhotoGalleryComponent,
+    CalificarPostComponent,
+    ReportComponent,
+    CalificacionComponent,
+    ChipCategoryComponent,
+    HeaderProfileComponent,
+    PhotoComponent,
   ],
   imports: [
     PrivateRoutingModule,
@@ -71,9 +71,10 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     //Angular Matirial
     MaterialModule,
     //Filter
-    NgSelectModule
+    NgSelectModule,
+    SharedModule
   ],
-  providers:[
+  providers: [
     //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo
     CalificacionService,
     CategoriaService,
@@ -83,8 +84,6 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     PostService,
     ImagenService,
     UserInformationService,
-
-
-  ]
+  ],
 })
-export class PrivateModule { }
+export class PrivateModule {}

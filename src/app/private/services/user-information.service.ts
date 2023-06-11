@@ -6,7 +6,7 @@ import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 export class UserInformationService {
   private UserInformation$:BehaviorSubject<UserI>=new BehaviorSubject({apellido:'',email:'',id:0,nombre:'',rol:'',telefono:''});
   constructor() { }
-  setInformationUser(value: UserI): void {
+  setInformationUser(value: any): void {
     this.UserInformation$.next(value);
   }
 

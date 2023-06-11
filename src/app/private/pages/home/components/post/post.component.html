@@ -1,13 +1,13 @@
-<div class="cards">
+<div class="cards" *ngIf="post">
 
   <div class="perfil">
-    <img class="avatar" src="https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png" alt="">
-    <h2 class="nombre">Keyron Damian Aguilar Ortiz</h2>
+    <img class="avatar" [src]="avatar" alt="">
+    <h2 class="nombre"> {{post.participante.nombres | titlecase}} </h2>
   </div>
 
   <div class="imagen">
-    <img class="img" src="https://ichef.bbci.co.uk/news/640/cpsprodpb/D445/production/_106414345_playaelsalvador.jpg" alt="">
-    <h4 class="lugar"> <i class="input-icon uil uil-map-marker-alt"></i> Manabí - Manta - Playa Murcielago</h4>
+    <img class="img" [src]="post.imagen.imagen_url" alt="">
+    <h4 class="lugar"> <i class="input-icon uil uil-map-marker-alt"></i>  {{post.ciudad |titlecase}} - {{post.lugar|titlecase}}</h4>
   </div>
 
   <div class="likes-comentarios-calificar">
@@ -15,22 +15,26 @@
       <i class="reacciones input-icon uil uil-heart"></i>
       <i class="reacciones input-icon uil uil-comment-dots"></i>
     </div>
-    <div class="boton3">
+    <ng-container *ngIf="user$|async as user"
+    >
+    <div class="boton3"  *ngIf="user.rol==='jurado'">
       <a class="cali" href="">Calificar</a>
     </div>
+  </ng-container>
+
   </div>
 
   <div class="likes">
-    <a class="like" href=""> <b>641</b> Me gusta</a>
-    <a class="like" href=""> <b>50</b> Comentarios</a>
+    <a class="like" href=""> <b> {{post.like.length}} </b> Me gusta</a>
+    <a class="like" href=""> <b>{{post.comentario__post.length}}</b> Comentarios</a>
   </div>
 
   <div class="descripcion">
     <div class="encabezado">
-      <h1 class="titulo">El rebote de las olas</h1>
-      <h3 class="categoria">Categoria: Agua</h3>
+      <h1 class="titulo"> {{post.titulo}} </h1>
+      <h3 class="categoria">Categoria: {{post.categoria.nombre|titlecase}} </h3>
     </div>
-    <p class="parrafo">Esta imagen esta basada en hechos que ocurrieron en Manta sobre un bosque en donde se pudo observar una fauna muy hermosa que transmitio tomar esta foto.</p>
+    <p class="parrafo"> {{post.descripcion}} </p>
   </div>
 
 </div>

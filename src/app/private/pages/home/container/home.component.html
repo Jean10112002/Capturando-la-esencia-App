@@ -1,23 +1,37 @@
+<app-progress-bar />
 
 <nav>
-  
   <button (click)="openDialog()">Abrir cuadro de diálogo</button>
-<app-crear class="app-crear" *ngIf="showDialog" (closeDialog)="closeDialog()"></app-crear>
+  <app-crear
+    class="app-crear"
+    *ngIf="showDialog"
+    (closeDialog)="closeDialog()"
+  ></app-crear>
 </nav>
 
-<body style="padding-top: 22px; display: flex; justify-content: center;">
-
+<body style="padding-top: 22px; display: flex; justify-content: center">
   <div class="scroll">
     <div class="categoria">
       <app-chip-category class="app-chip-category"></app-chip-category>
     </div>
     <div class="scroll-infinito">
-      <app-post class="app-post"></app-post>
+      <ng-container *ngIf="posts$ | async as posts">
+        {{posts.Posts.data|json}}
+        <app-post class="app-post"  *ngFor="let post of posts.Posts.data" [post]="post"></app-post>
+      </ng-container>
     </div>
   </div>
-
-  <div class="user">
-    <app-user-information class="app-user-information"></app-user-information>
-  </div>
-
+  <ng-container *ngIf="user">
+    <div
+      *ngIf="user.rol === 'participante'"
+      class="user"
+      [routerLink]="['/profile/', user.id]"
+      routerLinkActive="router-link-active"
+    >
+      <app-user-information
+        class="app-user-information"
+        [user]="user"
+      ></app-user-information>
+    </div>
+  </ng-container>
 </body>

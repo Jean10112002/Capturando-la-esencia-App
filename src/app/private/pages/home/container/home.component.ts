@@ -6,6 +6,10 @@ import { CrearComponent } from '../components/crear/crear.component';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { AuthService } from 'src/app/public/services/auth.service';
 import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.interface';
+import { Observable } from 'rxjs';
+import { Participante, PostAllPaginateI } from 'src/app/private/interfaces/post/post.interface';
+import { PostI } from 'src/app/private/interfaces/participante/participante.interface';
+import { PostService } from 'src/app/private/services/post.service';
 
 
 @Component({
@@ -16,10 +20,19 @@ import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/L
 
 })
 export class HomeComponent {
-
+  user!:UserI | Participante;
+  posts$!:Observable<PostAllPaginateI>;
   showDialog = false;
-
-  openDialog() {
+  constructor(private readonly authService:AuthService,private readonly userDataService:UserInformationService,private readonly postService:PostService){
+    authService.userInformation().subscribe((user:UserProfileI)=>{
+      this.user=user.user
+      if(this.user.rol==='jurado'){
+        this.userDataService.setInformationUser(user.user);
+      }
+    })
+    this.posts$=postService.getPosts();
+  }
+    openDialog() {
     this.showDialog = true;
   }
 

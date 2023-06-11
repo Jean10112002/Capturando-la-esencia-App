@@ -2,6 +2,7 @@ import { LoginI } from './../../../interfaces/Login.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/public/services/auth.service';
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    private readonly router:Router
+    private readonly router:Router,
+    private notificacion:ToastrService
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.authService.loginJuradoAdmin(form).subscribe((data) => {
         this.authService.setToken(data.access_token);
+        this.notificacion.success("Inicio de sesión exitoso",'Proceso Exitoso');
         this.router.navigate(['home']);
       });
     }

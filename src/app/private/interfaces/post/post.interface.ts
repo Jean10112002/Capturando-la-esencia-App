@@ -16,7 +16,7 @@ export interface PostAllPaginateI {
 
 export interface Posts {
   current_page:   number;
-  data:           Datum[]|Datum;
+  data:           Datum[];
   first_page_url: string;
   from:           number;
   last_page:      number;
@@ -45,7 +45,7 @@ export interface Datum {
   participante:      Participante;
   categoria:         Categoria;
   imagen:            Imagen;
-  like:              Like | null;
+  like:              Like[];
   calificacion:      Calificacion[];
   comentario__post:  ComentarioPost[];
 }

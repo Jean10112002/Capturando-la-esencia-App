@@ -1,62 +1,8 @@
 <body>
-  <mat-progress-bar mode="query"></mat-progress-bar>
+  <app-progress-bar />
+  <ng-container *ngIf="userInformation$ |async as user" >
+    <app-header-profile [user]="user.participante"></app-header-profile>
+    <app-photo-gallery [photo]="user.participante.post" />
 
-  <section class="seccion-perfil-usuario">
-      <div class="perfil-usuario-header">
-          <div class="perfil-usuario-portada">
-              <div class="perfil-usuario-avatar">
-                  <img src="https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png" alt="img-avatar">
-              </div>
-          </div>
-      </div>
-      <div class="perfil-usuario-body">
-          <div class="perfil-usuario-bio">
-            <h3 class="titulo">Keyron Damian Aguilar Ortiz</h3>
-            <p class="texto">6to Semestre</p>
-            <div class="redes-sociales">
-              <a href="" class="boton-redes email"><i class="input-icon uil uil-at"></i></a>
-            </div>
-          </div>
-          <div class="perfil-usuario-footer">
-
-            <div class="blog-card spring-fever">
-              <div class="card" style="--i:url(https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80)">
-                <div class="cards">
-                    <h2>Agua</h2>
-                    <div>
-                      <i class="input-icon uil uil-comment-dots">293</i>
-                      <i class="input-icon uil uil-heart">293</i>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="blog-card spring-fever">
-              <div class="card" style="--i:url(https://ichef.bbci.co.uk/news/640/cpsprodpb/D445/production/_106414345_playaelsalvador.jpg)">
-                <div class="cards">
-                    <h2>Agua</h2>
-                    <div>
-                      <i class="input-icon uil uil-comment-dots">293</i>
-                      <i class="input-icon uil uil-heart">293</i>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="blog-card spring-fever">
-              <div class="card" style="--i:url(https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80)">
-                <div class="cards">
-                    <h2>Agua</h2>
-                    <div>
-                      <i class="input-icon uil uil-comment-dots">293</i>
-                      <i class="input-icon uil uil-heart">293</i>
-                    </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-      </div>
-      
-  </section>
+  </ng-container>
 </body>

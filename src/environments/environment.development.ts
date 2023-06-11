@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  avatarUrl:'https://www.shutterstock.com/image-vector/anonymous-vector-icon-incognito-sign-600w-1850222983.jpg',
+  avatarUrl:'https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png',
   apiUrl: 'http://127.0.0.1:8000/api/'
 };
