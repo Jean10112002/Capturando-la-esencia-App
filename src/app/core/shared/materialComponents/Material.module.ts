@@ -11,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -26,6 +27,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatGridListModule,
     MatStepperModule,
     MatBadgeModule,
+    MatChipsModule,
 
     ],
   exports: [MatButtonModule,
@@ -36,7 +38,8 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatFormFieldModule,
     MatStepperModule,
     MatTabsModule,
-    MatBadgeModule,],
+    MatBadgeModule,
+    MatChipsModule,],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })

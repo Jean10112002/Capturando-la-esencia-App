@@ -28,7 +28,8 @@ import { UserInformationService } from './services/user-information.service';
 import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
-import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { NgSelectModule } from '@ng-select/ng-select'; // Importa el módulo
      PhotoGalleryComponent,
      CalificarPostComponent,
      ReportComponent,
-     CalificacionComponent
+     CalificacionComponent,
+     ChipCategoryComponent
 
   ],
   imports: [
