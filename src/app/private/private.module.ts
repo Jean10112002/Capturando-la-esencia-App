@@ -29,7 +29,11 @@ import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
+
 
 
 @NgModule({
@@ -50,8 +54,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
      CalificarPostComponent,
      ReportComponent,
      CalificacionComponent,
-
-
+     ChipCategoryComponent
   ],
   imports: [
     PrivateRoutingModule,
