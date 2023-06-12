@@ -5,7 +5,7 @@ import { Participante } from '../interfaces/post/post.interface';
 
 @Injectable()
 export class UserInformationService {
-  private UserInformation$:BehaviorSubject<UserI>=new BehaviorSubject({apellido:'',email:'',id:0,nombre:'',rol:'',telefono:''});
+  private UserInformation$:BehaviorSubject<UserI>=new BehaviorSubject({apellido:'',email:'',id:0,nombre:'Jurado',rol:'',telefono:''});
   private UserInformationParticipante$:BehaviorSubject<Participante>=new BehaviorSubject({cedula:'',email:'',id:0,nombres:'',rol:'',telefono:'',semestre:''});
   constructor() { }
   setInformationUser(value: any): void {
