@@ -58,6 +58,7 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
      ReportComponent,
      CalificacionComponent,
      ChipCategoryComponent,
+     ToastComponent
   ],
   imports: [
     PrivateRoutingModule,

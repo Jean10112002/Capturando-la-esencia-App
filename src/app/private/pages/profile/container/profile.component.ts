@@ -1,5 +1,6 @@
 import { Comentario } from './../../../interfaces/post/post.search-by-categoria.interface';
 import { Component, OnInit } from '@angular/core';
+import { ReporteService } from 'src/app/private/services/reporte.service';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { UserInformationService } from 'src/app/private/services/user-informatio
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  constructor(){
+ /*  constructor(){
 
-  }
+  } */
   ngOnInit(): void {
 
   }
@@ -24,5 +25,8 @@ export class ProfileComponent implements OnInit {
 
     // Agrega más imágenes aquí
   ];
+  constructor(private reporte: ReporteService) {}
+
+
 
 }
