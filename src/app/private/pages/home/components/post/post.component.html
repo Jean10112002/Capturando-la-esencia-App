@@ -26,8 +26,12 @@
         class="reacciones"
         ngClass="{{ isLikeOfMe && 'like-heart' }}"
       ></mat-icon>
-
-      <i class="reacciones input-icon uil uil-comment-dots"></i>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example favorite icon"
+        fontIcon="sms"
+        class="reacciones comment-btn"
+      ></mat-icon>
     </div>
     >
     <div class="boton3" *ngIf="user.rol === 'jurado'">
@@ -37,7 +41,7 @@
 
   <div class="likes">
     <a class="like" href="">
-      <b> {{ post.like.length }} </b> Me gusta</a
+      <b> {{ likeCount }} </b> Me gusta</a
     >
     <a class="like" href="">
       <b>{{ post.comentario__post.length }}</b> Comentarios</a

@@ -12,8 +12,11 @@ import { config } from 'src/config/config';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit{
+  @Input() post!:Datum;
   isLikeOfMe!:boolean;
   like_id!:number;
+  likeCount!:number;
+  avatar:string=config.avatarUrl;
   userAdminJurado$:Observable<UserI>=this.dataServiceUser.getData();
   user$:Observable<Participante>=this.dataServiceUser.getInformationParticipante();
   constructor(private readonly dataServiceUser:UserInformationService,private readonly interaccionService:InteraccionService){}
@@ -21,28 +24,27 @@ export class PostComponent implements OnInit{
     this.user$.subscribe((user:Participante)=>{
       this.verifyIDoLike(user);
     })
+    this.likeCount=this.post.like.length
   }
 
-  avatar:string=config.avatarUrl;
-  @Input() post!:Datum;
   likePost(){
     if(this.isLikeOfMe){
       this.interaccionService.deleteLike(this.like_id).subscribe((res)=>{
         this.isLikeOfMe=false;
+        this.likeCount--
       })
-      console.log('quitar like')
     }else{
       this.interaccionService.createLike({post_id:this.post.id}).subscribe((res:any)=>{
         this.isLikeOfMe=true;
         this.like_id=res.Post.id;
+        this.likeCount++
+
       })
-      console.log('dar like')
     }
   }
   verifyIDoLike(user:Participante):boolean{
     const userExist=this.post.like.filter(id=>user.id==id.participante_id)
     if(userExist.length>0){
-      console.log('ya le dió like a este post')
       console.log(userExist)
       this.like_id=userExist[0].id;
       this.isLikeOfMe=true;
