@@ -45,7 +45,7 @@ export interface ParticipanteShowI {
   lugar:             string;
   ciudad:            string;
   fecha:             string;
-  calificacionFinal: number;
+  calificacionFinal: number|null;
   estado:            number;
   imagen_id:         number;
   categoria_id:      number;

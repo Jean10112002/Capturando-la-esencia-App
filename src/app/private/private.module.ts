@@ -36,6 +36,11 @@ import { ChipCategoryComponent } from './pages/home/components/chip-category/chi
 import { HeaderProfileComponent } from './pages/profile/components/header-profile/header-profile.component';
 import { PhotoComponent } from './pages/profile/components/photo/photo.component';
 import { SharedModule } from '../core/shared/shared.module';
+import { ListUserCommentComponent } from './pages/home/components/list-user-comment/list-user-comment.component';
+import { ModalUserCommentsComponent } from './pages/home/components/modal-user-comments/modal-user-comments.component';
+import { ModalCalificarPostComponent } from './pages/home/components/modal-calificar-post/modal-calificar-post.component';
+import { HeaderProfileJuradoComponent } from './pages/calificacion/components/header-profile-jurado/header-profile-jurado.component';
+import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
 
 
 
@@ -43,7 +48,9 @@ import { SharedModule } from '../core/shared/shared.module';
   declarations: [
     PrivateComponent,
     HomeComponent,
-
+    ModalUserCommentsComponent,
+    ListUserCommentComponent,
+    ModalCalificarPostComponent,
     CrearComponent,
     ProfileComponent,
     NavbarComponent,
@@ -60,6 +67,8 @@ import { SharedModule } from '../core/shared/shared.module';
     ChipCategoryComponent,
     HeaderProfileComponent,
     PhotoComponent,
+    HeaderProfileJuradoComponent,
+    PhotoGalleryCalificarComponent,
   ],
   imports: [
 

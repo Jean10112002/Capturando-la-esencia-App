@@ -24,7 +24,7 @@ export class PostComponent implements OnInit{
     this.user$.subscribe((user:Participante)=>{
       this.verifyIDoLike(user);
     })
-    this.likeCount=this.post.like.length
+    this.likeCount=this.post?.like.length
   }
 
   likePost(){
@@ -43,8 +43,8 @@ export class PostComponent implements OnInit{
     }
   }
   verifyIDoLike(user:Participante):boolean{
-    const userExist=this.post.like.filter(id=>user.id==id.participante_id)
-    if(userExist.length>0){
+    const userExist=this.post?.like.filter(id=>user.id==id.participante_id)
+    if(userExist?.length>0){
       console.log(userExist)
       this.like_id=userExist[0].id;
       this.isLikeOfMe=true;

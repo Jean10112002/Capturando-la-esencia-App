@@ -1,14 +1,13 @@
 <app-progress-bar />
 
-
-<nav>
+<!-- <nav>
   <button (click)="openDialog()">Abrir cuadro de diálogo</button>
   <app-crear
     class="app-crear"
     *ngIf="showDialog"
     (closeDialog)="closeDialog()"
   ></app-crear>
-</nav>
+</nav> -->
 
 <body style="padding-top: 22px; display: flex; justify-content: center">
   <div class="scroll">
@@ -37,9 +36,6 @@
       </div>
     </div>
 
-    <div class="user">
-      <app-user-information class="app-user-information"></app-user-information>
-    </div>
 
   </div>
   <ng-container *ngIf="user">

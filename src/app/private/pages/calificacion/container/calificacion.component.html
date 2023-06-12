@@ -1,1 +1,7 @@
-<p>calificacion works!</p>
+<ng-container *ngIf="userJurado$ |async as jurado">
+  <app-header-profile-jurado [jurado]="jurado" ></app-header-profile-jurado>
+  <ng-container *ngIf="postWithoutCalification$ | async as posts">
+    <app-photo-gallery-calificar [photo]="posts.Post.data"  />
+  </ng-container>
+
+</ng-container>
