@@ -60,6 +60,7 @@ import { SharedModule } from '../core/shared/shared.module';
     PhotoComponent,
   ],
   imports: [
+
     PrivateRoutingModule,
     CommonModule,
     HttpClientModule,

@@ -13,6 +13,9 @@ export class InteraccionService {
   }
   createLike(like:LikeInteraccionI){
     return this.http.post(`${this.api}interaccion/like`,like)
-
   }
+  deleteLike(id:number){
+    return this.http.delete(`${this.api}interaccion/like/${id}`)
+  }
+
 }

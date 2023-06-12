@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Participante, PostAllPaginateI } from 'src/app/private/interfaces/post/post.interface';
 import { PostI } from 'src/app/private/interfaces/participante/participante.interface';
 import { PostService } from 'src/app/private/services/post.service';
+import { SpinnerService } from 'src/app/core/shared/services/spinner.service';
 
 
 @Component({
@@ -28,6 +29,9 @@ export class HomeComponent {
       this.user=user.user
       if(this.user.rol==='jurado'){
         this.userDataService.setInformationUser(user.user);
+      }
+      if(this.user.rol==='participante'){
+        this.userDataService.setInformationParticipante(user.user);
       }
     })
     this.posts$=postService.getPosts();

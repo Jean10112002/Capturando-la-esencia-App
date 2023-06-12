@@ -1,42 +1,56 @@
 <div class="cards" *ngIf="post">
-
   <div class="perfil">
-    <img class="avatar" [src]="avatar" alt="">
-    <h2 class="nombre"> {{post.participante.nombres | titlecase}} </h2>
+    <img class="avatar" [src]="avatar" alt="" />
+    <h2 class="nombre">{{ post.participante.nombres | titlecase }}</h2>
   </div>
 
   <div class="imagen">
-    <img class="img" [src]="post.imagen.imagen_url" alt="">
-    <h4 class="lugar"> <i class="input-icon uil uil-map-marker-alt"></i>  {{post.ciudad |titlecase}} - {{post.lugar|titlecase}}</h4>
+    <img class="img" [src]="post.imagen.imagen_url" alt="" />
+    <h4 class="lugar">
+      <i class="input-icon uil uil-map-marker-alt"></i>
+      {{ post.ciudad | titlecase }} - {{ post.lugar | titlecase }}
+    </h4>
   </div>
 
-  <div class="likes-comentarios-calificar">
-    <div>
-      <i class="reacciones input-icon uil uil-heart"></i>
+  <div
+    class="likes-comentarios-calificar"
+    *ngIf="userAdminJurado$ | async as user"
+  >
+    <div *ngIf="user$ |async as userParticipante">
+      <mat-icon
+        *ngIf="userParticipante.rol==='participante'&&user.rol!=='participante'"
+        aria-hidden="false"
+        aria-label="Example favorite icon"
+        fontIcon="favorite"
+        (click)="likePost()"
+        class="reacciones"
+        ngClass="{{ isLikeOfMe && 'like-heart' }}"
+      ></mat-icon>
+
       <i class="reacciones input-icon uil uil-comment-dots"></i>
     </div>
-    <ng-container *ngIf="user$|async as user"
     >
-    <div class="boton3"  *ngIf="user.rol==='jurado'">
+    <div class="boton3" *ngIf="user.rol === 'jurado'">
       <a class="cali" href="">Calificar</a>
     </div>
-  </ng-container>
-
   </div>
 
   <div class="likes">
-    <a class="like" href=""> <b> {{post.like.length}} </b> Me gusta</a>
-    <a class="like" href=""> <b>{{post.comentario__post.length}}</b> Comentarios</a>
+    <a class="like" href="">
+      <b> {{ post.like.length }} </b> Me gusta</a
+    >
+    <a class="like" href="">
+      <b>{{ post.comentario__post.length }}</b> Comentarios</a
+    >
   </div>
 
   <div class="descripcion">
     <div class="encabezado">
-      <h1 class="titulo"> {{post.titulo}} </h1>
-      <h3 class="categoria">Categoria: {{post.categoria.nombre|titlecase}} </h3>
+      <h1 class="titulo">{{ post.titulo }}</h1>
+      <h3 class="categoria">
+        Categoria: {{ post.categoria.nombre | titlecase }}
+      </h3>
     </div>
-    <p class="parrafo"> {{post.descripcion}} </p>
+    <p class="parrafo">{{ post.descripcion }}</p>
   </div>
-
 </div>
-
-

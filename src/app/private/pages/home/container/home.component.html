@@ -1,5 +1,6 @@
 <app-progress-bar />
 
+
 <nav>
   <button (click)="openDialog()">Abrir cuadro de diálogo</button>
   <app-crear
@@ -15,10 +16,10 @@
       <app-chip-category class="app-chip-category"></app-chip-category>
     </div>
     <div class="scroll-infinito">
-      <ng-container *ngIf="posts$ | async as posts">
-        {{posts.Posts.data|json}}
+      <ng-container *ngIf="posts$ | async as posts ">
         <app-post class="app-post"  *ngFor="let post of posts.Posts.data" [post]="post"></app-post>
       </ng-container>
+
     </div>
   </div>
   <ng-container *ngIf="user">
