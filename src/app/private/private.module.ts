@@ -41,18 +41,21 @@ import { ModalUserCommentsComponent } from './pages/home/components/modal-user-c
 import { ModalCalificarPostComponent } from './pages/home/components/modal-calificar-post/modal-calificar-post.component';
 import { HeaderProfileJuradoComponent } from './pages/calificacion/components/header-profile-jurado/header-profile-jurado.component';
 import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
+import { ToastComponent } from '../core/shared/components/toast/toast.component';
 
 
 
 @NgModule({
   declarations: [
+
     PrivateComponent,
     HomeComponent,
     ModalUserCommentsComponent,
     ListUserCommentComponent,
     ModalCalificarPostComponent,
     CrearComponent,
-<<<<<<< HEAD
+
+
      ProfileComponent,
      NavbarComponent,
      UserInformationComponent,
@@ -66,8 +69,7 @@ import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/
      ReportComponent,
      CalificacionComponent,
      ChipCategoryComponent,
-     ToastComponent
-=======
+
     ProfileComponent,
     NavbarComponent,
     UserInformationComponent,
@@ -85,7 +87,9 @@ import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/
     PhotoComponent,
     HeaderProfileJuradoComponent,
     PhotoGalleryCalificarComponent,
->>>>>>> 556b9feac8c0f0e29ac2c01d2c9d6664eb096ce3
+    ToastComponent,
+
+
   ],
   imports: [
 
