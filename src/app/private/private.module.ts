@@ -36,6 +36,8 @@ import { ChipCategoryComponent } from './pages/home/components/chip-category/chi
 
 
 
+
+
 @NgModule({
   declarations: [
     PrivateComponent,

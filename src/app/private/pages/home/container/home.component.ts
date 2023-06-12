@@ -17,15 +17,7 @@ import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/L
 })
 export class HomeComponent {
 
-  showDialog = false;
-
-  openDialog() {
-    this.showDialog = true;
-  }
-
-  closeDialog() {
-    this.showDialog = false;
-  }
+  
   //Funcion para abrir el Crear.Component.html como Cuadro de dialogo
 /*   openDialog(): void {
     const dialogRef = this.dialog.open(CrearComponent, {
