@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  showDialog = false;
+
+  openDialog() {
+    this.showDialog = true;
+  }
+
+  closeDialog() {
+    this.showDialog = false;
+  }
+
 }
