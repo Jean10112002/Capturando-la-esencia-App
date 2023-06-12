@@ -9,5 +9,6 @@ import { of } from 'rxjs';
 })
 export class ProgressBarComponent {
   isLoading$=of(true);
+/*    isLoading$=this.spinnerService.isLoading$; */
   constructor(private readonly spinnerService:SpinnerService){}
 }

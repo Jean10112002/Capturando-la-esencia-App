@@ -1,13 +1,13 @@
 <div class="container">
   <div class="foto-div">
-    <img src="https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png" alt="">
+    <img [src]="avatar" alt="foto de perfil de la persona">
   </div>
   <div class="texto">
     <div class="h2-div">
-      <p style="font-size: 10pt; padding-top: 5px;"><b>SOLORZANO GUERRERO RONALDO WANDERLEY</b></p>
+      <p style="font-size: 10pt; padding-top: 5px;"><b> {{user.nombres | titlecase}} </b></p>
     </div>
     <div class="h3-div">
-      <p>9no Semestre</p>
+      <p>{{user.semestre}} Semestre</p>
     </div>
   </div>
 </div>

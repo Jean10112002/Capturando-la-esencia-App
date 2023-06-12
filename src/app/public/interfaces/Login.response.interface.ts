@@ -1,3 +1,4 @@
+import { Participante } from "src/app/private/interfaces/post/post.interface";
 
 
 export interface LoginResponseI {
@@ -9,7 +10,7 @@ export interface LoginResponseI {
 
 export interface UserProfileI {
   msg:  string;
-  user: UserI;
+  user: UserI | Participante;
 }
 
 export interface UserI {

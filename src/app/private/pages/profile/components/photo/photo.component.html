@@ -1,0 +1,11 @@
+<div class="blog-card spring-fever">
+  <div class="card" style="--i:url({{photo.imagen.imagen_url}})">
+    <div class="cards">
+        <h2> {{photo.categoria.nombre}} </h2>
+        <div *ngIf="photo.comentario__post && photo.like">
+          <i class="input-icon uil uil-comment-dots"> {{photo.comentario__post.length}} </i>
+          <i class="input-icon uil uil-heart"> {{photo.like.length}}  </i>
+        </div>
+    </div>
+  </div>
+</div>
