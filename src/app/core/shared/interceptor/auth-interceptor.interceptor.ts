@@ -9,48 +9,63 @@ import {
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from '../../../public/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptorInterceptor implements HttpInterceptor {
+  constructor(
+    private readonly authService: AuthService,
+    private router: Router,
+    private notificacion: ToastrService
+  ) {}
 
-  constructor(private readonly authService:AuthService,private router: Router,
-    ) {}
-
-  intercept(req: HttpRequest <any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token:string|null = this.authService.getToken();
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const token: string | null = this.authService.getToken();
     let request = req;
     if (token) {
       request = req.clone({
         setHeaders: {
-          authorization: `Bearer ${ token }`
-        }
+          authorization: `Bearer ${token}`,
+        },
       });
     }
-    console.log("interceptor")
-    return next.handle(request).pipe(catchError((error) => this.herrorHandler(error)));
-	}
+    console.log('interceptor');
+    return next
+      .handle(request)
+      .pipe(catchError((error) => this.herrorHandler(error)));
+  }
   private herrorHandler(error: HttpErrorResponse): Observable<never> {
-		if (error instanceof HttpErrorResponse) {
-			if (error.error instanceof ErrorEvent) {
-				console.error('ERROR DE CLIENTE', 'top right');
-			} else {
-        if(error.status===401){
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error('ERROR DE CLIENTE', 'top right');
+      } else {
+        if (error.status === 401) {
           this.authService.deleteToken();
-          console.log("redireccionar interceptor")
+          console.log('redireccionar interceptor');
+          this.notificacion.error("No has iniciado sesión", 'Proceso Erroneo');
           this.router.navigate(['login']);
         }
-        if(error.status===403){
-          console.log("redireccionar no autorizado")
-          this.router.navigate(['home']);
+        if (error.status === 403) {
+          console.log('redireccionar no autorizado');
+          this.notificacion.error("No estás autorizado para estar aquí", 'Proceso Erroneo');
+
+          this.router.navigate(['login']);
         }
-				if (error.status !==200) {
+        if (error.status !== 200) {
           console.error('ERROR DE SERVIDOR', 'top right');
-          console.log(error.error)
-				}
-			}
-		} else {
-			console.error('OTRO TIPO DE ERROR', 'top right');
-		}
-		return throwError(error);
-	}
+          /*  this.notificacion.error(error.error.error,'Proceso Erroneo'); */
+          console.log(error.error);
+          this.router.navigate(['login']);
+        }
+      }
+    } else {
+      console.error('OTRO TIPO DE ERROR', 'top right');
+    }
+    this.notificacion.error(error.error.error, 'Proceso Erroneo');
+    console.log(error)
+    return throwError(error);
+  }
 }

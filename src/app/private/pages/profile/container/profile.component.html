@@ -1,5 +1,9 @@
+
 <body>
-  <mat-progress-bar mode="query"></mat-progress-bar>
+  <app-progress-bar />
+  <ng-container *ngIf="userInformation$ |async as user" >
+    <app-header-profile [user]="user.participante" />
+    <app-photo-gallery [photo]="user.participante.post" />
 
   <section class="seccion-perfil-usuario">
       <div class="perfil-usuario-header">
@@ -59,4 +63,7 @@
       </div>
 
   </section>
+
+  </ng-container>
+
 </body>

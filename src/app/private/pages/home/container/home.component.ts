@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 //Importaciones para abrir el Cuadro de Dialogo de Crear
-import { MatDialog } from '@angular/material/dialog';
-import { CrearComponent } from '../components/crear/crear.component';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { AuthService } from 'src/app/public/services/auth.service';
-import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.interface';
+import {  UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.interface';
+import { Observable, map } from 'rxjs';
+import { Participante, PostAllPaginateI, Posts } from 'src/app/private/interfaces/post/post.interface';
+import { PostService } from 'src/app/private/services/post.service';
 
 
 @Component({
@@ -17,14 +18,37 @@ import { LoginResponseI, UserI, UserProfileI } from 'src/app/public/interfaces/L
 })
 export class HomeComponent {
 
-  showDialog = false;
 
-  openDialog() {
+  user!:UserI | Participante;
+  posts$!:Observable<Posts>;
+  showDialog = false;
+  constructor(private readonly authService:AuthService,private readonly userDataService:UserInformationService,private readonly postService:PostService){
+    authService.userInformation().subscribe((user:UserProfileI)=>{
+      this.user=user.user
+      if(this.user.rol==='jurado'){
+        this.userDataService.setInformationUser(user.user);
+      }
+      if(this.user.rol==='participante'){
+        this.userDataService.setInformationParticipante(user.user);
+      }
+    })
+    this.posts$=postService.getPosts().pipe(map((res:any)=>res.Posts));
+  }
+    openDialog() {
     this.showDialog = true;
   }
 
   closeDialog() {
     this.showDialog = false;
+  }
+  recibirCategoria(event:number){
+    if(event==0){
+      this.posts$=this.postService.getPosts().pipe(map((result)=>result.Posts));
+    }else{
+      this.posts$=this.postService.getPostsByCategory(event).pipe(map((result:any)=>result.PostCategoria));
+
+    }
+    console.log(event)
   }
   //Funcion para abrir el Crear.Component.html como Cuadro de dialogo
 /*   openDialog(): void {

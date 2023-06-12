@@ -1,10 +1,9 @@
 .scroll{
-  background-color: rgba(0, 255, 255, 0.185);
-  max-width: 620px;
-    width: 100%;
+  width: 620px;
 }
 
 .user{
+  cursor: pointer;
   background-color: rgba(0, 0, 255, 0.145);
   max-width: 380px;
   width: 100%;
@@ -21,28 +20,75 @@
     height: 100%;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1166px) {
 
   .user{
     display: none;
+
+  }
+
+  .cuerpo{
+    width: 100%;
   }
 
 }
 
 .scroll-infinito{
   display: flex;
+  width: 75%;
+  margin: 0 auto;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .app-post{
   width: 75%;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
 
-
 .categoria{
-  background-color: rgba(68, 58, 77, 0.486);
   padding: 3px;
   width: 100%;
   display: flex;
   justify-content: center;
 }
+
+.cuerpo{
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 85%;
+}
+
+.navegador{
+  width: 15%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid;
+  border-color: rgb(187, 178, 178);
+}
+
+@media (max-width: 1289px) {
+
+  .navegador{
+    width: 7%;
+  }
+  .cuerpo{
+    justify-content: center;
+    width: 93%;
+  }
+
+}
+
+@media (max-width: 765px) {
+  .navegador{
+    position: fixed;
+    top: 94%;
+    width: 100%;
+    height: 50px;
+    border-right: 0px solid;
+    border-top: 1px solid;
+  }
+}
+

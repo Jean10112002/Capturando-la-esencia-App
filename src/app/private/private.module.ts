@@ -33,9 +33,14 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
-import { ToastComponent } from '../core/shared/components/toast/toast.component';
-
-
+import { HeaderProfileComponent } from './pages/profile/components/header-profile/header-profile.component';
+import { PhotoComponent } from './pages/profile/components/photo/photo.component';
+import { SharedModule } from '../core/shared/shared.module';
+import { ListUserCommentComponent } from './pages/home/components/list-user-comment/list-user-comment.component';
+import { ModalUserCommentsComponent } from './pages/home/components/modal-user-comments/modal-user-comments.component';
+import { ModalCalificarPostComponent } from './pages/home/components/modal-calificar-post/modal-calificar-post.component';
+import { HeaderProfileJuradoComponent } from './pages/calificacion/components/header-profile-jurado/header-profile-jurado.component';
+import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
 
 
 
@@ -43,8 +48,11 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
   declarations: [
     PrivateComponent,
     HomeComponent,
-
+    ModalUserCommentsComponent,
+    ListUserCommentComponent,
+    ModalCalificarPostComponent,
     CrearComponent,
+<<<<<<< HEAD
      ProfileComponent,
      NavbarComponent,
      UserInformationComponent,
@@ -59,8 +67,28 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
      CalificacionComponent,
      ChipCategoryComponent,
      ToastComponent
+=======
+    ProfileComponent,
+    NavbarComponent,
+    UserInformationComponent,
+    PostComponent,
+    SearchUserComponent,
+    ListUserComponent,
+    ListUserLikePostComponent,
+    ShowPostComponent,
+    PhotoGalleryComponent,
+    CalificarPostComponent,
+    ReportComponent,
+    CalificacionComponent,
+    ChipCategoryComponent,
+    HeaderProfileComponent,
+    PhotoComponent,
+    HeaderProfileJuradoComponent,
+    PhotoGalleryCalificarComponent,
+>>>>>>> 556b9feac8c0f0e29ac2c01d2c9d6664eb096ce3
   ],
   imports: [
+
     PrivateRoutingModule,
     CommonModule,
     HttpClientModule,
@@ -72,9 +100,10 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     //Angular Matirial
     MaterialModule,
     //Filter
-    NgSelectModule
+    NgSelectModule,
+    SharedModule
   ],
-  providers:[
+  providers: [
     //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo
     CalificacionService,
     CategoriaService,
@@ -84,8 +113,6 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     PostService,
     ImagenService,
     UserInformationService,
-
-
-  ]
+  ],
 })
-export class PrivateModule { }
+export class PrivateModule {}
