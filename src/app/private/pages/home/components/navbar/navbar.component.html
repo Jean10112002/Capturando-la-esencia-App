@@ -5,7 +5,7 @@
   </button>
   <div class="componente">
 
-    <button class="boton">
+    <button class="boton" [routerLink]="['/home']" routerLinkActive="router-link-active" >
       <i class="input-icon uil uil-home-alt"></i>
       <h2 class="texto-none-todo">Home</h2>
     </button>
@@ -15,17 +15,21 @@
       <h2 class="texto-none-todo">Busqueda</h2>
     </button>
 
-    <button class="boton crear-iphone" (click)="openDialog()">
+    <button class="boton crear-iphone" *ngIf="user.rol === 'participante'" (click)="openDialog()">
       <i class="input-icon uil uil-focus-add"></i>
       <h2 class="texto-none-todo">Crear</h2>
     </button>
-
-    <button class="boton">
+    <ng-container
+    *ngIf="user"
+    >
+    <button  *ngIf="user.rol === 'participante'" class="boton" [routerLink]="['/profile/',user.id]" routerLinkActive="router-link-active" >
       <i class="input-icon uil uil-user"></i>
       <h2 class="texto-none-todo">Perfil</h2>
     </button>
+  </ng-container>
 
-    <button class="boton cerrar">
+
+    <button class="boton cerrar" (click)="logout()">
       <i class="input-icon uil uil-arrow-to-right"></i>
       <h2 class="texto-none-todo">Salir</h2>
     </button>

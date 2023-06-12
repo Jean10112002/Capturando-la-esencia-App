@@ -1,9 +1,21 @@
-<mat-chip-listbox aria-label="Fish selection">
-  <mat-chip-option style="font-size: 8pt;" color="primary" selected>Todos</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="primary" >Persona y Naturaleza</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="accent">Agua</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="warn">Clima</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="primary">Paisaje</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="accent">Plantas y Hongos</mat-chip-option>
-  <mat-chip-option style="font-size: 8pt;" color="warn">Vida Silvestre</mat-chip-option>
+<mat-chip-listbox
+  aria-label="Fish selection"
+  *ngIf="categories$ | async as categorias"
+>
+  <mat-chip-option
+    style="font-size: 8pt"
+    color = "warn"
+    selected
+    (click)="eventCategoria(0)"
+  >
+    Todos
+  </mat-chip-option>
+  <mat-chip-option
+    *ngFor="let categoria of categorias.Categorias"
+    style="font-size: 8pt"
+    color="primary"
+    (click)="eventCategoria(categoria.id)"
+  >
+    {{ categoria.nombre }}
+  </mat-chip-option>
 </mat-chip-listbox>

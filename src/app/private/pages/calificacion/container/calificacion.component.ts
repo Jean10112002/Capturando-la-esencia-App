@@ -19,4 +19,12 @@ export class CalificacionComponent {
     this.userJurado$ = juradoDataService.getData();
     this.postWithoutCalification$=postService.getPostsWithoutCalificacion();
   }
+  recibirCategoria(event:number){
+    console.log(event)
+    if(event==0){
+      this.postWithoutCalification$=this.postService.getPostsWithoutCalificacion();
+    }else{
+      this.postWithoutCalification$=this.postService.getPostsByCategoryWithoutCalification(event);
+    }
+  }
 }
