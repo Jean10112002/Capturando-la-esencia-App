@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 //Angular Material
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -34,6 +34,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatBadgeModule,
     MatProgressBarModule,
     MatChipsModule,
+    MatProgressSpinnerModule
     ],
   exports: [MatButtonModule,
     MatDialogModule,
@@ -44,7 +45,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatStepperModule,
     MatTabsModule,
     MatBadgeModule,
-    MatChipsModule,],
+    MatChipsModule,
+    MatProgressSpinnerModule
+  ],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })

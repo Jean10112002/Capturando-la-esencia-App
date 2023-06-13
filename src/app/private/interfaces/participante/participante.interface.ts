@@ -3,7 +3,7 @@
 import { ComentarioPost, Like } from "../post/post.interface";
 
 export interface ParticipanteSearchCedulaI {
-  participante: Participante[] | Participante;
+  participante: Participante[] ;
 }
 
 export interface Participante {

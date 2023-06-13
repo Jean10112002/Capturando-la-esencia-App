@@ -1,3 +1,5 @@
-<p>foto del usuario </p>
-<p>imagen de la persona </p>
-<p>nombre de la persona </p>
+<div class="perfil" >
+  <img class="avatar" [src]="avatar" alt="" />
+  <h2 class="nombre"> {{user.nombres |titlecase}} </h2>
+  <h5 > {{user.cedula}} </h5>
+</div>

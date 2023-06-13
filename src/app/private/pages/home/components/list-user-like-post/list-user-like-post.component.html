@@ -1,3 +1,9 @@
-<p>modal que se despliega para ver los likes</p>
-<p>Likes</p>
-<app-list-user></app-list-user>
+<h1 mat-dialog-title>Likes</h1>
+<div mat-dialog-content class="modal-content">
+    <app-list-user  (click)="goToProfile(participante.participante.id)" [user]="participante.participante" *ngFor="let participante of Participante" ></app-list-user>
+    <app-spinner />
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
+

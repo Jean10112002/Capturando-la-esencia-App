@@ -40,11 +40,14 @@
   </div>
 
   <div class="likes">
-    <a class="like" href="">
+    <a class="like click-like" (click)="openModal('250ms', '400ms')">
       <b> {{ likeCount }} </b> Me gusta</a
     >
-    <a class="like" href="">
+    <a class="like click-like" >
       <b>{{ post.comentario__post.length }}</b> Comentarios</a
+    >
+    <a class="like" >
+      {{ post.fecha }} </a
     >
   </div>
 
@@ -57,4 +60,5 @@
     </div>
     <p class="parrafo">{{ post.descripcion }}</p>
   </div>
+
 </div>

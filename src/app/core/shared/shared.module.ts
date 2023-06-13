@@ -11,12 +11,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToastrModule } from 'ngx-toastr';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MaterialModule } from './materialComponents/Material.module';
 
 @NgModule({
   declarations: [
     LostComponent,
     NavbarComponent,
     ProgressBarComponent,
+    SpinnerComponent,
 
   ],
   imports: [
@@ -27,12 +30,14 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass:"toast-top-right",
     }),
+    MaterialModule
   ],
   exports:[
     RouterModule,
     HttpClientModule,
     LostComponent,
     ProgressBarComponent,
+    SpinnerComponent,
 
   ],
   providers:[

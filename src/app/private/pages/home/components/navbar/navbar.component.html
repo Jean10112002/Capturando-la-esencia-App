@@ -10,9 +10,9 @@
       <h2 class="texto-none-todo">Home</h2>
     </button>
 
-    <button class="boton">
+    <button class="boton" (click)="openDialogSearch('200ms', '150ms')">
       <i class="input-icon uil uil-search"></i>
-      <h2 class="texto-none-todo">Busqueda</h2>
+      <h2 class="texto-none-todo" >Busqueda</h2>
     </button>
 
     <button class="boton crear-iphone" *ngIf="user?.rol === 'participante'" (click)="openDialog()">
