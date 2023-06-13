@@ -7,6 +7,7 @@ import {  UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.i
 import { Observable, map } from 'rxjs';
 import { Participante, PostAllPaginateI, Posts } from 'src/app/private/interfaces/post/post.interface';
 import { PostService } from 'src/app/private/services/post.service';
+import { ReporteService } from 'src/app/private/services/reporte.service';
 
 
 @Component({
@@ -17,7 +18,6 @@ import { PostService } from 'src/app/private/services/post.service';
 
 })
 export class HomeComponent {
-
 
   user!:UserI | Participante;
   posts$!:Observable<Posts>;
@@ -37,7 +37,6 @@ export class HomeComponent {
     openDialog() {
     this.showDialog = true;
   }
-
   closeDialog() {
     this.showDialog = false;
   }

@@ -1,6 +1,7 @@
 .nav{
   top: 0;
   width: 100%;
+  height: 100%;
   padding: 10px 10px;
   justify-content: left;
   align-items: center;
@@ -11,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 0px;
+  margin:0px;
 }
 
 .img-logo{
@@ -25,7 +26,7 @@
   align-items: center;
   text-align: center;
   width: 40px;
-  font-size: 25pt;
+  font-size: 24pt;
 }
 
 h1{
@@ -91,14 +92,17 @@ h1{
   }
 
 }
-.cerrar{
-  margin-top: 300px;
+
+.abrir{
+  display: none;
 }
 
 @media (max-width: 765px) {
   .nav{
+    padding: 0px;
     display: flex;
-    align-items: end;
+
+    align-items: center;
     justify-content: space-evenly;
     width: 100%;
     display: block;
@@ -119,9 +123,22 @@ h1{
   .componente{
     display: flex;
     justify-content: space-evenly;
+    margin-top: 8px;
   }
   .crear-iphone{
     display: none;
+  }
+
+  .abrir{
+    display: block;
+  }
+
+  .cerrar{
+    display: none;
+  }
+
+  .input-icon{
+    font-size: 18pt;
   }
 }
 
