@@ -1,6 +1,7 @@
 <mat-chip-listbox
   aria-label="Fish selection"
   *ngIf="categories$ | async as categorias"
+  style="display: flex; justify-content: space-evenly;"
 >
   <mat-chip-option
     style="font-size: 8pt"
@@ -12,7 +13,7 @@
   </mat-chip-option>
   <mat-chip-option
     *ngFor="let categoria of categorias.Categorias"
-    style="font-size: 8pt"
+    style="font-size: 7pt"
     color="primary"
     (click)="eventCategoria(categoria.id)"
   >
