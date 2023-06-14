@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Datum, Participante } from 'src/app/private/interfaces/post/post.interface';
 import { InteraccionService } from 'src/app/private/services/interaccion.service';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 import { config } from 'src/config/config';
+import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +21,7 @@ export class PostComponent implements OnInit{
   avatar:string=config.avatarUrl;
   userAdminJurado$:Observable<UserI>=this.dataServiceUser.getData();
   user$:Observable<Participante>=this.dataServiceUser.getInformationParticipante();
-  constructor(private readonly dataServiceUser:UserInformationService,private readonly interaccionService:InteraccionService){}
+  constructor(private readonly dataServiceUser:UserInformationService,private readonly interaccionService:InteraccionService,private dialog: MatDialog){}
   ngOnInit(): void {
     this.user$.subscribe((user:Participante)=>{
       this.verifyIDoLike(user);
@@ -53,4 +55,13 @@ export class PostComponent implements OnInit{
     return false;
 
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }

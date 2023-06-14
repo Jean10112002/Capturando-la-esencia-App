@@ -43,7 +43,7 @@
     <a class="like" href="">
       <b> {{ likeCount }} </b> Me gusta</a
     >
-    <a class="like" href="">
+    <a class="like" mat-button (click)= "openDialog()">
       <b>{{ post.comentario__post.length }}</b> Comentarios</a
     >
   </div>
@@ -58,7 +58,3 @@
     <p class="parrafo">{{ post.descripcion }}</p>
   </div>
 </div>
-
-<!-- Estatico -->
-
-

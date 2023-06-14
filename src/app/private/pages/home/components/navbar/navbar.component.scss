@@ -117,6 +117,11 @@ h1{
     margin: 0;
     padding: 0;
   }
+
+  .boton:focus{
+    outline: none;
+  }
+
   .texto-none-todo{
     display: none;
   }
@@ -142,4 +147,9 @@ h1{
   }
 }
 
+.boton:hover{
+  .input-icon{
+    transform: scale(1.1);
+  }
+}
 
