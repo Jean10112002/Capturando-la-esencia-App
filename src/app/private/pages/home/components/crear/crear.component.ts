@@ -1,25 +1,50 @@
-import { Component, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output,AfterViewInit } from '@angular/core';
 
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
+import {AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { animaciones } from 'src/app/core/shared/animation/animacion';
+
+
+
+
+
 @Component({
   selector: 'app-crear',
   templateUrl: './crear.component.html',
   styleUrls: ['./crear.component.scss'],
-
+  animations: animaciones
 
 })
-export class CrearComponent implements OnInit{
+export class CrearComponent implements OnInit, AfterViewInit{
+constructor(private breakpointObserver: BreakpointObserver,private formBuilder: FormBuilder) {}
+estado = 'oculto';
+tlfResponsive = false;
+    resolution(): boolean {
+    return this.breakpointObserver.isMatched('(max-width: 480px)');
+  }
+submitForm(){
+  if (this.imagenForm.valid){
+    alert('rnviar datos')
+  }else{
+    alert('falta validar')
+  }
 
-  imagenForm!: FormGroup;
+
+}
+
+ngAfterViewInit() {
+  setTimeout(() => {
+    this.estado = 'visible';
+  }, 100);
+this.tlfResponsive = this.resolution();
+}
+
+imagenForm!: FormGroup;
 
   ngOnInit(): void {
   this.imagenForm = new FormGroup({
-        imagen: new FormControl('', [Validators.required]),
+    imagen: new FormControl(null,Validators.required),
         titulo: new FormControl('',[Validators.required,Validators.minLength(4)]),
         pie: new FormControl('',[Validators.required,Validators.minLength(4),Validators.maxLength(200)]),
         provincia: new FormControl('',[Validators.required]),
@@ -28,15 +53,15 @@ export class CrearComponent implements OnInit{
     categoria: new FormControl('',[Validators.required]),
       });
 
+
   }
+  //Animaciones para los inputs
 
-//Constructor
-submitForm(){
+  estadoFondo = 'normal'; // Estado inicial del fondo
 
-}
-
-constructor(private breakpointObserver: BreakpointObserver) {}
-
+  cambiarFondo() {
+    this.estadoFondo = this.estadoFondo === 'normal' ? 'resaltado' : 'normal'; // Alterna entre los estados normal y resaltado
+  }
 
 //Arrastra o Selecciona Foto
    selectedImage: string | ArrayBuffer | null = null;
@@ -63,14 +88,76 @@ constructor(private breakpointObserver: BreakpointObserver) {}
     }
 
   }
-
+  siEsImagen = true;
+  noEsImagen = false;
+  resolucionImagen = false;
+  sizeImagen = false;
+  IconWarnig = false;
+  sizeMinImagen = false;
   private readFile(file: File) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.selectedImage = reader.result;
-    };
-    reader.readAsDataURL(file);
-    this.SiguienteVisible = true;
+    this.siEsImagen = true;
+  this.noEsImagen = false;
+  this.resolucionImagen = false;
+  this.sizeImagen = false;
+  this.SiguienteVisible = false;
+  this.sizeMinImagen = false;
+
+  this.IconWarnig = false;
+    if (file.type.startsWith('image/')) {
+      const maxSizeBytes = 11 * 1024 * 1024; // 10 MB
+      const minSizeBytes = 2 * 1024 * 1024; // 5 MB
+      const maxWidth = 4032;
+      const maxHeight = 4032;
+      this.selectedImage = null;
+      const image = new Image();
+      image.src = URL.createObjectURL(file);
+      image.onload = () => {
+        const width = image.width;
+        const height = image.height;
+        const fileSize = file.size;
+        console.log(fileSize);
+        if (width < maxWidth || height < maxHeight) {
+
+          if (fileSize < maxSizeBytes ){
+
+            if(fileSize > minSizeBytes){
+                this.siEsImagen = false;
+                const reader = new FileReader();
+                reader.onload = () => {
+
+                this.selectedImage = reader.result;
+
+              };
+
+                reader.readAsDataURL(file);
+
+                this.SiguienteVisible = true;
+              }else{
+                this.IconWarnig = true;
+                this.sizeMinImagen = true;
+            }
+
+
+          }else{
+            this.sizeImagen = true;
+            this.IconWarnig = true;
+          }
+
+        } else  {
+            this.resolucionImagen = true;
+            this.IconWarnig = true;
+        }
+      }
+
+
+    } else {
+      this.selectedImage = null;
+      this.noEsImagen = true;
+      this.IconWarnig = true;
+
+    }
+
+
   }
 
 
@@ -78,15 +165,27 @@ constructor(private breakpointObserver: BreakpointObserver) {}
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
 
   onClose() {
-    this.showVentanaEmergente = true;
+    if(this.selectedImage !== null && this.imagenForm.invalid){
+
+
+      this.showVentanaEmergente = true;
+
+    }else{
+
+      this.closeDialog.emit();
+    }
+
 
   }
 
 
 //Div que se desplega
   divVisible = true;
+  descripcionAnimation = 'inicial';
 
   toggleDivVisibility() {
+
+this.descripcionAnimation = 'final';
 
     if(!this.resolution()){
       this.isContainer = !this.isContainer;
@@ -96,6 +195,12 @@ constructor(private breakpointObserver: BreakpointObserver) {}
 
     }
     this.divVisible = !this.divVisible;
+    if(this.divVisible == true){
+
+      this.descripcionAnimation = 'inicial';
+
+    }
+
   }
 //Responsibe
     esResponsivo = false;
@@ -108,9 +213,7 @@ constructor(private breakpointObserver: BreakpointObserver) {}
 
 
   //saber la resolucion para la responsibe
-  private resolution(): boolean {
-    return this.breakpointObserver.isMatched('(max-width: 480px)');
-  }
+
 
   //Cambiar responsive con el boton siguiente
   isResponsive: boolean = false;
@@ -309,27 +412,26 @@ constructor(private breakpointObserver: BreakpointObserver) {}
       { id: 14, label: 'Vivas' }
     ] },
     { id: 14, label: 'Manabí',cantones:[
-      { id: 1, label: 'Chone' },
-      { id: 2, label: 'El Carmen' },
-      { id: 3, label: 'Flavio Alfaro' },
-      { id: 4, label: 'Jama' },
-      { id: 5, label: 'Jaramijó' },
-      { id: 6, label: 'Jipijapa' },
-      { id: 7, label: 'Junín' },
-      { id: 8, label: 'Manta' },
-      { id: 9, label: 'Montecristi' },
-      { id: 10, label: 'Olmedo' },
-      { id: 11, label: 'Paján' },
-      { id: 12, label: 'Pedernales' },
-      { id: 13, label: 'Pichincha' },
-      { id: 14, label: 'Portoviejo' },
-      { id: 15, label: 'Puerto López' },
-      { id: 16, label: 'Rocafuerte' },
-      { id: 17, label: 'San Vicente' },
-      { id: 18, label: 'Santa Ana' },
-      { id: 19, label: 'Sucre' },
-      { id: 20, label: 'Tosagua' },
-      { id: 21, label: '24 de Mayo' }
+      { id: 1, label: 'Bolívar' },
+  { id: 2, label: 'Chone' },
+  { id: 3, label: 'El Carmen' },
+  { id: 4, label: 'Flavio Alfaro' },
+  { id: 5, label: 'Jama' },
+  { id: 6, label: 'Jaramijó' },
+  { id: 7, label: 'Jipijapa' },
+  { id: 8, label: 'Junín' },
+  { id: 9, label: 'Manta' },
+  { id: 10, label: 'Montecristi' },
+  { id: 11, label: 'Olmedo' },
+  { id: 12, label: 'Paján' },
+  { id: 13, label: 'Pedernales' },
+  { id: 14, label: 'Portoviejo' },
+  { id: 15, label: 'Puerto López' },
+  { id: 16, label: 'Rocafuerte' },
+  { id: 17, label: 'San Vicente' },
+  { id: 18, label: 'Santa Ana' },
+  { id: 19, label: 'Sucre' },
+  { id: 20, label: 'Tosagua' }
     ] },
     { id: 15, label: 'Morona Santiago',cantones:[
       { id: 1, label: 'Gualaquiza' },
@@ -431,9 +533,10 @@ selectedOptionCanton:any;
   }
   onClearSelection(): void {
     this.selectedProvincia = null;
-    this.provinciaHolder = 'Provincias ▼';
+    this.provinciaHolder = 'Provincias';
     this.selectedCanton = null;
-    this.cantonHolder = 'Canton ▼';
+    this.cantonHolder = 'Canton';
+
   }
 
   onOptionSelectedCanton(){
@@ -443,14 +546,14 @@ selectedOptionCanton:any;
   cantonHolder:string = '';
   onClearSelectedCanton(): void {
     this.selectedCanton = null; // Restablecer la selección a null o a otro valor por defecto
-    this.cantonHolder = 'Canton ▼'; // Restablecer el valor del placeholder
+    this.cantonHolder = 'Canton'; // Restablecer el valor del placeholder
   }
   onCategoriaFondo=true;
   selectedCategoria:any;
   categoriaHolder:string = '';
   onClearSelectedCategoria(): void {
     this.selectedCategoria = null; // Restablecer la selección a null o a otro valor por defecto
-    this.categoriaHolder = 'Categorias ▼';
+    this.categoriaHolder = 'Categorias';
     this.onCategoriaFondo=false;
   }
   //selcionar provincias y para cada canton
