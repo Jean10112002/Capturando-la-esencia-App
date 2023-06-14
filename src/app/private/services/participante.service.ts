@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ParticipanteSearchCedulaI,ParticipanteShowI } from '../interfaces/participante/participante.interface';
+import { AllParticipanteResponseI, ParticipanteSearchCedulaI,ParticipanteShowI } from '../interfaces/participante/participante.interface';
 import { Observable } from 'rxjs';
 import { config } from 'src/config/config';
 
@@ -12,6 +12,10 @@ export class ParticipanteService {
     return this.http.get<ParticipanteShowI>(`${this.api}participante/${id}`)
   }
   oneParticipanteSearchByCedula(cedula:string):Observable<ParticipanteSearchCedulaI>{
+    console.log("servicio")
     return this.http.get<ParticipanteSearchCedulaI>(`${this.api}participante/search/${cedula}`);
+  }
+  allParticipantes():Observable<AllParticipanteResponseI>{
+    return this.http.get<AllParticipanteResponseI>(`${this.api}participante`)
   }
 }

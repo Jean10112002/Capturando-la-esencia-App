@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ParticipanteService } from 'src/app/private/services/participante.service';
-import { Observable, Subject, catchError, debounceTime, distinctUntilChanged, filter, map, of, switchMap, tap } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, debounceTime, distinctUntilChanged, filter, map, of, switchMap, tap, throwError } from 'rxjs';
 import { ParticipanteSearchCedulaI } from 'src/app/private/interfaces/participante/participante.interface';
 import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { Route, Router } from '@angular/router';
@@ -13,32 +13,19 @@ import { SpinnerService } from 'src/app/core/shared/services/spinner.service';
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.scss']
 })
-export class SearchUserComponent {
-  searchTerm$:Subject<string>=new Subject();
-  participantes$!:Observable<Participante[]>;
+export class SearchUserComponent implements OnInit{
+  term!:string;
+  participantes$:Observable<Participante[]>;
   constructor(public dialogRef: MatDialogRef<NavbarComponent>,private readonly participanteService:ParticipanteService,private readonly route:Router){
-    this.participantes$=this.searchTerm$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      filter((term: string) => term.trim().length > 0),
-      switchMap((term: string) => this.participanteService.oneParticipanteSearchByCedula(term)),
-      map((p:ParticipanteSearchCedulaI)=>p.participante),
-      tap(respuesta=>console.log(respuesta))
-      /* catchError(()=>this.participantes$=of() */
-      )
+   this.participantes$=this.participanteService.allParticipantes().pipe(map(res=>res.Participantes))
+  }
+  ngOnInit(): void {
+
   }
   goToProfile(id:number){
     this.dialogRef.close();
     this.route.navigate(['/profile',id])
   }
-  onSearch(term:string){
-     if(term.trim()===''){
-      console.log("vacio")
- /*      this.participantes$=of(); */
-    }else{
-    console.log("metodo")
 
-      this.searchTerm$.next(term);
-    }
-  }
+
 }

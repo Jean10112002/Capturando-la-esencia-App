@@ -44,7 +44,7 @@ export class PostComponent implements OnInit {
   ): void {
     console.log(this.post.like);
     this.dialog.open(ListUserLikePostComponent, {
-      width: '50%',
+      width: '100%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: this.post,

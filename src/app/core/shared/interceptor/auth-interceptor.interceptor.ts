@@ -58,8 +58,9 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           console.error('ERROR DE SERVIDOR', 'top right');
           /*  this.notificacion.error(error.error.error,'Proceso Erroneo'); */
           console.log(error.error);
-          this.router.navigate(['login']);
+           this.router.navigate(['login']);
         }
+
       }
     } else {
       console.error('OTRO TIPO DE ERROR', 'top right');

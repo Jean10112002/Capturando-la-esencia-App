@@ -21,7 +21,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { PermissionGuard } from './core/shared/guards/permission/permission.guard';
 import { AuthService } from './public/services/auth.service';
-import { ToastrModule } from 'ngx-toastr';
 import { CoreModule } from './core/core.module';
 //Componentes
 
@@ -41,10 +40,10 @@ import { CoreModule } from './core/core.module';
 
 
     //Modulos
-
     //Angular Material
     MaterialModule,
-    CoreModule
+    CoreModule,
+
   ],
   providers: [
     {

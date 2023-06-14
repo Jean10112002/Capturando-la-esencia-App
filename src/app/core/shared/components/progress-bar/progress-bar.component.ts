@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
-import { of } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
-  styleUrls: ['./progress-bar.component.scss']
+  styleUrls: ['./progress-bar.component.scss'],
 })
-export class ProgressBarComponent {
-  /* isLoading$=of(true); */
-    isLoading$=this.spinnerService.isLoading$;
-  constructor(private readonly spinnerService:SpinnerService){}
+export class ProgressBarComponent implements AfterViewInit{
+    isLoading$:Subject<boolean>=new Subject();
+    constructor(private spinnerService:SpinnerService){
+    }
+    ngAfterViewInit(): void {
+    this.isLoading$=this.spinnerService.isLoading$;
+
+  }
+
 }

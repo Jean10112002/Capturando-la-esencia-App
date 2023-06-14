@@ -42,7 +42,7 @@ import { ModalCalificarPostComponent } from './pages/home/components/modal-calif
 import { HeaderProfileJuradoComponent } from './pages/calificacion/components/header-profile-jurado/header-profile-jurado.component';
 import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
 import { ToastComponent } from '../core/shared/components/toast/toast.component';
-
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -88,11 +88,11 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
     HeaderProfileJuradoComponent,
     PhotoGalleryCalificarComponent,
     ToastComponent,
+    FilterPipe,
 
 
   ],
   imports: [
-
     PrivateRoutingModule,
     CommonModule,
     HttpClientModule,

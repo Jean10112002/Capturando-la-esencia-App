@@ -25,7 +25,7 @@ export class NavbarComponent {
   }
   openDialogSearch(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(SearchUserComponent, {
-      width: '50%',
+      width: '100%',
       enterAnimationDuration,
       exitAnimationDuration,
     });

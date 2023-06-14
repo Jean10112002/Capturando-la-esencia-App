@@ -1,17 +1,24 @@
-<h1 mat-dialog-title>Busqueda de Participantes</h1>
-<app-progress-bar-local />
-<div mat-dialog-content class="modal-content">
-  <mat-form-field>
-    <mat-label>CI del participante</mat-label>
-    <input #searchBox matInput (input)="onSearch(searchBox.value)"  maxlength="10">
-    <mat-icon matSuffix>badge</mat-icon>
-  </mat-form-field>
-  <ng-container *ngIf="participantes$ |async as participantes">
-    <app-list-user (click)="goToProfile(participante.id)"  [user]="participante" *ngFor="let participante of participantes"></app-list-user>
-  </ng-container>
+  <h1 mat-dialog-title>Busqueda de Participantes</h1>
+  <app-progress-bar-local />
 
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</div>
-
+  <div mat-dialog-content class="modal-content">
+    <mat-form-field>
+      <mat-label>CI del participante</mat-label>
+      <input
+        matInput
+        [(ngModel)]="term"
+        maxlength="10"
+      />
+      <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="participantes$ | async as participantes">
+      <app-list-user
+        (click)="goToProfile(participante.id)"
+        [user]="participante"
+        *ngFor="let participante of participantes |filter:term"
+      ></app-list-user>
+    </ng-container>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
