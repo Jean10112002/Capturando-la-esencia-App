@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostAllPaginateI, PostCreateI } from '../interfaces/post/post.interface';
+import { Datum, PostAllPaginateI, PostCreateI } from '../interfaces/post/post.interface';
 import { Observable } from 'rxjs';
 import { PostSearchByCategoryWithoutCalificationI } from '../interfaces/post/post.search-categoria-sincalificar.interface';
 import { PostSearchByCategoryI } from '../interfaces/post/post.search-by-categoria.interface';
-import { PostWithoutCalificationI } from '../interfaces/post/post.withoutCalification.interface';
+import { Post, PostWithoutCalificationI } from '../interfaces/post/post.withoutCalification.interface';
 import { config } from 'src/config/config';
 
 @Injectable()
@@ -13,6 +13,9 @@ export class PostService {
   constructor(private readonly http: HttpClient) {}
   getPosts():Observable<PostAllPaginateI>{
     return this.http.get<PostAllPaginateI>(`${this.api}post`)
+  }
+  getPost(id:number):Observable<Datum>{
+    return this.http.get<Datum>(`${this.api}post/${id}`)
   }
   createPost(post:PostCreateI){
     return this.http.post(`${this.api}post`,post);

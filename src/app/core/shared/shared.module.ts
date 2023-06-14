@@ -13,6 +13,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MaterialModule } from './materialComponents/Material.module';
+import { ProgressBarLocalComponent } from './components/progress-bar-local/progress-bar-local.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MaterialModule } from './materialComponents/Material.module';
     NavbarComponent,
     ProgressBarComponent,
     SpinnerComponent,
+    ProgressBarLocalComponent,
 
   ],
   imports: [
@@ -38,6 +40,7 @@ import { MaterialModule } from './materialComponents/Material.module';
     LostComponent,
     ProgressBarComponent,
     SpinnerComponent,
+    ProgressBarLocalComponent,
 
   ],
   providers:[

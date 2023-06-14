@@ -6,6 +6,7 @@ import { Observable, Subject, catchError, debounceTime, distinctUntilChanged, fi
 import { ParticipanteSearchCedulaI } from 'src/app/private/interfaces/participante/participante.interface';
 import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { Route, Router } from '@angular/router';
+import { SpinnerService } from 'src/app/core/shared/services/spinner.service';
 
 @Component({
   selector: 'app-search-user',

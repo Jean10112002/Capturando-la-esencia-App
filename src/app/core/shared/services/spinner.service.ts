@@ -11,6 +11,6 @@ export class SpinnerService {
     this.isLoading$.next(true);
   }
   hide():void{
-    this.isLoading$.next(false);
+    this.isLoading$.next(true);
   }
 }

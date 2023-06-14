@@ -10,7 +10,6 @@ import { UserInformationService } from 'src/app/private/services/user-informatio
 import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 import { config } from 'src/config/config';
 import { ListUserLikePostComponent } from '../list-user-like-post/list-user-like-post.component';
-import { PostService } from 'src/app/private/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -31,7 +30,6 @@ export class PostComponent implements OnInit {
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
     private readonly dialog: MatDialog,
-    private readonly postService: PostService
   ) {}
   ngOnInit(): void {
     this.user$.subscribe((user: Participante) => {
@@ -49,7 +47,7 @@ export class PostComponent implements OnInit {
       width: '50%',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: this.post.like,
+      data: this.post,
     });
   }
 

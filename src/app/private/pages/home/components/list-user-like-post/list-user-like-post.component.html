@@ -1,7 +1,9 @@
 <h1 mat-dialog-title>Likes</h1>
-<div mat-dialog-content class="modal-content">
-    <app-list-user  (click)="goToProfile(participante.participante.id)" [user]="participante.participante" *ngFor="let participante of Participante" ></app-list-user>
-    <app-spinner />
+<div mat-dialog-content class="modal-content" >
+  <app-progress-bar-local />
+  <ng-container *ngIf="post$ |async as post">
+    <app-list-user  (click)="goToProfile(user.participante.id)" [user]="user.participante" *ngFor="let user of post.like"  ></app-list-user>
+  </ng-container>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
