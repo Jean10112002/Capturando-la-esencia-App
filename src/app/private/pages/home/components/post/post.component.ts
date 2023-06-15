@@ -10,6 +10,7 @@ import { UserInformationService } from 'src/app/private/services/user-informatio
 import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 import { config } from 'src/config/config';
 import { ListUserLikePostComponent } from '../list-user-like-post/list-user-like-post.component';
+import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
 
 @Component({
   selector: 'app-post',
@@ -79,4 +80,13 @@ export class PostComponent implements OnInit {
     }
     return false;
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
