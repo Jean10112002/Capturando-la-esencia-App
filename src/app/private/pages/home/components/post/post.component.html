@@ -30,7 +30,9 @@
         aria-hidden="false"
         aria-label="Example favorite icon"
         fontIcon="sms"
+        *ngIf="isCommentOfMe"
         class="reacciones comment-btn"
+        (click)="openDialogComment()"
       ></mat-icon>
     </div>
     >

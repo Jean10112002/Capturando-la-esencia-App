@@ -11,6 +11,7 @@ import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 import { config } from 'src/config/config';
 import { ListUserLikePostComponent } from '../list-user-like-post/list-user-like-post.component';
 import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
+import { ModalCreateCommentComponent } from '../modal-create-comment/modal-create-comment.component';
 
 @Component({
   selector: 'app-post',
@@ -20,6 +21,7 @@ import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-co
 export class PostComponent implements OnInit {
   @Input() post!: Datum;
   isLikeOfMe!: boolean;
+  isCommentOfMe!:boolean;
   like_id!: number;
   likeCount!: number;
   avatar: string = config.avatarUrl;
@@ -30,11 +32,12 @@ export class PostComponent implements OnInit {
   constructor(
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
-    private readonly dialog: MatDialog,
+    private readonly dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.user$.subscribe((user: Participante) => {
       this.verifyIDoLike(user);
+      this.verifyIDoComment(user);
       this.user = user;
     });
     this.likeCount = this.post?.like.length;
@@ -80,11 +83,28 @@ export class PostComponent implements OnInit {
     }
     return false;
   }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px',data:this.post.id});
-
-
+  verifyIDoComment(user: Participante): void {
+    const userExist = this.post?.comentario__post.filter(
+      (id) => user.id == id.participante_id
+    );
+    if (userExist?.length > 0) {
+      this.isCommentOfMe = false;
+    }else{
+      this.isCommentOfMe=true;
+    }
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
+      width: '30%',
+      minWidth: '292px',
+      data: this.post.id,
+    });
+  }
+  openDialogComment(){
+    this.dialog.open(ModalCreateCommentComponent, {
+      width: '80%',
+      data:this.post.id
+    });
+  }
 }

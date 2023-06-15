@@ -1,5 +1,5 @@
 export interface ComentarioInteraccionI{
-  fecha:Date,
+  fecha:string,
   comentario_id:number,
   post_id:number
 }

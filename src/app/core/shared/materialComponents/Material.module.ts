@@ -16,7 +16,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -34,7 +34,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatBadgeModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule
     ],
   exports: [MatButtonModule,
     MatDialogModule,
@@ -46,7 +47,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTabsModule,
     MatBadgeModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule
   ],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],

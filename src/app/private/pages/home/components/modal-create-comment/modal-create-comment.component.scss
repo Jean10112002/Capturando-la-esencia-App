@@ -1,0 +1,18 @@
+.btn-send{
+  width: 15%;
+  outline: none;
+}
+.container-comment{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+mat-form-field{
+  width: 80%;
+}
+.avatar{
+  width: 40px;
+  height: 100%;
+  border-radius: 50%;
+ }

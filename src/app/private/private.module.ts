@@ -43,6 +43,7 @@ import { HeaderProfileJuradoComponent } from './pages/calificacion/components/he
 import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
 import { ToastComponent } from '../core/shared/components/toast/toast.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ModalCreateCommentComponent } from './pages/home/components/modal-create-comment/modal-create-comment.component';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     PhotoGalleryCalificarComponent,
     ToastComponent,
     FilterPipe,
+    ModalCreateCommentComponent,
 
 
   ],
