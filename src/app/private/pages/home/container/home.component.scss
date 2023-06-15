@@ -3,7 +3,6 @@
 }
 
 .user{
-  cursor: pointer;
   max-width: 380px;
   width: 100%;
   padding: 0px 0px 0px 60px;
@@ -82,6 +81,10 @@
     border-right: 0px solid;
     border-top: 1px solid;
   }
+}
+
+.app-user-information{
+  cursor: pointer;
 }
 
 //estatico borrar apenas termine del cards
