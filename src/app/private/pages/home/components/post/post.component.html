@@ -43,7 +43,7 @@
     <a class="like click-like" (click)="openModal('250ms', '400ms')">
       <b> {{ likeCount }} </b> Me gusta</a
     >
-    <a class="like click-like" >
+    <a class="like" mat-button (click)= "openDialog()">
       <b>{{ post.comentario__post.length }}</b> Comentarios</a
     >
     <a class="like" >

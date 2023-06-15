@@ -7,7 +7,8 @@ import {  UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.i
 import { Observable, map } from 'rxjs';
 import { Participante, PostAllPaginateI, Posts } from 'src/app/private/interfaces/post/post.interface';
 import { PostService } from 'src/app/private/services/post.service';
-import { ReporteService } from 'src/app/private/services/reporte.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalUserCommentsComponent } from '../components/modal-user-comments/modal-user-comments.component';
 
 
 @Component({
@@ -15,14 +16,14 @@ import { ReporteService } from 'src/app/private/services/reporte.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 
-
 })
+
 export class HomeComponent {
 
   user!:UserI | Participante;
   posts$!:Observable<Posts>;
   showDialog = false;
-  constructor(private readonly authService:AuthService,private readonly userDataService:UserInformationService,private readonly postService:PostService){
+  constructor(private readonly authService:AuthService,private readonly userDataService:UserInformationService,private readonly postService:PostService,private dialog: MatDialog){
     authService.userInformation().subscribe((user:UserProfileI)=>{
       this.user=user.user
       if(this.user.rol==='jurado'){
@@ -34,12 +35,6 @@ export class HomeComponent {
     })
     this.posts$=postService.getPosts().pipe(map((res:any)=>res.Posts));
   }
-    openDialog() {
-    this.showDialog = true;
-  }
-  closeDialog() {
-    this.showDialog = false;
-  }
   recibirCategoria(event:number){
     if(event==0){
       this.posts$=this.postService.getPosts().pipe(map((result)=>result.Posts));
@@ -49,6 +44,19 @@ export class HomeComponent {
     }
     console.log(event)
   }
+
+  /* esta funcion esat solo aqui por la cards estatica */
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
   //Funcion para abrir el Crear.Component.html como Cuadro de dialogo
 /*   openDialog(): void {
     const dialogRef = this.dialog.open(CrearComponent, {

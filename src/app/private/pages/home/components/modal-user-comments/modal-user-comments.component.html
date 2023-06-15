@@ -1,3 +1,10 @@
-<p>modal-user-comments works!</p>
-<h1>este de aqui despliega el modal donde se verán los comentarios es decir este es el cuadro donde estarán los comentarios todos</h1>
-<app-list-user-comment />
+<h1 mat-dialog-title><h2>Comentarios</h2></h1>
+<mat-dialog-content class="mat-content">
+
+  <app-list-user-comment class="app-list-user-comment"></app-list-user-comment>
+
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->
