@@ -10,9 +10,10 @@ import { Subject } from 'rxjs';
 export class ProgressBarComponent implements AfterViewInit{
     isLoading$:Subject<boolean>=new Subject();
     constructor(private spinnerService:SpinnerService){
+    this.isLoading$=this.spinnerService.isLoading$;
+
     }
     ngAfterViewInit(): void {
-    this.isLoading$=this.spinnerService.isLoading$;
 
   }
 
