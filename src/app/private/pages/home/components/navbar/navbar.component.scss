@@ -155,3 +155,13 @@ h1{
   }
 }
 
+.app-crear {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  /* Fondo oscuro con transparencia */
+  z-index: 40;
+  height: 100%;
+}
+

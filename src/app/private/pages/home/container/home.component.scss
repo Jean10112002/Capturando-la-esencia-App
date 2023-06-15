@@ -9,15 +9,7 @@
   padding: 0px 0px 0px 60px;
 }
 
-.app-crear {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    /* Fondo oscuro con transparencia */
-    z-index: 10;
-    height: 100%;
-}
+
 
 @media (max-width: 1166px) {
 
@@ -47,13 +39,9 @@
 }
 
 .categoria{
-  padding: 3px;
+  margin-top: 10px;
   width: 100%;
-  justify-content: center;
-}
-.app-chip-category{
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .cuerpo{
@@ -69,6 +57,8 @@
   background-color: rgb(255, 255, 255);
   border-right: 1px solid;
   border-color: rgb(187, 178, 178);
+  position: sticky;
+  top: 0;
 }
 
 @media (max-width: 1289px) {
@@ -96,7 +86,7 @@
 
 //estatico borrar apenas termine del cards
 
-.cards{
+/* .cards{
   padding: 0px 10px 10px 10px;
   border: 0.1px solid;
   border-radius: 7px;
@@ -200,7 +190,7 @@ mat-icon{
  font-family: 'Times New Roman', Times, serif;
 }
 
-.categoria{
+.categoria1{
   color: rgb(107, 104, 104);
   font-size: 9pt;
   margin: 0;
@@ -211,5 +201,5 @@ mat-icon{
  font-size: 11pt;
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
+ */
 //estatico borrar apenas termine
