@@ -1,7 +1,10 @@
 <h1 mat-dialog-title><h2>Comentarios</h2></h1>
 <mat-dialog-content class="mat-content">
+<ng-container *ngIf="post$|async as post">
+  <app-list-user-comment [participante]="post" *ngFor="let post of post.comentario__post" class="app-list-user-comment"></app-list-user-comment>
 
-  <app-list-user-comment class="app-list-user-comment"></app-list-user-comment>
+
+</ng-container>
 
 </mat-dialog-content>
 <!-- <mat-dialog-actions align="end">

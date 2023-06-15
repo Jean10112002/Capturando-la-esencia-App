@@ -82,11 +82,9 @@ export class PostComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px'});
+    const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px',data:this.post.id});
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+
   }
 
 }

@@ -24,6 +24,9 @@ import { ImagenCreateResponseI } from 'src/app/private/interfaces/imagen/imagen.
 import { CategoriaI } from 'src/app/private/interfaces/categoria/categoria.interface';
 import { Observable } from 'rxjs';
 import { CategoriaService } from 'src/app/private/services/categoria.service';
+import { config } from 'src/config/config';
+import { Participante } from 'src/app/private/interfaces/post/post.interface';
+import { UserInformationService } from 'src/app/private/services/user-information.service';
 
 @Component({
   selector: 'app-crear',
@@ -34,13 +37,18 @@ import { CategoriaService } from 'src/app/private/services/categoria.service';
 export class CrearComponent implements OnInit, AfterViewInit {
   estado = 'oculto';
   file!: File;
-
+  imagenResponseId!:any;
+avatar:string=config.avatarUrl;
+user$:Observable<Participante>;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private notificacion: ToastrService,
     private readonly postService: PostService,
-    private readonly imageService: ImagenService
-  ) {}
+    private readonly imageService: ImagenService,
+    private readonly dataServiceUser:UserInformationService
+  ) {
+    this.user$=this.dataServiceUser.getInformationParticipante();
+  }
   tlfResponsive = false;
   resolution(): boolean {
     return this.breakpointObserver.isMatched('(max-width: 480px)');
@@ -52,6 +60,7 @@ export class CrearComponent implements OnInit, AfterViewInit {
       this.imageService
         .createImage(imagen)
         .subscribe((res: ImagenCreateResponseI) => {
+          this.imagenResponseId=res.imagen.id;
           const fechaActual = new Date();
           const anio = fechaActual.getFullYear();
           const mes = fechaActual.getMonth() + 1; // Se agrega 1 ya que los meses se indexan desde 0
@@ -71,6 +80,10 @@ export class CrearComponent implements OnInit, AfterViewInit {
           this.postService.createPost(post).subscribe((res) => {
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
+          },()=>{
+            this.imageService.deleteImage(this.imagenResponseId).subscribe((data)=>{
+              console.log("imagen eliminada")
+            });
           });
         });
     } else {
@@ -153,6 +166,7 @@ export class CrearComponent implements OnInit, AfterViewInit {
     if (file.type.startsWith('image/')) {
       const maxSizeBytes = 11 * 1024 * 1024; // 10 MB
       const minSizeBytes = 2 * 1024 * 1024; // 5 MB
+      console.log(minSizeBytes,maxSizeBytes)
       const maxWidth = 4032;
       const maxHeight = 4032;
       this.selectedImage = null;

@@ -1,6 +1,6 @@
 
 <body>
-  <app-progress-bar />
+
   <ng-container *ngIf="userInformation$ |async as user" >
     <app-header-profile [user]="user.participante" />
     <app-photo-gallery [photo]="user.participante.post" />

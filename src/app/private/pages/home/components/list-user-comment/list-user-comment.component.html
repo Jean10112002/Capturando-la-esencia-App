@@ -1,16 +1,16 @@
 <div> <!-- AQUI VA EN *ngFor RECORRELO AQUI PARA NO MODIFICAR LOS ESTILOS -->
   <div class="cuerpo">
     <div class="avatar">
-      <img class="img-user" src="https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png" alt="">
+      <img class="img-user" [src]="avatar" alt="">
     </div>
-    <div class="contenido">
+    <div class="contenido" (click)="goToProfile(participante.participante.id)" >
 
       <div class="nombre">
-        <h3 class="nombre-user">KEYRON DAMIAN AGUILAR ORTIZ</h3>
+        <h3 class="nombre-user">{{participante.participante.nombres |titlecase}}</h3>
       </div>
 
       <div class="comentario">
-        <P class="comentario-user">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur eos quos vel repellendus.</P>
+        <P class="comentario-user"> {{participante.comentario.mensaje}}</P>
       </div>
 
     </div>

@@ -119,13 +119,13 @@
         [class.container-descripcion-responsive]="isContainer"
         [hidden]="divVisible"
       >
-        <div class="container-descripcion-head">
+        <div class="container-descripcion-head" *ngIf="user$ |async as user">
           <img
             class="descripcion-perfil"
-            src="https://i.pinimg.com/originals/ef/60/48/ef6048c539cb70ae55562a9f8be5cc67.jpg"
+            [src]="avatar"
             alt=""
           />
-          <h3 class="descripcion-usuario">Philip Chalacama</h3>
+          <h3 class="descripcion-usuario"> {{user.nombres |titlecase}} </h3>
         </div>
 
         <div class="container-descripcion-body">

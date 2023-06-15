@@ -28,7 +28,9 @@
       </button>
     </ng-container>
 
-    <button class="boton" style="margin: 0%;">
+    <button *ngIf="user?.rol === 'jurado'"  class="boton" style="margin: 0%;"
+    [routerLink]="['/calificar']" routerLinkActive="router-link-active"
+    >
       <i class="input-icon uil uil-edit"></i>
       <h2 class="texto-none-todo">Calificar</h2>
     </button>

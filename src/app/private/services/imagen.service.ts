@@ -11,4 +11,7 @@ export class ImagenService {
   createImage(imagen:any):Observable<ImagenCreateResponseI>{
     return this.http.post<ImagenCreateResponseI>(`${this.api}post/imagen`,imagen);
   }
+  deleteImage(id:number):Observable<any>{
+    return this.http.delete<any>(`${this.api}post/imagen/${id}`);
+  }
 }
