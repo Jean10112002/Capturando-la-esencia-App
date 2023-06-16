@@ -45,6 +45,7 @@ import { ToastComponent } from '../core/shared/components/toast/toast.component'
 import { FilterPipe } from './pipes/filter.pipe';
 import { ModalCreateCommentComponent } from './pages/home/components/modal-create-comment/modal-create-comment.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ModalPostComponent } from './pages/profile/components/modal-post/modal-post.component';
 
 
 @NgModule({
@@ -56,8 +57,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ListUserCommentComponent,
     ModalCalificarPostComponent,
     CrearComponent,
-
-
+    
      ProfileComponent,
      NavbarComponent,
      UserInformationComponent,
@@ -92,6 +92,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ToastComponent,
     FilterPipe,
     ModalCreateCommentComponent,
+    ModalPostComponent,
 
 
   ],

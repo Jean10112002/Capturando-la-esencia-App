@@ -12,7 +12,6 @@ import { CalificacionComponent } from './pages/calificacion/container/calificaci
 const routes: Routes = [
 
   {path:'home', component : HomeComponent,title:'Home' },
-
   {path:'profile/:id', component : ProfileComponent,title:'Profile' },
   {path:'reporte', component : ReportComponent,title:'Reporte' },
   {path:'calificacion', component : CalificacionComponent,title:'Calificacion' },
