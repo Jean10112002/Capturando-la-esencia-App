@@ -1,3 +1,35 @@
+.user{
+  display: flex;
+}
+
+.avatar{
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nombre{
+  width: 85%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.img-user{
+  width: 90%;
+  max-width: 40px;
+  border-radius: 50px;
+}
+
+.nombre-user{
+  font-size: 70%;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  color: rgb(60, 60, 60);
+}
+
 .imagen{
   width: 60%;
   display: flex;
@@ -13,7 +45,7 @@
 {
   width: 40%;
   height: 100%;
-  margin-left: 10px;
+  padding: 10px 10px 10px 20px;
 
 }
 
@@ -52,5 +84,13 @@ p{
   }
   .contenido{
     width: 100%;
+    margin: 0;
+    padding-left: 10px;
+  }
+  .avatar{
+    width: 10%;
+  }
+  .nombre{
+    width: 90%;
   }
 }
