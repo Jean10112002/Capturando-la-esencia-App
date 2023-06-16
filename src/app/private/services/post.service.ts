@@ -20,17 +20,20 @@ export class PostService {
   createPost(post:PostCreateI){
     return this.http.post(`${this.api}post`,post);
   }
-  getPostsByCategoryWithoutCalification(category_id:number):Observable<PostSearchByCategoryWithoutCalificationI>{
-    return this.http.get<PostSearchByCategoryWithoutCalificationI>(`${this.api}post/search-categoria-sincalificar/${category_id}`)
+  getPostsByCategoryWithoutCalification(category_id:number):Observable<PostAllPaginateI>{
+    return this.http.get<PostAllPaginateI>(`${this.api}post/search-categoria-sincalificar/${category_id}`)
   }
-  getPostsByCategory(category_id:number):Observable<PostSearchByCategoryI>{
-    return this.http.get<PostSearchByCategoryI>(`${this.api}post/search-categoria/${category_id}`);
+  getPostsByCategory(category_id:number):Observable<PostAllPaginateI>{
+    return this.http.get<PostAllPaginateI>(`${this.api}post/search-categoria/${category_id}`);
   }
-  getPostsWithoutCalificacion():Observable<PostWithoutCalificationI>{
-    return this.http.get<PostWithoutCalificationI>(`${this.api}post/search/sincalificacion`);
+  getPostsWithoutCalificacion():Observable<PostAllPaginateI>{
+    return this.http.get<PostAllPaginateI>(`${this.api}post/search/sincalificacion`);
   }
   deletePost(id:number){
     return this.http.delete(`${this.api}post/${id}`)
+  }
+  getPostPaginate(url:string){
+    return this.http.get<PostAllPaginateI>(url);
   }
 
 }

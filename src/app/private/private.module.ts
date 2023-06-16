@@ -44,6 +44,7 @@ import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/
 import { ToastComponent } from '../core/shared/components/toast/toast.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ModalCreateCommentComponent } from './pages/home/components/modal-create-comment/modal-create-comment.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -107,7 +108,8 @@ import { ModalCreateCommentComponent } from './pages/home/components/modal-creat
     MaterialModule,
     //Filter
     NgSelectModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule
   ],
   providers: [
     //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo

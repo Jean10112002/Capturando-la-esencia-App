@@ -13,7 +13,7 @@ import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 })
 export class CalificacionComponent {
   jurado!: UserI;
-  postWithoutCalification$: Observable<PostWithoutCalificationI>;
+ /*  postWithoutCalification$: Observable<PostWithoutCalificationI>; */
   constructor(
      juradoDataService: UserInformationService,
      private readonly router:Router,
@@ -26,14 +26,14 @@ export class CalificacionComponent {
       }
 
     });
-    this.postWithoutCalification$=postService.getPostsWithoutCalificacion();
+   /*  this.postWithoutCalification$=postService.getPostsWithoutCalificacion(); */
   }
-  recibirCategoria(event:number){
+  /* recibirCategoria(event:number){
     console.log(event)
     if(event==0){
       this.postWithoutCalification$=this.postService.getPostsWithoutCalificacion();
     }else{
       this.postWithoutCalification$=this.postService.getPostsByCategoryWithoutCalification(event);
     }
-  }
+  } */
 }

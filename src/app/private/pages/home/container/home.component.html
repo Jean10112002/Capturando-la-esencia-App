@@ -22,7 +22,7 @@
           ></app-chip-category>
         </div>
 
-        <div class="scroll-infinito">
+        <div class="scroll-infinito" infinite-scroll (scrolled)="onScrollDown()">
           <!-- Estatico borrar apenas termine -->
 
         <!--   <div class="cards">
@@ -79,14 +79,19 @@
 
           <!-- Estatico borrar apenas termine-->
 
-          <ng-container *ngIf="posts$ | async as posts">
+          <ng-container *ngIf="posts">
             <app-post (eventEmiiter)="recibirPosts($event)"
               class="app-post"
               *ngFor="let post of posts.data"
               [post]="post"
             ></app-post>
+
           </ng-container>
+
         </div>
+        <button (click)="goToTopScroll()" *ngIf="showButton" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
       </div>
 
       <ng-container *ngIf="user">
