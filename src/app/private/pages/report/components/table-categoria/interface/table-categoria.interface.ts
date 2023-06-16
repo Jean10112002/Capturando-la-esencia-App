@@ -4,7 +4,7 @@ export interface ColumnasElements {
   cedula: string;
   calificacion: number;
   jurado:JuradoI,
-  calificaciones:CalificacionesJuradoReporteI
+  /* calificaciones:CalificacionesJuradoReporteI */
 }
 interface JuradoI{
   nombre_jurado:string,

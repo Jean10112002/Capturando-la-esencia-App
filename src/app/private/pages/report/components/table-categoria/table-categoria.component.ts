@@ -10,7 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class TableCategoriaComponent implements AfterViewInit,OnChanges {
 
-  displayedColumns: string[] = ['titulo','calificacion','nombres','cedula','jurado','calificaciones'];
+  displayedColumns: string[] = ['titulo','calificacion','nombres','cedula','jurado'];
   @Input() dataInformation!: Categoria;
   dataSource = new MatTableDataSource<MayorLikesComentario>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -1,5 +1,4 @@
 <p>report works!</p>
 <div *ngIf="ResponseResultados$ | async as resultados">
-
 <app-table-categoria [dataInformation]="categoria" *ngFor="let categoria of resultados.Categorias" />
 </div>
