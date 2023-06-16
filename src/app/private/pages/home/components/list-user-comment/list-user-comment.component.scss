@@ -16,7 +16,6 @@
 .contenido{
   width: 80%;
   margin-left: 10px;
-  cursor: pointer;
 }
 
 .img-user{
@@ -24,7 +23,10 @@
   max-width: 50px;
   border-radius: 50px;
 }
+.button-profile{
+  cursor: pointer;
 
+}
 .nombre-user{
   font-size: 11pt;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

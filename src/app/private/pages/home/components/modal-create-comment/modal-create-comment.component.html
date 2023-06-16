@@ -1,23 +1,22 @@
 <h1 mat-dialog-title>Crear comentario</h1>
 
-<div mat-dialog-content *ngIf="comentarios$ | async as comentarios">
-  <mat-chip-listbox aria-label="Fish selection"  style="width: 100%; justify-content: space-around">
-    <div>
+<div mat-dialog-content *ngIf="comentarios$ | async as comentarios" class="chip-comentarios">
+  <mat-chip-listbox >
+    <div >
       <mat-chip-option
         *ngFor="let comentario of comentarios.Comentarios"
         color="primary"
         (click)="activateComment(comentario.mensaje, comentario.id)"
       >
-        <h3 style="font-size: 8pt; margin: 0px">{{ comentario.mensaje }}</h3>
+        <h3 style="font-size: 8pt">{{ comentario.mensaje }}</h3>
       </mat-chip-option>
     </div>
   </mat-chip-listbox>
   <mat-divider></mat-divider>
   <ng-container class="container-comment"
     *ngIf="optionSelected!=null">
-    <img class="avatar" [src]="avatar" alt="" />
     <mat-form-field>
-      <input matInput disabled="true" [value]="optionSelected" />
+      <textarea matInput disabled="true" [value]="optionSelected" ></textarea>
     </mat-form-field>
     <button
         mat-button

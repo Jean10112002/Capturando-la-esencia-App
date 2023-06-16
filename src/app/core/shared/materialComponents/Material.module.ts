@@ -12,7 +12,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-
+import { MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {MatChipsModule} from '@angular/material/chips';
@@ -35,10 +35,12 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressBarModule,
     MatChipsModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMenuModule
     ],
   exports: [MatButtonModule,
     MatDialogModule,
+    MatMenuModule,
     MatInputModule,
     MatIconModule,
     MatGridListModule,MatCardModule,

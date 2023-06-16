@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ComentarioI } from 'src/app/private/interfaces/comentario/comentario.interface';
@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modal-create-comment.component.scss'],
 })
 export class ModalCreateCommentComponent {
+  @Output() newItemEvent = new EventEmitter<number>();
   avatar: string = config.avatarUrl;
   comentarioId!: number;
   optionSelected!: string;
@@ -45,9 +46,11 @@ export class ModalCreateCommentComponent {
     };
     this.interaccionService.createComentario(comentario).subscribe((res)=>{
       this.notificacion.success('Comentario Creado','Proceso Exitoso');
-      this.dialogRef.close()
+      this.eventPost();
     });
   }
-
+  eventPost(){
+    this.newItemEvent.emit(this.post_id);
+  }
 
 }

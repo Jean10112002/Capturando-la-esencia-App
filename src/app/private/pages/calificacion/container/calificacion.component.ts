@@ -14,7 +14,7 @@ export class CalificacionComponent {
   userJurado$: Observable<UserI>;
   postWithoutCalification$: Observable<PostWithoutCalificationI>;
   constructor(
-    private readonly juradoDataService: UserInformationService,
+     juradoDataService: UserInformationService,
     private readonly postService:PostService) {
     this.userJurado$ = juradoDataService.getData();
     this.postWithoutCalification$=postService.getPostsWithoutCalificacion();

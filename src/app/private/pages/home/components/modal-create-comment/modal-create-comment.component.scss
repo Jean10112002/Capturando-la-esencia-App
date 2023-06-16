@@ -1,18 +1,15 @@
 .btn-send{
-  width: 15%;
   outline: none;
+  width: 20%;
 }
 .container-comment{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
+  width: 100%;
+  background-color: red;
+  flex-wrap: nowrap;
 }
-mat-form-field{
-  width: 80%;
+ mat-form-field{
+  width: 70%;
 }
-.avatar{
-  width: 40px;
-  height: 100%;
-  border-radius: 50%;
- }

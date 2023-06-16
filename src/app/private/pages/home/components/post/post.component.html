@@ -2,6 +2,21 @@
   <div class="perfil">
     <img class="avatar" [src]="avatar" alt="" />
     <h2 class="nombre">{{ post.participante.nombres | titlecase }}</h2>
+    <ng-container *ngIf="userAdminJurado$ | async as user">
+      <ng-container *ngIf="user.rol==='admin'">
+        <button
+          class="btn-delete"
+          mat-button
+          [matMenuTriggerFor]="menu"
+          #menuTrigger
+        >
+          <b>...</b>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deletePost()">Eliminar</button>
+        </mat-menu>
+      </ng-container>
+    </ng-container>
   </div>
 
   <div class="imagen">
@@ -16,9 +31,11 @@
     class="likes-comentarios-calificar"
     *ngIf="userAdminJurado$ | async as user"
   >
-    <div *ngIf="user$ |async as userParticipante">
+    <div *ngIf="user$ | async as userParticipante">
       <mat-icon
-        *ngIf="userParticipante.rol==='participante'&&user.rol!=='participante'"
+        *ngIf="
+          userParticipante.rol === 'participante' && user.rol !== 'participante'
+        "
         aria-hidden="false"
         aria-label="Example favorite icon"
         fontIcon="favorite"
@@ -26,31 +43,23 @@
         class="reacciones"
         ngClass="{{ isLikeOfMe && 'like-heart' }}"
       ></mat-icon>
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Example favorite icon"
-        fontIcon="sms"
-        *ngIf="isCommentOfMe"
-        class="reacciones comment-btn"
-        (click)="openDialogComment()"
-      ></mat-icon>
     </div>
-    >
-    <div class="boton3" *ngIf="user.rol === 'jurado'">
-      <a class="cali" href="">Calificar</a>
-    </div>
+    <ng-container *ngIf="userAdminJurado$ | async as user">
+      <div class="boton3" *ngIf="user.rol === 'jurado'">
+        <a class="cali" href="">Calificar</a>
+        <h5 href=""> {{user|json}} </h5>
+      </div>
+    </ng-container>
   </div>
 
   <div class="likes">
     <a class="like click-like" (click)="openModal('250ms', '400ms')">
       <b> {{ likeCount }} </b> Me gusta</a
     >
-    <a class="like" mat-button (click)= "openDialog()">
+    <a class="like" mat-button (click)="openDialog()">
       <b>{{ post.comentario__post.length }}</b> Comentarios</a
     >
-    <a class="like" >
-      {{ post.fecha }} </a
-    >
+    <a class="like"> {{ post.fecha }} </a>
   </div>
 
   <div class="descripcion">
@@ -62,5 +71,4 @@
     </div>
     <p class="parrafo">{{ post.descripcion }}</p>
   </div>
-
 </div>

@@ -80,7 +80,7 @@
           <!-- Estatico borrar apenas termine-->
 
           <ng-container *ngIf="posts$ | async as posts">
-            <app-post
+            <app-post (eventEmiiter)="recibirPosts($event)"
               class="app-post"
               *ngFor="let post of posts.data"
               [post]="post"

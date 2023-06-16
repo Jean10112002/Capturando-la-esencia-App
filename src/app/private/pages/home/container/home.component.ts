@@ -26,6 +26,9 @@ export class HomeComponent {
   constructor(private readonly authService:AuthService,private readonly userDataService:UserInformationService,private readonly postService:PostService,private dialog: MatDialog){
     authService.userInformation().subscribe((user:UserProfileI)=>{
       this.user=user.user
+      if(this.user.rol==='admin'){
+        this.userDataService.setInformationUser(user.user);
+      }
       if(this.user.rol==='jurado'){
         this.userDataService.setInformationUser(user.user);
       }
@@ -33,14 +36,13 @@ export class HomeComponent {
         this.userDataService.setInformationParticipante(user.user);
       }
     })
-    this.posts$=postService.getPosts().pipe(map((res:any)=>res.Posts));
+    this.posts$=postService.getPosts().pipe(map((res)=>res.Posts));
   }
   recibirCategoria(event:number){
     if(event==0){
       this.posts$=this.postService.getPosts().pipe(map((result)=>result.Posts));
     }else{
       this.posts$=this.postService.getPostsByCategory(event).pipe(map((result:any)=>result.PostCategoria));
-
     }
     console.log(event)
   }
@@ -49,13 +51,11 @@ export class HomeComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {  width:'30%', minWidth:'292px' });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
-
+  recibirPosts(event:number){
+    this.recibirCategoria(event)
+  }
 
   //Funcion para abrir el Crear.Component.html como Cuadro de dialogo
 /*   openDialog(): void {

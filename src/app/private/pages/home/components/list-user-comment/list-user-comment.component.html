@@ -3,9 +3,9 @@
     <div class="avatar">
       <img class="img-user" [src]="avatar" alt="">
     </div>
-    <div class="contenido" (click)="goToProfile(participante.participante.id)" >
+    <div class="contenido"  >
 
-      <div class="nombre">
+      <div class="nombre button-profile" (click)="goToProfile(participante.participante.id)">
         <h3 class="nombre-user">{{participante.participante.nombres |titlecase}}</h3>
       </div>
 
