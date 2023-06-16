@@ -7,6 +7,6 @@ import { Datum } from 'src/app/private/interfaces/post/post.withoutCalification.
   styleUrls: ['./photo-gallery-calificar.component.scss']
 })
 export class PhotoGalleryCalificarComponent {
-  @Input() photo!:Datum[]
+  @Input() photo!:Datum[]|undefined
 
 }

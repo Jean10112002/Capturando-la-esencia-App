@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PostWithoutCalificationI } from 'src/app/private/interfaces/post/post.withoutCalification.interface';
 import { PostService } from 'src/app/private/services/post.service';
@@ -11,12 +12,20 @@ import { UserI } from 'src/app/public/interfaces/Login.response.interface';
   styleUrls: ['./calificacion.component.scss'],
 })
 export class CalificacionComponent {
-  userJurado$: Observable<UserI>;
+  jurado!: UserI;
   postWithoutCalification$: Observable<PostWithoutCalificationI>;
   constructor(
      juradoDataService: UserInformationService,
+     private readonly router:Router,
     private readonly postService:PostService) {
-    this.userJurado$ = juradoDataService.getData();
+      juradoDataService.getData().subscribe((jurado)=>{
+      if(jurado.rol===''||jurado.rol!='jurado'){
+        this.router.navigate(['/home'])
+      }else{
+        this.jurado=jurado;
+      }
+
+    });
     this.postWithoutCalification$=postService.getPostsWithoutCalificacion();
   }
   recibirCategoria(event:number){

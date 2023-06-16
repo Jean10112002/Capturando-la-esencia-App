@@ -27,7 +27,7 @@ export class PostService {
     return this.http.get<PostSearchByCategoryI>(`${this.api}post/search-categoria/${category_id}`);
   }
   getPostsWithoutCalificacion():Observable<PostWithoutCalificationI>{
-    return this.http.get<PostWithoutCalificationI>(`${this.api}post/search-sincalificar`);
+    return this.http.get<PostWithoutCalificationI>(`${this.api}post/search/sincalificacion`);
   }
   deletePost(id:number){
     return this.http.delete(`${this.api}post/${id}`)

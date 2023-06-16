@@ -1,10 +1,10 @@
-<ng-container *ngIf="userJurado$ | async as jurado">
+<ng-container *ngIf="jurado">
 
   <app-header-profile-jurado [jurado]="jurado"></app-header-profile-jurado>
   <div class="categoria">
     <app-chip-category (newItemEvent)="recibirCategoria($event)" />
   </div>
   <ng-container *ngIf="postWithoutCalification$ | async as posts">
-    <app-photo-gallery-calificar [photo]="posts.Post.data" />
+    <app-photo-gallery-calificar [photo]="posts?.Post?.data" />
   </ng-container>
 </ng-container>
