@@ -1,11 +1,13 @@
-<!-- <ng-container *ngIf="jurado">
+<ng-container *ngIf="jurado">
 
   <app-header-profile-jurado [jurado]="jurado"></app-header-profile-jurado>
   <div class="categoria">
     <app-chip-category (newItemEvent)="recibirCategoria($event)" />
   </div>
-  <ng-container *ngIf="postWithoutCalification$ | async as posts">
-    <app-photo-gallery-calificar [photo]="posts?.Post?.data" />
+  <ng-container *ngIf="posts">
+    <app-photo-gallery-calificar [photo]="posts.data" infinite-scroll (scrolled)="onScrollDown()" />
+    <button (click)="goToTopScroll()" *ngIf="showButton" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+      <mat-icon>arrow_upward</mat-icon>
+    </button>
   </ng-container>
 </ng-container>
- -->
