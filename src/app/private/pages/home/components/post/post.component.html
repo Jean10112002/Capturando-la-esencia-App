@@ -1,7 +1,7 @@
 <div class="cards" *ngIf="post">
   <div class="perfil">
     <img class="avatar" [src]="avatar" alt="" />
-    <h2 class="nombre">{{ post.participante.nombres | titlecase }}</h2>
+    <h2 class="nombre click" [routerLink]="['/profile/',post.participante.id]"  >{{ post.participante.nombres | titlecase }}</h2>
     <ng-container *ngIf="userAdminJurado$ | async as user">
       <ng-container *ngIf="user.rol==='admin'">
         <button
@@ -57,7 +57,7 @@
       <b> {{ likeCount }} </b> Me gusta</a
     >
     <a class="like" mat-button (click)="openDialog()">
-      <b>{{ post.comentario__post.length }}</b> Comentarios</a
+      <b>{{ postCount }}</b> Comentarios</a
     >
     <a class="like"> {{ post.fecha }} </a>
   </div>

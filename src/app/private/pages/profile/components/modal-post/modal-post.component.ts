@@ -11,6 +11,8 @@ import { config } from 'src/config/config';
 import { ModalUserCommentsComponent } from '../../../home/components/modal-user-comments/modal-user-comments.component';
 import { ListUserLikePostComponent } from '../../../home/components/list-user-like-post/list-user-like-post.component';
 import { Datum } from 'src/app/private/interfaces/post/post.interface';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
+import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 
 @Component({
   selector: 'app-modal-post',
@@ -23,6 +25,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   isLikeOfMe!: boolean;
   like_id!: number;
   likeCount!: number;
+  postCount!: number;
   post!: Datum;
   private destroy$ = new Subject<void>();
 
@@ -35,6 +38,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     private readonly dialog: MatDialog,
     private readonly postService: PostService,
     private readonly notify: ToastrService,
+    private readonly eventEmissorService:EnventEmissorService,
     @Inject(MAT_DIALOG_DATA) private id_post: number
   ) {
     this.userAdminJurado$ = this.dataServiceUser.getData();
@@ -42,6 +46,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     this.postService.getPost(this.id_post).subscribe((data) => {
       this.post = data;
       this.likeCount = this.post?.like.length;
+      this.postCount=this.post?.comentario__post.length;
       this.user$
         .pipe(takeUntil(this.destroy$))
         .subscribe((user: Participante) => {
@@ -49,6 +54,11 @@ export class ModalPostComponent implements OnInit, OnDestroy {
           this.user = user;
         });
     });
+    eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
+      if(event.event=='AUMENTAR_COMENTARIO'&&event.id==this.post.id){
+        this.postCount++;
+      }
+    })
   }
   ngOnInit(): void {}
   ngOnDestroy(): void {
@@ -59,13 +69,34 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     this.postService.deletePost(this.post.id).subscribe((res) => {
       this.notify.success('Post Eliminado Correctamente', 'Proceso Exitoso');
       this.dialog.closeAll();
+      this.sendEventUpdateParticipante();
     });
   }
+  sendEventUpdateParticipante(){
+    this.eventEmissorService.setEvent({
+      event:'POST_ELIMINADO',
+      id:this.post.id
+    });
+  }
+  sendEventAddLike(){
+    this.eventEmissorService.setEvent({
+      event:'LIKE_AGREGAR',
+      id:this.post.id
+    });
+  }
+  sendEventRemoveLike(){
+    this.eventEmissorService.setEvent({
+      event:'LIKE_QUITAR',
+      id:this.post.id
+    });
+  }
+
   likePost() {
     if (this.isLikeOfMe) {
       this.interaccionService.deleteLike(this.like_id).subscribe((res) => {
         this.isLikeOfMe = false;
         this.likeCount--;
+        this.sendEventRemoveLike();
       });
     } else {
       this.interaccionService
@@ -74,6 +105,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
           this.isLikeOfMe = true;
           this.like_id = res.Post.id;
           this.likeCount++;
+          this.sendEventAddLike()
         });
     }
   }

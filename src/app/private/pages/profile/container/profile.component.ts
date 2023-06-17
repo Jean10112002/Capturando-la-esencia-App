@@ -8,6 +8,8 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { SpinnerService } from 'src/app/core/shared/services/spinner.service';
 import { ParticipanteShowI } from 'src/app/private/interfaces/participante/participante.interface';
 import { ParticipanteService } from 'src/app/private/services/participante.service';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
+import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +18,7 @@ import { ParticipanteService } from 'src/app/private/services/participante.servi
 })
 export class ProfileComponent implements OnInit,OnDestroy {
   userInformation$!: Observable<ParticipanteShowI>;
+  id!:number
   participante!:any
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -23,7 +26,8 @@ export class ProfileComponent implements OnInit,OnDestroy {
     private route: ActivatedRoute,
     private readonly participanteService: ParticipanteService,
       participanteServiceData:UserInformationService,
-    private readonly router:Router
+    private readonly router:Router,
+    eventEmissorService:EnventEmissorService
   ) {
     participanteServiceData.getInformationParticipante().pipe(takeUntil(this.destroy$)).subscribe((participante) => {
       const rol=participante.rol;
@@ -33,6 +37,11 @@ export class ProfileComponent implements OnInit,OnDestroy {
         }
       })
     });
+    eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
+      if(event.event=='POST_ELIMINADO'){
+        this.userInformation$ = this.participanteService.oneParticipante(this.id);
+      }
+    })
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -40,8 +49,8 @@ export class ProfileComponent implements OnInit,OnDestroy {
   }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const id = params['id']; // 'id' es el nombre del parámetro en tu ruta
-      this.userInformation$ = this.participanteService.oneParticipante(id);
+      this.id = params['id']; // 'id' es el nombre del parámetro en tu ruta
+      this.userInformation$ = this.participanteService.oneParticipante(this.id);
     });
   }
 }

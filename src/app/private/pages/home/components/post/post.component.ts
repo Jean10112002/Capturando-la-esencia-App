@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
 import {
@@ -13,50 +20,66 @@ import { ListUserLikePostComponent } from '../list-user-like-post/list-user-like
 import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
 import { PostService } from 'src/app/private/services/post.service';
 import { ToastrService } from 'ngx-toastr';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
+import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent implements OnInit,OnDestroy {
+export class PostComponent implements OnInit, OnDestroy {
   @Input() post!: Datum;
-  @Output() eventEmiiter=new EventEmitter<any>();
+  @Output() eventEmiiter = new EventEmitter<any>();
   isLikeOfMe!: boolean;
   like_id!: number;
   likeCount!: number;
+  postCount!: number;
   private destroy$ = new Subject<void>();
 
   avatar: string = config.avatarUrl;
   user!: Participante;
-  userAdminJurado$!: Observable<UserI>;;
-  user$: Observable<Participante>=this.dataServiceUser.getInformationParticipante();
+  userAdminJurado$!: Observable<UserI>;
+  user$: Observable<Participante> =
+    this.dataServiceUser.getInformationParticipante();
   constructor(
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
     private readonly dialog: MatDialog,
-    private readonly postService:PostService,
-    private readonly notify:ToastrService
+    private readonly postService: PostService,
+    private readonly notify: ToastrService,
+    private readonly eventEmissorService: EnventEmissorService
   ) {
-    this.userAdminJurado$=this.dataServiceUser.getData();
-    this.user$=this.dataServiceUser.getInformationParticipante();
+    this.userAdminJurado$ = this.dataServiceUser.getData();
+    this.user$ = this.dataServiceUser.getInformationParticipante();
+    eventEmissorService
+      .getEvent()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: eventEmissorI) => {
+        if (event.event == 'AUMENTAR_COMENTARIO' && event.id==this.post.id) {
+          this.postCount++;
+        }
+      });
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
   ngOnInit(): void {
-    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user: Participante) => {
-      this.verifyIDoLike(user);
-      this.user = user;
-    });
+    this.user$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user: Participante) => {
+        this.verifyIDoLike(user);
+        this.user = user;
+      });
     this.likeCount = this.post?.like.length;
+    this.postCount = this.post?.comentario__post.length;
   }
-  deletePost(){
-    this.postService.deletePost(this.post.id).subscribe((res)=>{
-      this.notify.success('Post Eliminado Correctamente','Proceso Exitoso')
-      this.eventEmiiter.emit(this.post.categoria_id)
-    })
+  deletePost() {
+    this.postService.deletePost(this.post.id).subscribe((res) => {
+      this.notify.success('Post Eliminado Correctamente', 'Proceso Exitoso');
+      this.eventEmiiter.emit(this.post.categoria_id);
+    });
   }
   openModal(
     enterAnimationDuration: string,
@@ -100,13 +123,11 @@ export class PostComponent implements OnInit,OnDestroy {
     return false;
   }
 
-
   openDialog() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
       width: '80%',
       minWidth: '292px',
       data: this.post.id,
     });
-
   }
 }

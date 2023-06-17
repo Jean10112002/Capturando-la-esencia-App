@@ -46,6 +46,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { ModalCreateCommentComponent } from './pages/home/components/modal-create-comment/modal-create-comment.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ModalPostComponent } from './pages/profile/components/modal-post/modal-post.component';
+import { EnventEmissorService } from './services/envent-emissor.service';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { ModalPostComponent } from './pages/profile/components/modal-post/modal-
     ListUserCommentComponent,
     ModalCalificarPostComponent,
     CrearComponent,
-    
+
      ProfileComponent,
      NavbarComponent,
      UserInformationComponent,
@@ -122,6 +123,7 @@ import { ModalPostComponent } from './pages/profile/components/modal-post/modal-
     PostService,
     ImagenService,
     UserInformationService,
+    EnventEmissorService
   ],
 })
 export class PrivateModule {}

@@ -7,6 +7,7 @@ import { InteraccionService } from 'src/app/private/services/interaccion.service
 import { config } from 'src/config/config';
 import { ComentarioInteraccionI } from '../../../../interfaces/interaccion/comentario.interaccion.interface';
 import { ToastrService } from 'ngx-toastr';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 
 @Component({
   selector: 'app-modal-create-comment',
@@ -24,7 +25,8 @@ export class ModalCreateCommentComponent {
     private readonly interaccionService: InteraccionService,
     private readonly comentarioService: ComentarioService,
     @Inject(MAT_DIALOG_DATA) private post_id: number,
-    private notificacion:ToastrService
+    private notificacion:ToastrService,
+    private eventEmissorService:EnventEmissorService
 
   ) {
     this.comentarios$ = this.comentarioService.getComentarios();
@@ -47,10 +49,17 @@ export class ModalCreateCommentComponent {
     this.interaccionService.createComentario(comentario).subscribe((res)=>{
       this.notificacion.success('Comentario Creado','Proceso Exitoso');
       this.eventPost();
+      this.eventPostIncreaseLike();
     });
   }
   eventPost(){
     this.newItemEvent.emit(this.post_id);
+  }
+  eventPostIncreaseLike(){
+    this.eventEmissorService.setEvent({
+      event:'AUMENTAR_COMENTARIO',
+      id:this.post_id
+    })
   }
 
 }
