@@ -15,7 +15,7 @@ export class PhotoComponent {
 constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    this.dialog.open(ModalPostComponent,{width:'80%'});
+    this.dialog.open(ModalPostComponent,{width:'80%',data:this.photo.id});
   }
 
 
