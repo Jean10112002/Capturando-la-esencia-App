@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ComentarioPost } from 'src/app/private/interfaces/post/post.interface';
 import { config } from 'src/config/config';
 import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,14 +14,14 @@ export class ListUserCommentComponent  {
   avatar:string=config.avatarUrl;
   @Input() participante!:ComentarioPost;
   constructor(
-    public dialogRef: MatDialogRef<ModalUserCommentsComponent>,
+    public dialogRef: MatDialog,
     private readonly route: Router,
 
   ){
 
   }
   goToProfile(id:number){
-    this.dialogRef.close();
+    this.dialogRef.closeAll();
     this.route.navigate(['/profile',id])
   }
 }

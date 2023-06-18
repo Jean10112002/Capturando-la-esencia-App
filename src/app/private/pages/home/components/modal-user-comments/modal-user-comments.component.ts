@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnDestroy, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable, Subject, takeUntil,pipe } from 'rxjs';
 import {
   Datum,
@@ -24,7 +24,7 @@ export class ModalUserCommentsComponent implements OnDestroy {
   constructor(
     private readonly dataServiceUser: UserInformationService,
     private readonly postService: PostService,
-    public dialogRef: MatDialogRef<PostComponent>,
+    public dialogRef: MatDialog,
 
     @Inject(MAT_DIALOG_DATA) public post_id: number
   ) {

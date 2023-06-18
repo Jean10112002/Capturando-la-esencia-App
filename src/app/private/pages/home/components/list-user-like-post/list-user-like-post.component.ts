@@ -1,5 +1,5 @@
 import { Component,Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PostComponent } from '../post/post.component';
 import { Router } from '@angular/router';
 import { Datum, Like, Participante } from 'src/app/private/interfaces/post/post.interface';
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class ListUserLikePostComponent {
   post$!:Observable<Datum>;
   constructor(
-    public dialogRef: MatDialogRef<PostComponent>,
+    public dialogRef: MatDialog,
     private readonly route: Router,
     private readonly postService:PostService,
     @Inject(MAT_DIALOG_DATA) public Participante: Datum
@@ -23,7 +23,7 @@ export class ListUserLikePostComponent {
     this.post$=postService.getPost(Participante.id)
   }
   goToProfile(id:number){
-    this.dialogRef.close();
+    this.dialogRef.closeAll();
     this.route.navigate(['/profile',id])
   }
 }

@@ -1,55 +1,93 @@
-
-<div mat-dialog-content  class="mat-dialog-content"  style="width: 100%; height: 100%;padding: 0;">
+<div
+  mat-dialog-content
+  class="mat-dialog-content"
+  style="width: 100%; height: 100%; padding: 0"
+  *ngIf="post"
+>
   <div class="imagen">
-    <img src="https://i.pinimg.com/originals/38/10/b3/3810b3d0436dfa7b7c5bdd336fc8834c.jpg" alt="" />
+    <img [src]="post.imagen.imagen_url" alt="" />
   </div>
   <div class="contenido">
-
     <div class="user">
-
       <div class="avatar">
-        <img class="img-user" src="https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png" alt="">
+        <img class="img-user" [src]="avatar" alt="imagen de usuario" />
       </div>
 
       <div class="nombre">
-        <h3 class="nombre-user">KEYRON DAMIAN AGUILAR ORTIZ</h3>
+        <h3 class="nombre-user">{{ post.participante.nombres |titlecase }}</h3>
       </div>
-
+      <div>
+        <h3 class="nombre-user">{{ post.participante.cedula }}</h3>
+      </div>
+      <ng-container *ngIf="userAdminJurado$ | async as user">
+        <ng-container *ngIf="user.rol==='admin'">
+          <button
+            class="btn-delete"
+            mat-button
+            [matMenuTriggerFor]="menu"
+            #menuTrigger
+          >
+            <b>...</b>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deletePost()">Eliminar</button>
+          </mat-menu>
+        </ng-container>
+      </ng-container>
     </div>
 
     <div class="titulo">
       <h1>Título</h1>
-      <p>asddasadsasd</p>
+      <p>{{ post.titulo |titlecase }}</p>
     </div>
 
     <div class="descripcion">
       <h1>Descripción</h1>
-      <p>asddasadsasd</p>
+      <p>{{ post.descripcion }}</p>
     </div>
 
     <div class="categoria">
       <h1>Categoría</h1>
-      <p>asddasadsasd</p>
+      <p> {{post.categoria.nombre}} </p>
     </div>
 
     <div class="lugar">
       <h1>Lugar</h1>
-      <p>asddasadsasd</p>
+      <p>{{ post.lugar }}</p>
     </div>
 
-    <div class="acciones">
-      <div class="like">
-        <i class="input-icon uil uil-heart">4 Like</i>
+    <div
+      class="likes-comentarios-calificar"
+      *ngIf="user"
+    >
+      <div *ngIf="user.rol=='participante'">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example favorite icon"
+          fontIcon="favorite"
+          (click)="likePost()"
+          class="reacciones"
+          ngClass="{{ isLikeOfMe && 'like-heart' }}"
+        ></mat-icon>
       </div>
-      <div class="comentario">
-        <i class="input-icon uil uil-comment-dots">3 Comentario</i>
-      </div>
+      <ng-container *ngIf="userAdminJurado$ | async as user">
+        <div class="boton3" *ngIf="user.rol === 'jurado'">
+          <a class="cali" href="">Calificar</a>
+        </div>
+      </ng-container>
     </div>
 
+    <div class="likes">
+      <a class="like click-like" (click)="openModal('250ms', '400ms')">
+        <b> {{ likeCount }} </b> Me gusta</a
+      >
+      <a class="like" mat-button (click)="openDialog()">
+        <b>{{ postCount}}</b> Comentarios</a
+      >
+      <a class="like"> {{ post.fecha }} </a>
+    </div>
   </div>
 </div>
-<div
+<!-- <div
   mat-dialog-actions style="border-top: 1px solid ; border-color: rgb(129, 129, 129); display: flex; justify-content: space-between;">
-  <button mat-button mat-dialog-close>Close</button>
-  <button mat-button>Calificar</button>
-</div>
+</div> -->
