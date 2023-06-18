@@ -13,6 +13,7 @@ import { ListUserLikePostComponent } from '../list-user-like-post/list-user-like
 import { ModalUserCommentsComponent } from '../modal-user-comments/modal-user-comments.component';
 import { PostService } from 'src/app/private/services/post.service';
 import { ToastrService } from 'ngx-toastr';
+import { CalificarPostComponent } from '../calificar-post/calificar-post.component';
 
 @Component({
   selector: 'app-post',
@@ -101,12 +102,20 @@ export class PostComponent implements OnInit,OnDestroy {
   }
 
 
-  openDialog() {
+  openDialogComment() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
       width: '80%',
       minWidth: '292px',
       data: this.post.id,
     });
-
   }
+
+  openDialogCalificar() {
+    const dialogRef = this.dialog.open(CalificarPostComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }

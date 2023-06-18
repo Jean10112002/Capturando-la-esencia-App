@@ -16,6 +16,7 @@ import { PostService } from 'src/app/private/services/post.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUserCommentsComponent } from '../components/modal-user-comments/modal-user-comments.component';
 import { DOCUMENT } from '@angular/common';
+import { ModalCalificarPostComponent } from '../components/modal-calificar-post/modal-calificar-post.component';
 
 @Component({
   selector: 'app-home',
@@ -106,12 +107,22 @@ export class HomeComponent {
 
   /* esta funcion esat solo aqui por la cards estatica */
 
-  openDialog() {
+  openDialogComment() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
       width: '30%',
       minWidth: '292px',
     });
   }
+
+  openDialogCalificar() {
+    const dialogRef = this.dialog.open(ModalCalificarPostComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  /* hasta aqui es el estatico */
 
   recibirPosts(event: number) {
     this.recibirCategoria(event);
