@@ -25,7 +25,7 @@
         <div class="scroll-infinito" infinite-scroll (scrolled)="onScrollDown()">
           <!-- Estatico borrar apenas termine -->
 
-        <!--   <div class="cards">
+          <div class="cards">
             <div class="perfil">
               <img
                 class="avatar"
@@ -52,14 +52,16 @@
                 <i class="reacciones input-icon uil uil-heart"></i>
                 <i class="reacciones input-icon uil uil-comment-dots"></i>
               </div>
+
               <div class="boton3">
-                <a class="cali" href="">Calificar</a>
+                <a class="cali" style="color: rgb(255, 255, 255);" mat-button (click)="openDialogCalificar()">Calificar</a>
               </div>
+
             </div>
 
             <div class="likes">
               <a class="like" href=""> <b>641</b> Me gusta</a>
-              <a class="like" mat-button (click)="openDialog()">
+              <a class="like" mat-button (click)="openDialogComment()">
                 <b>50</b> Comentarios</a
               >
             </div>
@@ -75,7 +77,7 @@
                 transmitio tomar esta foto.
               </p>
             </div>
-          </div> -->
+          </div>
 
           <!-- Estatico borrar apenas termine-->
 

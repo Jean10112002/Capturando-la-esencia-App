@@ -22,6 +22,7 @@ import { PostService } from 'src/app/private/services/post.service';
 import { ToastrService } from 'ngx-toastr';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
+import { CalificarPostComponent } from '../calificar-post/calificar-post.component';
 
 @Component({
   selector: 'app-post',
@@ -123,11 +124,21 @@ export class PostComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  openDialog() {
+
+  openDialogComment() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
       width: '80%',
       minWidth: '292px',
       data: this.post.id,
     });
   }
+
+  openDialogCalificar() {
+    const dialogRef = this.dialog.open(CalificarPostComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
