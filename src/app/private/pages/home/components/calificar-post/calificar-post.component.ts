@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './calificar-post.component.html',
   styleUrls: ['./calificar-post.component.scss'],
 })
+
+
+
 export class CalificarPostComponent {
   myForm!: FormGroup;
   constructor(private formBuilder: FormBuilder) {}
@@ -30,6 +33,7 @@ export class CalificarPostComponent {
       return;
     } else {
 
-      };
-    }
+    };
+  }
+
   }

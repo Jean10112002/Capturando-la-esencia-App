@@ -5,58 +5,58 @@
   <div class="contenido">
     <div class="rubrica">
       <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" >
-      <table style="border: 1px solid;">
+        <table style="border: 1px 1px 0px 1px solid;">
 
-        <tr>
+          <tr>
+            <th scope="row">Ponderación</th>
+            <th>Contenido <br> 30%</th>
+            <th>Organización <br>estetica <br> 25%</th>
+            <th>Creatividad <br> 20%</th>
+            <th>Técnica <br> 25%</th>
+          </tr>
 
-          <th scope="row">Ponderación</th>
+          <tr>
+            <th style="background-color: rgba(8, 138, 8, 0.7); color: rgb(255, 255, 255);">Sobresaliente <br> (10)</th>
+            <td id="r1"><input class="sobre" type="radio" formControlName="contenido" value="10"></td>
+            <td id="r2"><input class="sobre" type="radio" formControlName="organizacion" value="10"></td>
+            <td id="r3"><input class="sobre" type="radio" formControlName="creatividad" value="10"></td>
+            <td id="r4"><input class="sobre" type="radio" formControlName="tecnica" value="10"></td>
+          </tr>
 
-          <th>Contenido <br> 30%</th>
-          <th>Organización <br>estetica <br> 25%</th>
-          <th>Creatividad <br> 20%</th>
-          <th>Técnica <br> 25%</th>
+          <tr>
+            <th style="background-color: rgba(243, 247, 23, 0.7); color: black;">Notable <br> (8)</th>
+            <td id="r1"><input class="nota" type="radio" formControlName="contenido" value="8"></td>
+            <td id="r2"><input class="nota" type="radio" formControlName="organizacion" value="8"></td>
+            <td id="r3"><input class="nota" type="radio" formControlName="creatividad" value="8"></td>
+            <td id="r4"><input class="nota" type="radio" formControlName="tecnica" value="8"></td>
+          </tr>
 
-        </tr>
+          <tr>
+            <th style="background-color: rgba(237, 167, 3, 0.7); color: black;">Aprobado <br> (6)</th>
+            <td id="r1"><input class="apro" type="radio" formControlName="contenido" value="6"></td>
+            <td id="r2"><input class="apro" type="radio" formControlName="organizacion" value="6"></td>
+            <td id="r3"><input class="apro" type="radio" formControlName="creatividad" value="6"></td>
+            <td id="r4"><input class="apro" type="radio" formControlName="tecnica" value="6"></td>
+          </tr>
 
-        <tr>
-          <th style="background-color: rgba(8, 138, 8, 0.7); color: rgb(255, 255, 255);">Sobresaliente <br> (10)</th>
-          <td><input class="sobre" type="radio" name="contenido" formControlName="contenido" value="10"></td>
-          <td><input class="sobre" type="radio" name="organizacion" formControlName="organizacion" value="10"></td>
-          <td><input class="sobre" type="radio" name="creatividad" formControlName="creatividad" value="10"></td>
-          <td><input class="sobre" type="radio" name="tecnica" formControlName="tecnica" value="10"></td>
-        </tr>
-        <tr>
-          <th style="background-color: rgba(243, 247, 23, 0.7); color: black;">Notable <br> (8)</th>
+          <tr>
+            <th style="background-color: rgba(248, 27, 27, 0.7); color: rgb(255, 255, 255);">Insuficiente <br> (2)</th>
+            <td id="r1"><input class="insu" type="radio" formControlName="contenido" value="2"></td>
+            <td id="r2"><input class="insu" type="radio" formControlName="organizacion" value="2"></td>
+            <td id="r3"><input class="insu" type="radio" formControlName="creatividad" value="2"></td>
+            <td id="r4"><input class="insu" type="radio" formControlName="tecnica" value="2"></td>
+          </tr>
 
-          <td><input class="nota" type="radio" name="contenido" formControlName="contenido" value="8"></td>
-          <td><input class="nota" type="radio" name="organizacion" formControlName="organizacion" value="8"></td>
-          <td><input class="nota" type="radio" name="creatividad" formControlName="creatividad" value="8"></td>
-          <td><input class="nota" type="radio" name="tecnica" formControlName="tecnica" value="8"></td>
+          <tr style="border: none;">
+            <th style="border: none;"></th>
+            <td style="border: none;"><span *ngIf="myForm.get('contenido')?.hasError('required')">Califica según su contenido</span></td>
+            <td style="border: none;"><span *ngIf="myForm.get('organizacion')?.hasError('required')">Califica según su organizacion</span></td>
+            <td style="border: none;"><span *ngIf="myForm.get('creatividad')?.hasError('required')">Califica según su creatividad</span></td>
+            <td style="border: none;"><span *ngIf="myForm.get('tecnica')?.hasError('required')">Califica según su técnica</span></td>
+          </tr>
 
-        </tr>
-
-        <tr>
-
-          <th style="background-color: rgba(237, 167, 3, 0.7); color: black;">Aprobado <br> (6)</th>
-
-          <td><input class="apro" type="radio" name="contenido" formControlName="contenido" value="6"></td>
-          <td><input class="apro" type="radio" name="organizacion" formControlName="organizacion" value="6"></td>
-          <td><input class="apro" type="radio" name="creatividad" formControlName="creatividad" value="6"></td>
-          <td><input class="apro" type="radio" name="tecnica" formControlName="tecnica" value="6"></td>
-
-        </tr>
-
-        <tr>
-
-          <th style="background-color: rgba(248, 27, 27, 0.7); color: rgb(255, 255, 255);">Insuficiente <br> (2)</th>
-
-          <td><input class="insu" type="radio" name="contenido" formControlName="contenido" value="2"></td>
-          <td><input class="insu" type="radio" name="organizacion" formControlName="organizacion" value="2"></td>
-          <td><input class="insu" type="radio" name="creatividad" formControlName="creatividad" value="2"></td>
-          <td><input class="insu" type="radio" name="tecnica" formControlName="tecnica" value="2"></td>
-        </tr>
-      </table>
-    </form>
+        </table>
+      </form>
     </div>
   </div>
 </div>
