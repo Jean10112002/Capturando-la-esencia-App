@@ -61,6 +61,8 @@ export class CalificarPostComponent implements OnDestroy{
       this.calificarService.crearCalificacion(body).subscribe((data)=>{
         this.toastService.success('Calificacion creada','Proceso Exitoso')
         this.IsCalificated=true;
+        this.myForm.disable();
+
         this.eventEmitterService.setEvent({event:'CALIFICACION_CREADA',id:this.post.id});
       })
       };
@@ -76,6 +78,7 @@ export class CalificarPostComponent implements OnDestroy{
           organizacion:post[0].organizacion_estatica.toString(),
           tecnica:post[0].tecnica.toString()
         })
+        this.myForm.disable();
 
       }else{
         this.IsCalificated=false;

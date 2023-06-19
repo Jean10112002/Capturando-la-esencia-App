@@ -11,7 +11,7 @@
     <div class="rubrica">
     <p> {{user?.nombre|titlecase}}-{{user?.apellido|titlecase}} </p>
 
-      <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" >
+      <form [formGroup]="myForm"  (ngSubmit)="onSubmit(myForm.value)" >
         <table style="border: 1px solid">
           <tr>
             <th scope="row">Ponderación</th>
