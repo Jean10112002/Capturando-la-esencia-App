@@ -1,4 +1,10 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  ViewChild,
+} from '@angular/core';
 
 //Importaciones para abrir el Cuadro de Dialogo de Crear
 import { UserInformationService } from 'src/app/private/services/user-information.service';
@@ -24,6 +30,8 @@ import { ModalCalificarPostComponent } from '../components/modal-calificar-post/
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  @ViewChild('scroll') miDiv!: ElementRef;
+
   next_page_url!: string;
   user!: UserI | Participante;
   posts!: Posts;
@@ -70,9 +78,9 @@ export class HomeComponent {
         .getPostPaginate(this.next_page_url)
         .pipe(map((res) => res.Posts))
         .subscribe((data) => {
-          console.log(data)
-         this.posts.data=this.posts.data.concat(data.data);
-          console.log(this.posts)
+          console.log(data);
+          this.posts.data = this.posts.data.concat(data.data);
+          console.log(this.posts);
           this.next_page_url = data.next_page_url;
         });
     } else {
@@ -89,17 +97,19 @@ export class HomeComponent {
         .getPosts()
         .pipe(map((result) => result.Posts))
         .subscribe((data) => {
-          this.posts=data;
+          this.posts = data;
           this.next_page_url = data.next_page_url;
+          this.regresarAlTop();
         });
     } else {
       this.postService
         .getPostsByCategory(event)
         .pipe(map((result: any) => result.Posts))
         .subscribe((data) => {
-          console.log(data)
-          this.posts=data;
+          console.log(data);
+          this.posts = data;
           this.next_page_url = data.next_page_url;
+          this.regresarAlTop();
         });
     }
     console.log(event);
@@ -117,7 +127,7 @@ export class HomeComponent {
   openDialogCalificar() {
     const dialogRef = this.dialog.open(ModalCalificarPostComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -126,5 +136,9 @@ export class HomeComponent {
 
   recibirPosts(event: number) {
     this.recibirCategoria(event);
+  }
+  regresarAlTop() {
+    const divElement: HTMLElement = this.miDiv.nativeElement;
+    divElement.scrollTop = 0;
   }
 }
