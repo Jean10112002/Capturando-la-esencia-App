@@ -39,6 +39,7 @@ export class CalificacionComponent {
         this.posts=data;
         this.next_page_url=data.next_page_url;
       });
+
   }
   @HostListener('window:scroll')
   onWindowScroll(): void {

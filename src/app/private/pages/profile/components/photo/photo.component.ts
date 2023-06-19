@@ -1,11 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { PostI } from 'src/app/private/interfaces/participante/participante.interface';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import {MatDialog, } from '@angular/material/dialog';
 import { ModalPostComponent } from '../modal-post/modal-post.component';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { Subject, takeUntil } from 'rxjs';
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
+import { Datum } from 'src/app/private/interfaces/post/post.interface';
+import { PostService } from 'src/app/private/services/post.service';
+
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
@@ -13,11 +14,11 @@ import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-em
 
 })
 export class PhotoComponent implements OnInit,OnDestroy {
-  @Input() photo!:PostI
+  @Input() photo!:Datum
 likeCount!:number
 commentCount!:number
 private destroy$: Subject<void> = new Subject<void>();
-constructor(public dialog: MatDialog,eventEmissorService:EnventEmissorService) {
+constructor(public dialog: MatDialog,eventEmissorService:EnventEmissorService,private readonly postService:PostService) {
 
     eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
       if(event.event=='LIKE_AGREGAR'&&event.id==this.photo.id){
@@ -32,6 +33,7 @@ constructor(public dialog: MatDialog,eventEmissorService:EnventEmissorService) {
       if(event.event=='AUMENTAR_COMENTARIO'&&event.id==this.photo.id){
         this.commentCount++;
       }
+
     })
 }
 ngOnDestroy() {

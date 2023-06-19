@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { PostI } from 'src/app/private/interfaces/participante/participante.interface';
+
+import { Datum } from 'src/app/private/interfaces/post/post.interface';
+
 
 @Component({
   selector: 'app-photo-gallery',
@@ -7,5 +9,6 @@ import { PostI } from 'src/app/private/interfaces/participante/participante.inte
   styleUrls: ['../../container/profile.component.scss']
 })
 export class PhotoGalleryComponent {
-  @Input() photo!:PostI[]
+  @Input() photo!:Datum[]
+
 }

@@ -30,7 +30,6 @@ export interface Datum {
   ciudad:            string;
   fecha:             string;
   calificacionFinal: number|null;
-  estado:            number;
   imagen_id:         number;
   categoria_id:      number;
   participante_id:   number;
