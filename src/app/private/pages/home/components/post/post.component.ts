@@ -23,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 import { CalificarPostComponent } from '../calificar-post/calificar-post.component';
+import { ModalCalificarPostComponent } from '../modal-calificar-post/modal-calificar-post.component';
 
 @Component({
   selector: 'app-post',
@@ -57,8 +58,13 @@ export class PostComponent implements OnInit, OnDestroy {
       .getEvent()
       .pipe(takeUntil(this.destroy$))
       .subscribe((event: eventEmissorI) => {
-        if (event.event == 'AUMENTAR_COMENTARIO' && event.id==this.post.id) {
+        if (event.event == 'AUMENTAR_COMENTARIO' && event.id == this.post.id) {
           this.postCount++;
+        }
+        if (event.event == 'CALIFICACION_CREADA' && event.id == this.post.id) {
+          this.postService
+            .getPost(this.post.id)
+            .subscribe((post) => (this.post = post));
         }
       });
   }
@@ -124,7 +130,6 @@ export class PostComponent implements OnInit, OnDestroy {
     return false;
   }
 
-
   openDialogComment() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
       width: '80%',
@@ -134,11 +139,19 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   openDialogCalificar() {
-    const dialogRef = this.dialog.open(CalificarPostComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    const dialogRef = this.dialog.open(ModalCalificarPostComponent, {
+      data: this.post,
     });
   }
-
+  verifyThisPostCalificated(user: UserI): boolean {
+    const post: any = this.post.calificacion.filter(
+      (post) => post.user_id == user.id
+    );
+    console.log(post);
+    if (post.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

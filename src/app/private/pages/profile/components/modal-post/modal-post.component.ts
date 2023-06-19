@@ -13,6 +13,7 @@ import { ListUserLikePostComponent } from '../../../home/components/list-user-li
 import { Datum } from 'src/app/private/interfaces/post/post.interface';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
+import { ModalCalificarPostComponent } from '../../../home/components/modal-calificar-post/modal-calificar-post.component';
 
 @Component({
   selector: 'app-modal-post',
@@ -57,6 +58,11 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
       if(event.event=='AUMENTAR_COMENTARIO'&&event.id==this.post.id){
         this.postCount++;
+      }
+      if (event.event == 'CALIFICACION_CREADA' && event.id == this.post.id) {
+        this.postService
+          .getPost(this.post.id)
+          .subscribe((post) => (this.post = post));
       }
     })
   }
@@ -139,5 +145,21 @@ export class ModalPostComponent implements OnInit, OnDestroy {
       exitAnimationDuration,
       data: this.post,
     });
+  }
+  openDialogCalificar() {
+     this.dialog.open(ModalCalificarPostComponent,{
+      data:this.post
+    });
+
+
+  }
+  verifyThisPostCalificated(user:UserI):boolean{
+    const post:any=this.post.calificacion.filter(post=>post.user_id==user.id);
+    console.log(post)
+    if(post.length>0){
+      return true;
+    }else{
+      return false
+    }
   }
 }

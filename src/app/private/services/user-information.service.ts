@@ -22,4 +22,8 @@ export class UserInformationService {
   getInformationParticipante(): Observable<any>{
     return this.UserInformationParticipante$.asObservable();
   }
+  clearSubject(){
+    this.UserInformation$=new BehaviorSubject({apellido:'',email:'',id:0,nombre:'Jurado',rol:'',telefono:''});
+    this.UserInformationParticipante$=new BehaviorSubject({cedula:'',email:'',id:0,nombres:'',rol:'',telefono:'',semestre:''});
+  }
 }

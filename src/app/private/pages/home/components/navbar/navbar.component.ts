@@ -6,6 +6,7 @@ import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { UserI } from 'src/app/public/interfaces/Login.response.interface';
 import { AuthService } from 'src/app/public/services/auth.service';
 import { SearchUserComponent } from '../search-user/search-user.component';
+import { UserInformationService } from 'src/app/private/services/user-information.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,9 +18,9 @@ export class NavbarComponent {
    notificacion=inject(ToastrService);
    router=inject(Router);
     dialog=inject(MatDialog)
+    userInformation=inject(UserInformationService)
   @Input() user!:UserI|Participante;
   showDialog = false;
-
   openDialog() {
     this.showDialog = true;
   }
@@ -37,6 +38,8 @@ export class NavbarComponent {
     this.authService.logout().subscribe((res)=>{
       this.authService.deleteToken();
       this.notificacion.success("Cierre de sesión exitoso",'Proceso Exitoso');
+      this.userInformation.clearSubject();
+
       this.router.navigate(['login']);
     });
   }
