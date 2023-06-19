@@ -46,7 +46,7 @@
     </div>
     <ng-container *ngIf="userAdminJurado$ | async as user">
       <div class="boton3" *ngIf="user.rol === 'jurado'">
-        <a class="cali" mat-button (click)="openDialogCalificar()">Calificar</a>
+        <a class="cali" mat-button (click)="openDialogCalificar()">{{verifyThisPostCalificated(user)?'Ver Calificación':'Calificar'}}</a>
       </div>
     </ng-container>
   </div>

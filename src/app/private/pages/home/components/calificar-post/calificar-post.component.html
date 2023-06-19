@@ -1,9 +1,16 @@
-<div style="display: flex;">
+<div style="display: flex">
   <div class="imagen">
-    <img class="img" src="https://i0.wp.com/medioambienteynaturaleza.com/wp-content/uploads/2015/06/Fondos-de-pantalla-de-paisajes-naturales29.jpg?ssl=1" alt="">
+    <img
+      class="img"
+      [src]="post.imagen.imagen_url"
+      alt="Imagen de referencia para calificar"
+    />
   </div>
   <div class="contenido">
+
     <div class="rubrica">
+    <p> {{user?.nombre|titlecase}}-{{user?.apellido|titlecase}} </p>
+
       <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" >
         <table style="border: 1px 1px 0px 1px solid;">
 
@@ -56,6 +63,9 @@
           </tr>
 
         </table>
+
+        <button *ngIf="!IsCalificated" mat-button color="primary" type="submit">Confirmar Calificación</button>
+
       </form>
     </div>
   </div>
