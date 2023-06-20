@@ -1,9 +1,11 @@
 <div class="cards" *ngIf="post">
   <div class="perfil">
     <img class="avatar" [src]="avatar" alt="" />
-    <h2 class="nombre click" [routerLink]="['/profile/',post.participante.id]"  >{{ post.participante.nombres | titlecase }}</h2>
+    <h2 class="nombre click" [routerLink]="['/profile/', post.participante.id]">
+      {{ post.participante.nombres | titlecase }}
+    </h2>
     <ng-container *ngIf="userAdminJurado$ | async as user">
-      <ng-container *ngIf="user.rol==='admin'">
+      <ng-container *ngIf="user.rol === 'admin'">
         <button
           class="btn-delete"
           mat-button
@@ -31,23 +33,30 @@
     class="likes-comentarios-calificar"
     *ngIf="userAdminJurado$ | async as user"
   >
-    <div *ngIf="user$ | async as userParticipante">
-      <mat-icon
-        *ngIf="
-          userParticipante.rol === 'participante' && user.rol !== 'participante'
-        "
-        aria-hidden="false"
-        aria-label="Example favorite icon"
-        fontIcon="favorite"
-        (click)="likePost()"
-        class="reacciones"
-        ngClass="{{ isLikeOfMe && 'like-heart' }}"
-      ></mat-icon>
-    </div>
-    <ng-container *ngIf="userAdminJurado$ | async as user">
-      <div class="boton3" *ngIf="user.rol === 'jurado'">
-        <a class="cali" mat-button (click)="openDialogCalificar()">{{verifyThisPostCalificated(user)?'Ver Calificación':'Calificar'}}</a>
+    <ng-container *ngIf="shouldShowComponentPhotoParticipante">
+      <div *ngIf="user$ | async as userParticipante">
+        <mat-icon
+          *ngIf="
+            userParticipante.rol === 'participante' &&
+            user.rol !== 'participante'
+          "
+          aria-hidden="false"
+          aria-label="Example favorite icon"
+          fontIcon="favorite"
+          (click)="likePost()"
+          class="reacciones"
+          ngClass="{{ isLikeOfMe && 'like-heart' }}"
+        ></mat-icon>
       </div>
+    </ng-container>
+    <ng-container *ngIf="shouldShowComponentCalificar">
+      <ng-container *ngIf="userAdminJurado$ | async as user">
+        <div class="boton3" *ngIf="user.rol === 'jurado'">
+          <a class="cali" mat-button (click)="openDialogCalificar()">{{
+            verifyThisPostCalificated(user) ? "Ver Calificación" : "Calificar"
+          }}</a>
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 
@@ -56,7 +65,7 @@
       <b> {{ likeCount }} </b> Me gusta</a
     >
     <a class="like" mat-button (click)="openDialogComment()">
-      <b>{{ post.comentario__post.length }}</b> Comentarios</a
+      <b>{{ postCount }}</b> Comentarios</a
     >
     <a class="like"> {{ post.fecha }} </a>
   </div>

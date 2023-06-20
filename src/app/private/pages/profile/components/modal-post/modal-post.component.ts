@@ -14,6 +14,7 @@ import { Datum } from 'src/app/private/interfaces/post/post.interface';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 import { ModalCalificarPostComponent } from '../../../home/components/modal-calificar-post/modal-calificar-post.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-modal-post',
@@ -33,6 +34,22 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   userAdminJurado$!: Observable<UserI>;
   user$: Observable<Participante> =
     this.dataServiceUser.getInformationParticipante();
+
+
+
+    currentDateTime!: any;
+    //calificar
+    startCalificar = config.startCalificar;
+    endCalificar = config.endCalificar;
+    isInDateRangeCalificar!: any;
+    isInTimeRangeCalificar!: any;
+    shouldShowComponentCalificar!: boolean;
+    //photo participante
+    startPhotoParticipante = config.startPhotoParticipante;
+    endPhotoParticipante = config.endPhotoParticipante;
+    isInDateRangePhotoParticipante!: any;
+    isInTimeRangePhotoParticipante!: any;
+    shouldShowComponentPhotoParticipante!: boolean;
   constructor(
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
@@ -40,8 +57,31 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     private readonly postService: PostService,
     private readonly notify: ToastrService,
     private readonly eventEmissorService:EnventEmissorService,
-    @Inject(MAT_DIALOG_DATA) private id_post: number
+    @Inject(MAT_DIALOG_DATA) private id_post: number,
+    private readonly datePipe:DatePipe
   ) {
+    this.currentDateTime = this.datePipe.transform(
+      new Date(),
+      'yyyy-MM-dd HH:mm:ss'
+    );
+    //calfiicar
+    this.isInDateRangeCalificar =
+      this.currentDateTime >= this.startCalificar &&
+      this.currentDateTime <= this.endCalificar;
+    this.isInTimeRangeCalificar =
+      this.currentDateTime.split(' ')[1] >= this.startCalificar.split(' ')[1] &&
+      this.currentDateTime.split(' ')[1] <= this.endCalificar.split(' ')[1];
+    this.shouldShowComponentCalificar =
+      this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
+    //partiicpante
+    this.isInDateRangePhotoParticipante =
+      this.currentDateTime >= this.startPhotoParticipante &&
+      this.currentDateTime <= this.endPhotoParticipante;
+    this.isInTimeRangePhotoParticipante =
+      this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
+      this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
+    this.shouldShowComponentPhotoParticipante =
+      this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
     this.userAdminJurado$ = this.dataServiceUser.getData();
     this.user$ = this.dataServiceUser.getInformationParticipante();
     this.postService.getPost(this.id_post).subscribe((data) => {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { PrivateRoutingModule } from './private-routing.module';
 import { PrivateComponent } from './private.component';
 import { HomeComponent } from './pages/home/container/home.component';
@@ -123,7 +123,8 @@ import { EnventEmissorService } from './services/envent-emissor.service';
     PostService,
     ImagenService,
     UserInformationService,
-    EnventEmissorService
+    EnventEmissorService,
+    DatePipe
   ],
 })
 export class PrivateModule {}

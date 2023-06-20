@@ -56,25 +56,28 @@
       <p>{{ post.lugar }}</p>
     </div>
 
-    <div
+
+      <div
       class="likes-comentarios-calificar"
       *ngIf="user"
-    >
-      <div *ngIf="user.rol=='participante'">
+      >
+      <div *ngIf="user.rol=='participante'&&shouldShowComponentPhotoParticipante">
         <mat-icon
-          aria-hidden="false"
-          aria-label="Example favorite icon"
-          fontIcon="favorite"
-          (click)="likePost()"
-          class="reacciones"
-          ngClass="{{ isLikeOfMe && 'like-heart' }}"
+        aria-hidden="false"
+        aria-label="Example favorite icon"
+        fontIcon="favorite"
+        (click)="likePost()"
+        class="reacciones"
+        ngClass="{{ isLikeOfMe && 'like-heart' }}"
         ></mat-icon>
       </div>
-      <ng-container *ngIf="userAdminJurado$ | async as user">
-        <div class="boton3" *ngIf="user.rol === 'jurado'">
-          <a class="cali" mat-button (click)="openDialogCalificar()">{{verifyThisPostCalificated(user)?'Ver Calificación':'Calificar'}}</a>
+      <ng-container *ngIf="shouldShowComponentCalificar">
+        <ng-container *ngIf="userAdminJurado$ | async as user">
+          <div class="boton3" *ngIf="user.rol === 'jurado'">
+            <a class="cali" mat-button (click)="openDialogCalificar()">{{verifyThisPostCalificated(user)?'Ver Calificación':'Calificar'}}</a>
 
-        </div>
+          </div>
+        </ng-container>
       </ng-container>
     </div>
 

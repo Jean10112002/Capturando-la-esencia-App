@@ -1,24 +1,28 @@
-<h1 mat-dialog-title>Crear comentario</h1>
+<ng-container *ngIf="shouldShowComponentPhotoParticipante">
+  <h1 mat-dialog-title>Crear comentario</h1>
 
-<div mat-dialog-content *ngIf="comentarios$ | async as comentarios" class="chip-comentarios">
-  <mat-chip-listbox >
-    <div >
-      <mat-chip-option
-        *ngFor="let comentario of comentarios.Comentarios"
-        color="primary"
-        (click)="activateComment(comentario.mensaje, comentario.id)"
-      >
-        <h3 style="font-size: 8pt">{{ comentario.mensaje }}</h3>
-      </mat-chip-option>
-    </div>
-  </mat-chip-listbox>
-  <mat-divider></mat-divider>
-  <ng-container class="container-comment"
-    *ngIf="optionSelected!=null">
-    <mat-form-field>
-      <textarea matInput disabled="true" [value]="optionSelected" ></textarea>
-    </mat-form-field>
-    <button
+  <div
+    mat-dialog-content
+    *ngIf="comentarios$ | async as comentarios"
+    class="chip-comentarios"
+  >
+    <mat-chip-listbox>
+      <div>
+        <mat-chip-option
+          *ngFor="let comentario of comentarios.Comentarios"
+          color="primary"
+          (click)="activateComment(comentario.mensaje, comentario.id)"
+        >
+          <h3 style="font-size: 8pt">{{ comentario.mensaje }}</h3>
+        </mat-chip-option>
+      </div>
+    </mat-chip-listbox>
+    <mat-divider></mat-divider>
+    <ng-container class="container-comment" *ngIf="optionSelected != null">
+      <mat-form-field>
+        <textarea matInput disabled="true" [value]="optionSelected"></textarea>
+      </mat-form-field>
+      <button
         mat-button
         color="primary"
         (click)="sendComment()"
@@ -26,6 +30,6 @@
       >
         <mat-icon>send</mat-icon>
       </button>
-  </ng-container>
-</div>
-
+    </ng-container>
+  </div>
+</ng-container>
