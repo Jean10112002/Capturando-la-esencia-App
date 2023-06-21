@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 //componentes
 import { LostComponent } from './components/lost/lost.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,7 +15,6 @@ import { MaterialModule } from './materialComponents/Material.module';
 @NgModule({
   declarations: [
     LostComponent,
-    NavbarComponent,
     ProgressBarComponent,
   ],
   imports: [

@@ -111,6 +111,9 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  desactiveModal(){
+    this.dialog.closeAll()
+  }
   deletePost() {
     this.postService.deletePost(this.post.id).subscribe((res) => {
       this.notify.success('Post Eliminado Correctamente', 'Proceso Exitoso');

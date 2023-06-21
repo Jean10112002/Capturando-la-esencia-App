@@ -124,7 +124,7 @@ export class HomeComponent implements OnDestroy {
         .subscribe((data) => {
           this.posts = data;
           this.next_page_url = data.next_page_url;
-          this.regresarAlTop();
+          this.goToTopScroll();
         });
     } else {
       this.postService
@@ -134,7 +134,7 @@ export class HomeComponent implements OnDestroy {
           console.log(data);
           this.posts = data;
           this.next_page_url = data.next_page_url;
-          this.regresarAlTop();
+          this.goToTopScroll();
         });
     }
     console.log(event);

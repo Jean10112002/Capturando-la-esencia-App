@@ -122,6 +122,7 @@ export class CalificacionComponent {
         .subscribe((data) => {
           this.posts = data;
           this.next_page_url = data.next_page_url;
+          this.goToTopScroll()
         });
     } else {
       this.postService
@@ -131,6 +132,8 @@ export class CalificacionComponent {
           console.log(data);
           this.posts = data;
           this.next_page_url = data.next_page_url;
+          this.goToTopScroll()
+
         });
     }
     console.log(event);

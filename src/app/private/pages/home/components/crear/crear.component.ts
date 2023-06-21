@@ -711,17 +711,18 @@ user$:Observable<Participante>;
     if (this.onCategoriaFondo) {
       switch (containerValue) {
         case 1:
-          return ['container-fondo-agua'];
-        case 2:
-          return ['container-fondo-clima'];
-        case 3:
-          return ['container-fondo-paisaje'];
-        case 4:
           return ['container-fondo-PersonasNaturaleza'];
+        case 2:
+          return ['container-fondo-paisaje'];
+        case 3:
+          return ['container-fondo-agua'];
+        case 4:
+          return ['container-fondo-VidaSilvestre'];
         case 5:
           return ['container-fondo-PlantasHongos'];
         case 6:
-          return ['container-fondo-VidaSilvestre'];
+          return ['container-fondo-clima'];
+
         default:
           return [];
       }

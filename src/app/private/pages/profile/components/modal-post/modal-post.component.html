@@ -14,7 +14,7 @@
       </div>
 
       <div class="nombre">
-        <h3 class="nombre-user">{{ post.participante.nombres |titlecase }}</h3>
+        <h3 class="nombre-user pointer" (click)="desactiveModal()" [routerLink]="['/profile/',post.participante.id]"  >{{ post.participante.nombres |titlecase }}</h3>
       </div>
       <div>
         <h3 class="nombre-user">{{ post.participante.cedula }}</h3>
