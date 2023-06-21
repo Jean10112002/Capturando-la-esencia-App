@@ -3,6 +3,7 @@ import {
   ElementRef,
   HostListener,
   Inject,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
 
@@ -13,7 +14,7 @@ import {
   UserI,
   UserProfileI,
 } from 'src/app/public/interfaces/Login.response.interface';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 import {
   Participante,
   Posts,
@@ -23,14 +24,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalUserCommentsComponent } from '../components/modal-user-comments/modal-user-comments.component';
 import { DOCUMENT } from '@angular/common';
 import { ModalCalificarPostComponent } from '../components/modal-calificar-post/modal-calificar-post.component';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
+import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
   @ViewChild('scroll') miDiv!: ElementRef;
+  private destroy$ = new Subject<void>();
 
   next_page_url!: string;
   user!: UserI | Participante;
@@ -43,7 +47,9 @@ export class HomeComponent {
     private readonly userDataService: UserInformationService,
     private readonly postService: PostService,
     private dialog: MatDialog,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private readonly eventEmissorService: EnventEmissorService,
+
   ) {
     authService.userInformation().subscribe((user: UserProfileI) => {
       this.user = user.user;
@@ -57,6 +63,29 @@ export class HomeComponent {
         this.userDataService.setInformationParticipante(user.user);
       }
     });
+    eventEmissorService
+    .getEvent()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((event: eventEmissorI) => {
+      if (event.event == 'PUBLICACION_CREADA' ) {
+        postService
+        .getPosts()
+        .pipe(map((res) => res.Posts))
+        .subscribe((data) => {
+          this.posts = data;
+          this.next_page_url = data.next_page_url;
+        });
+      }
+      if (event.event == 'POST_ELIMINADO' ) {
+        postService
+        .getPosts()
+        .pipe(map((res) => res.Posts))
+        .subscribe((data) => {
+          this.posts = data;
+          this.next_page_url = data.next_page_url;
+        });
+      }
+    });
     postService
       .getPosts()
       .pipe(map((res) => res.Posts))
@@ -64,6 +93,7 @@ export class HomeComponent {
         this.posts = data;
         this.next_page_url = data.next_page_url;
       });
+
   }
   @HostListener('window:scroll')
   onWindowScroll(): void {
@@ -87,7 +117,10 @@ export class HomeComponent {
       console.log('se acabaron los datos');
     }
   }
-
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   goToTopScroll() {
     this.document.documentElement.scrollTop = 0;
   }

@@ -106,6 +106,7 @@ export class PostComponent implements OnInit, OnDestroy {
             .getPost(this.post.id)
             .subscribe((post) => (this.post = post));
         }
+
       });
   }
   ngOnDestroy(): void {

@@ -35,7 +35,9 @@
               *ngFor="let post of posts.data"
               [post]="post"
             ></app-post>
-
+            <ng-container *ngIf="posts.data.length<1">
+              <h5>No hay fotos</h5>
+            </ng-container>
           </ng-container>
 
         </div>

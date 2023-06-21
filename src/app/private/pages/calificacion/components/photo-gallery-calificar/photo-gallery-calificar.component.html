@@ -2,6 +2,9 @@
   <div class="perfil-usuario-body">
     <div class="perfil-usuario-footer" *ngIf="photo" >
       <app-photo [photo]="p" *ngFor="let p of photo"  />
+      <ng-container *ngIf="photo.length<1">
+        <h5>No hay fotos para calificar</h5>
+      </ng-container>
     </div>
   </div>
   </section>

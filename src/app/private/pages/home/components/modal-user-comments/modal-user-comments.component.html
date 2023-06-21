@@ -13,6 +13,9 @@
       *ngFor="let post of post.comentario__post"
       class="app-list-user-comment"
     ></app-list-user-comment>
+    <ng-container *ngIf="post.comentario__post.length<1">
+      <h5>No hay comentarios, sé el primero en comentar.</h5>
+    </ng-container>
   </ng-container>
 </mat-dialog-content>
 <!-- <mat-dialog-actions align="end">

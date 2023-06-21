@@ -27,6 +27,7 @@ import { CategoriaService } from 'src/app/private/services/categoria.service';
 import { config } from 'src/config/config';
 import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
+import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 
 @Component({
   selector: 'app-crear',
@@ -45,7 +46,8 @@ user$:Observable<Participante>;
     private notificacion: ToastrService,
     private readonly postService: PostService,
     private readonly imageService: ImagenService,
-    private readonly dataServiceUser:UserInformationService
+    private readonly dataServiceUser:UserInformationService,
+    private readonly eventEmissorService:EnventEmissorService
   ) {
     this.user$=this.dataServiceUser.getInformationParticipante();
   }
@@ -55,6 +57,7 @@ user$:Observable<Participante>;
   }
   submitForm() {
     if (this.imagenForm.valid) {
+      console.log("valido form")
       const imagen = new FormData();
       imagen.append('imagen', this.file);
       this.imageService
@@ -80,6 +83,7 @@ user$:Observable<Participante>;
           this.postService.createPost(post).subscribe((res) => {
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
+            this.eventEmissorService.setEvent({event:'PUBLICACION_CREADA'})
           },()=>{
             this.imageService.deleteImage(this.imagenResponseId).subscribe((data)=>{
               console.log("imagen eliminada")
@@ -688,12 +692,12 @@ user$:Observable<Participante>;
   //Categorias
 
   categorias = [
-    { id: 1, label: 'Agua' },
-    { id: 2, label: 'Clima' },
-    { id: 3, label: 'Paisaje' },
-    { id: 4, label: 'Personas y Naturaleza' },
+    { id: 3, label: 'Agua' },
+    { id: 6, label: 'Clima' },
+    { id: 2, label: 'Paisaje' },
+    { id: 1, label: 'Personas y Naturaleza' },
     { id: 5, label: 'Plantas y Hongos' },
-    { id: 6, label: 'Vida silvestre' },
+    { id: 4, label: 'Vida silvestre' },
   ];
   selectedOptionCategoria: any;
   fondoCategoria = 0;
