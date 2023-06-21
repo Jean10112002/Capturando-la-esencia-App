@@ -20,7 +20,8 @@ import { SpinnerInterceptor } from './interceptor/spinner.interceptor';
   imports: [
     RouterModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    
 
   ],
   exports:[

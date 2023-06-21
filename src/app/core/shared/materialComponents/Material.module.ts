@@ -11,7 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator'
 
 
@@ -27,7 +27,8 @@ import { MatPaginatorModule} from '@angular/material/paginator'
     MatStepperModule,
     MatBadgeModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
     ],
   exports: [MatButtonModule,
     MatDialogModule,

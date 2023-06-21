@@ -1,5 +1,5 @@
 <p>report works!</p>
 <div *ngIf="ResponseResultados$ | async as resultados">
 <app-table-categoria [dataInformation]="categoria" *ngFor="let categoria of resultados.Categorias" />
-<app-table-like-comentario></app-table-like-comentario>
+<app-table-like-comentario [dataInformation]="resultados.mayorLikesComentarios"></app-table-like-comentario>
 </div>
