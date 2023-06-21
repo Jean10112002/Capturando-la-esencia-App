@@ -1,9 +1,12 @@
-
-<body>
-
-  <ng-container *ngIf="userInformation$ |async as user" >
-    <app-header-profile [user]="user.participante" />
-    <app-photo-gallery [photo]="user.participante.post" />
-  </ng-container>
+<body style="display: flex; width: 100%; height: 100%;">
+  <div class="navegador">
+    <app-navbar [user]="user"></app-navbar>
+  </div>
+  <div class="cuerpo">
+    <ng-container *ngIf="userInformation$ |async as user" >
+      <app-header-profile [user]="user.participante" />
+      <app-photo-gallery [photo]="user.participante.post" />
+    </ng-container>
+  </div>
 </body>
 
