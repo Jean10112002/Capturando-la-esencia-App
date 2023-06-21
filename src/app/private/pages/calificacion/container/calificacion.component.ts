@@ -2,10 +2,11 @@ import { DOCUMENT, DatePipe } from '@angular/common';
 import { Component,HostListener,Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
-import { Posts } from 'src/app/private/interfaces/post/post.interface';
+import { Participante, Posts } from 'src/app/private/interfaces/post/post.interface';
 import { PostService } from 'src/app/private/services/post.service';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
-import { UserI } from 'src/app/public/interfaces/Login.response.interface';
+import { UserI, UserProfileI } from 'src/app/public/interfaces/Login.response.interface';
+import { AuthService } from 'src/app/public/services/auth.service';
 import { config } from 'src/config/config';
 
 @Component({
@@ -16,6 +17,9 @@ import { config } from 'src/config/config';
 export class CalificacionComponent {
   jurado!: UserI;
   next_page_url!: string;
+
+  user!: UserI | Participante;
+
   posts!: Posts;
   showButton: boolean = false;
   private scrollHeight: number = 500;
@@ -31,10 +35,27 @@ export class CalificacionComponent {
   constructor(
     juradoDataService: UserInformationService,
     private readonly router: Router,
+
+    private readonly authService: AuthService,
+
     private readonly postService: PostService,
     @Inject(DOCUMENT) private document: Document,
     private readonly datePipe:DatePipe
   ) {
+
+    authService.userInformation().subscribe((user: UserProfileI) => {
+      this.user = user.user;
+      if (this.user.rol === 'admin') {
+        juradoDataService.setInformationUser(user.user);
+      }
+      if (this.user.rol === 'jurado') {
+        juradoDataService.setInformationUser(user.user);
+      }
+      if (this.user.rol === 'participante') {
+        juradoDataService.setInformationParticipante(user.user);
+      }
+    });
+
     this.currentDateTime = this.datePipe.transform(
       new Date(),
       'yyyy-MM-dd HH:mm:ss'
