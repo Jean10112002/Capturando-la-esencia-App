@@ -168,8 +168,8 @@ user$:Observable<Participante>;
 
     this.IconWarnig = false;
     if (file.type.startsWith('image/')) {
-      const maxSizeBytes = 11 * 1024 * 1024; // 10 MB
-      const minSizeBytes = 2 * 1024 * 1024; // 5 MB
+      const maxSizeBytes = 10 * 1024 * 1024; // 10 MB
+      const minSizeBytes = 1 * 1024 * 1024; // 1 MB
       console.log(minSizeBytes,maxSizeBytes)
       const maxWidth = 4032;
       const maxHeight = 4032;
@@ -182,8 +182,8 @@ user$:Observable<Participante>;
         const fileSize = file.size;
         console.log(fileSize);
         if (width <= maxWidth || height <= maxHeight) {
-          if (fileSize < maxSizeBytes) {
-            if (fileSize > minSizeBytes) {
+          if (fileSize <= maxSizeBytes) {
+            if (fileSize >= minSizeBytes) {
               this.siEsImagen = false;
               const reader = new FileReader();
               reader.onload = () => {
