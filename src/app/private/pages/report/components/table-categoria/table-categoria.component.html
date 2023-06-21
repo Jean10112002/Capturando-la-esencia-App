@@ -1,41 +1,42 @@
 <!-- {{dataInformation|json}} -->
 <h1>Categoria: {{ dataInformation.nombre }}  {{dataInformation.post.length}} </h1>
 <div class="mat-elevation-z8 text-table">
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="titulo">
-      <th mat-header-cell *matHeaderCellDef>Titulo</th>
+  <table mat-table [dataSource]="dataSource" >
+    <ng-container matColumnDef="titulo" >
+      <th mat-header-cell *matHeaderCellDef >Titulo</th>
       <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
     </ng-container>
-    <ng-container matColumnDef="calificacion">
-      <th mat-header-cell *matHeaderCellDef>Calificacion Final</th>
+    <ng-container matColumnDef="calificacion" >
+      <th mat-header-cell *matHeaderCellDef >Calificacion Final</th>
       <td mat-cell *matCellDef="let element">
         {{ element.calificacionFinal }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="nombres">
-      <th mat-header-cell *matHeaderCellDef>Nombres</th>
+    <ng-container matColumnDef="nombres" >
+        <th mat-header-cell *matHeaderCellDef >Nombres</th>
       <td mat-cell *matCellDef="let element">
         {{ element.participante.nombres }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="cedula">
-      <th mat-header-cell *matHeaderCellDef>Cedula</th>
+
+    <ng-container matColumnDef="cedula" >
+      <th mat-header-cell *matHeaderCellDef >Cedula</th>
       <td mat-cell *matCellDef="let element">
         {{ element.participante.cedula }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="jurado">
-      <th mat-header-cell *matHeaderCellDef>Jurado</th>
+      <th mat-header-cell  *matHeaderCellDef >Jurado</th>
       <td mat-cell *matCellDef="let element">
         <table >
-          <th mat-header-cell>Nombre jurado</th>
-          <th mat-header-cell>Apellido jurado</th>
-          <th mat-header-cell>Creatividad</th>
-          <th mat-header-cell>Organización estática</th>
-          <th mat-header-cell>Técnica</th>
-          <th mat-header-cell>Contenido</th>
-          <th mat-header-cell>Total</th>
+          <th mat-header-cell >Nombre jurado</th>
+          <th mat-header-cell >Apellido jurado</th>
+          <th mat-header-cell >Creatividad</th>
+          <th mat-header-cell >Organización estática</th>
+          <th mat-header-cell >Técnica</th>
+          <th mat-header-cell >Contenido</th>
+          <th mat-header-cell >Total</th>
           <tbody *ngFor="let nestedItem of element.calificacion">
             <td>
               {{ nestedItem.user.nombre }}
