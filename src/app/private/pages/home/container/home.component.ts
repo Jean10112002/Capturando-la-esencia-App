@@ -76,15 +76,7 @@ export class HomeComponent implements OnDestroy {
           this.next_page_url = data.next_page_url;
         });
       }
-      if (event.event == 'POST_ELIMINADO' ) {
-        postService
-        .getPosts()
-        .pipe(map((res) => res.Posts))
-        .subscribe((data) => {
-          this.posts = data;
-          this.next_page_url = data.next_page_url;
-        });
-      }
+
     });
     postService
       .getPosts()
