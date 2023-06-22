@@ -217,11 +217,7 @@ user$:Observable<Participante>;
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
 
   onClose() {
-    if (this.selectedImage !== null && this.imagenForm.invalid) {
-      this.showVentanaEmergente = true;
-    } else {
-      this.closeDialog.emit();
-    }
+    this.showVentanaEmergente = true;
   }
 
   //Div que se desplega

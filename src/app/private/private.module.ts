@@ -47,6 +47,7 @@ import { ModalCreateCommentComponent } from './pages/home/components/modal-creat
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ModalPostComponent } from './pages/profile/components/modal-post/modal-post.component';
 import { EnventEmissorService } from './services/envent-emissor.service';
+import { ModalImgExpandirComponent } from './pages/home/components/modal-img-expandir/modal-img-expandir.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { EnventEmissorService } from './services/envent-emissor.service';
     FilterPipe,
     ModalCreateCommentComponent,
     ModalPostComponent,
+    ModalImgExpandirComponent,
 
 
   ],

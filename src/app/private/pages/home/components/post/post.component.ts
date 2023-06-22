@@ -25,6 +25,7 @@ import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-em
 import { CalificarPostComponent } from '../calificar-post/calificar-post.component';
 import { ModalCalificarPostComponent } from '../modal-calificar-post/modal-calificar-post.component';
 import { DatePipe } from '@angular/common';
+import { ModalImgExpandirComponent } from '../modal-img-expandir/modal-img-expandir.component';
 
 @Component({
   selector: 'app-post',
@@ -195,4 +196,9 @@ export class PostComponent implements OnInit, OnDestroy {
       return false;
     }
   }
+
+  openDialogExpandir() {
+    this.dialog.open(ModalImgExpandirComponent);
+  }
+
 }

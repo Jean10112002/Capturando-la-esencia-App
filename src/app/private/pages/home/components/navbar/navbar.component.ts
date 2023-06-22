@@ -9,6 +9,7 @@ import { SearchUserComponent } from '../search-user/search-user.component';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { DatePipe } from '@angular/common';
 import { config } from 'src/config/config';
+import { CrearComponent } from '../crear/crear.component';
 
 @Component({
   selector: 'app-navbar',
@@ -74,10 +75,16 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   @Input() user!: UserI | Participante;
+
   showDialog = false;
-  openDialog() {
+  /* openDialog() {
     this.showDialog = true;
+  } */
+
+  openDialog() {
+    this.dialog.open(CrearComponent, {width:"80%",height:"90%"});
   }
+
   openDialogSearch(
     enterAnimationDuration: string,
     exitAnimationDuration: string
