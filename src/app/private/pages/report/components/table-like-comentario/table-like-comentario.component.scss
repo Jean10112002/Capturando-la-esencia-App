@@ -1,16 +1,22 @@
-table{
+.mat-elevation-z8{
   width: 100%;
+  padding: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+table{
+  width: 95%;
   border-collapse:initial;
-  margin-top: 3%;
 }
 table th{
-  background-color: #2fb45b;
-
-
+  background-color: #479600;
+  color:white;
+  font-weight: bold;
 }
-table td{
- background-color: #aefac7;
-}
+
 .text-table{
  text-align: center;
 
@@ -18,7 +24,11 @@ table td{
 
 th,
 td {
- border: 1px solid #2c2c2c; /* bordes de celda */
+ border: 1px solid #858585; /* bordes de celda */
  padding: 8px; /* espacio interno de celda */
  text-align: center;
+}
+h1{
+
+  text-align: center;
 }
