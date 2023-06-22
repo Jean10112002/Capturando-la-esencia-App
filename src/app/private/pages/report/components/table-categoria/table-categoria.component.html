@@ -4,7 +4,7 @@
   <table class="tablacontainer" mat-table [dataSource]="dataSource" >
     <ng-container matColumnDef="titulo" >
       <th mat-header-cell *matHeaderCellDef  style="border-radius: 10px 0 0 0;  font-weight: bold;">TITULO</th>
-      <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.titulo   }}</td>
     </ng-container>
     <ng-container matColumnDef="calificacion" >
       <th mat-header-cell *matHeaderCellDef style="  font-weight: bold;" >CALIFICACION FINAL</th>
@@ -15,7 +15,7 @@
     <ng-container matColumnDef="nombres" >
         <th mat-header-cell *matHeaderCellDef style="  font-weight: bold;" >NOMBRES</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.participante.nombres }}
+        {{ element.participante.nombres  |titlecase }}
       </td>
     </ng-container>
 
@@ -39,7 +39,7 @@
           <th mat-header-cell  >Total</th>
           <tbody *ngFor="let nestedItem of element.calificacion">
             <td>
-              {{ nestedItem.user.nombre }}
+              {{ nestedItem.user.nombre}}
             </td>
             <td>
             {{ nestedItem.user.apellido }}
@@ -57,7 +57,7 @@
               {{nestedItem.contenido}}
             </td>
             <td>
-              {{nestedItem.total}}
+              {{nestedItem.total |number:'1.2-2'}}
             </td>
           </tbody>
           <tr>
