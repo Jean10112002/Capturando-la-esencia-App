@@ -203,4 +203,10 @@ export class PostComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  likeMusic(){
+    var audio = new Audio("assets/music/water-droplet.mp3");
+    audio.play();
+  }
+
 }

@@ -44,7 +44,15 @@ mat-icon,.btn-delete,.photo-post{
 }
 
 .reacciones{
-  font-size: 17pt;
+  font-size: 19pt;
+}
+
+.reacciones:hover{
+  transform: scale(1.1);
+}
+
+.color-icons{
+  color: rgb(176, 180, 180);
 }
 
 .lugar{

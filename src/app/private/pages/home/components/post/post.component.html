@@ -8,7 +8,7 @@
   </div>
 
   <div class="imagen">
-    <img mat-button (click)="openDialogExpandir(post.imagen.imagen_url)" class="img photo-post" [src]="post.imagen.imagen_url" alt="" />
+    <img class="click-like" (click)="openDialogExpandir(post.imagen.imagen_url)" class="img photo-post" [src]="post.imagen.imagen_url" alt="" />
     <h4 class="lugar">
       <i class="input-icon uil uil-map-marker-alt"></i>
       {{ post.ciudad | titlecase }} - {{ post.lugar | titlecase }}
@@ -30,8 +30,9 @@
           aria-label="Example favorite icon"
           fontIcon="favorite"
           (click)="likePost()"
+          (click)="likeMusic()"
           class="reacciones"
-          ngClass="{{ isLikeOfMe && 'like-heart' }}"
+          ngClass="{{ isLikeOfMe ? 'like-heart':'color-icons' }}"
         ></mat-icon>
       </div>
     </ng-container>
@@ -50,10 +51,9 @@
     <a class="like click-like" (click)="openModal('250ms', '400ms')">
       <b> {{ likeCount }} </b> Me gusta</a
     >
-    <a class="like" mat-button (click)="openDialogComment()">
+    <a class="like click-like" (click)="openDialogComment()">
       <b>{{ postCount }}</b> Comentarios</a
     >
-    <a class="like"> {{ post.fecha }} </a>
   </div>
 
   <div class="descripcion">
@@ -64,5 +64,8 @@
       </h3>
     </div>
     <p class="parrafo">{{ post.descripcion }}</p>
+    <div style="display: flex; justify-content: center;">
+      <p class="categoria"> {{ post.fecha }} </p>
+    </div>
   </div>
 </div>
