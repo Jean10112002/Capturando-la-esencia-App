@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
 import { Calificacion, CalificacionBodyI } from 'src/app/private/interfaces/calificacion/calificacion.interface';
@@ -20,7 +21,7 @@ export class CalificarPostComponent implements OnDestroy{
   myForm!: FormGroup;
   user!:UserI
   private destroy$:Subject<boolean>=new Subject<boolean>();
-  constructor(private formBuilder: FormBuilder,private toastService:ToastrService,private calificarService:CalificacionService,private dataServiceUser:UserInformationService,private eventEmitterService:EnventEmissorService) {
+  constructor(private formBuilder: FormBuilder,private toastService:ToastrService,private calificarService:CalificacionService,private dataServiceUser:UserInformationService,private eventEmitterService:EnventEmissorService, private matDialog:MatDialog) {
     dataServiceUser.getData().pipe(takeUntil(this.destroy$)).subscribe(data=>{
       this.user=data;
     });
@@ -60,9 +61,9 @@ export class CalificarPostComponent implements OnDestroy{
       }
       this.calificarService.crearCalificacion(body).subscribe((data)=>{
         this.toastService.success('Calificacion creada','Proceso Exitoso')
-        this.IsCalificated=true;
-        this.myForm.disable();
-
+        /* this.IsCalificated=true;
+        this.myForm.disable(); */
+        this.matDialog.closeAll()
         this.eventEmitterService.setEvent({event:'CALIFICACION_CREADA',id:this.post.id});
       })
       };

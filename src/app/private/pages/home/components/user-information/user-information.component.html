@@ -1,16 +1,37 @@
 <div class="container">
   <div class="foto-div">
-    <img [src]="avatar" alt="foto de perfil de la persona">
+    <img [src]="avatar" alt="foto de perfil de la persona" />
   </div>
   <div class="texto">
     <div class="h2-div">
-      <p style="font-size: 12pt; padding-top: 5px;"><b> {{user.nombres | titlecase}} </b></p>
+      <p style="font-size: 12pt; padding-top: 5px">
+        <b>
+          {{ user.nombres || user.nombre + " " + user.apellido | titlecase }}
+        </b>
+      </p>
     </div>
-    <div class="h3-div">
-      <p>{{user.semestre}} Semestre</p>
+    <div [ngSwitch]="user.rol">
+      <div *ngSwitchCase="'participante'">
+        <div class="h3-div">
+          <p>{{ user.semestre }} Semestre</p>
+        </div>
+      </div>
+      <div *ngSwitchCase="'jurado'">
+        <div class="h3-div">
+          <p>Jurado</p>
+        </div>
+      </div>
+      <div *ngSwitchCase="'admin'">
+        <div class="h3-div">
+          <p>admin</p>
+        </div>
+      </div>
     </div>
+    <!-- <div class="h3-div" *ngIf="user.rol === 'participante'">
+      <p>{{ user.semestre }} Semestre</p>
+    </div>
+    <div class="h3-div" *ngIf="user.rol === 'jurado'">
+      <p>Jurado</p>
+    </div> -->
   </div>
 </div>
-
-
-

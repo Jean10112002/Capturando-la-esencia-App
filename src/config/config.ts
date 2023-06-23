@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 
 export const config = {
- /*    apiUrl: 'http://127.0.0.1:8000/api/', */
+   /*  apiUrl: 'http://127.0.0.1:8000/api/', */
        apiUrl:environment.apiUrl,
   avatarUrl: environment.avatarUrl,
  /*  startCalificar:"2023-08-01 00:00:00",
