@@ -28,6 +28,7 @@ import { config } from 'src/config/config';
 import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-crear',
@@ -47,7 +48,8 @@ user$:Observable<Participante>;
     private readonly postService: PostService,
     private readonly imageService: ImagenService,
     private readonly dataServiceUser:UserInformationService,
-    private readonly eventEmissorService:EnventEmissorService
+    private readonly eventEmissorService:EnventEmissorService,
+    private readonly matDialog:MatDialog
   ) {
     this.user$=this.dataServiceUser.getInformationParticipante();
   }
@@ -84,6 +86,7 @@ user$:Observable<Participante>;
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
             this.eventEmissorService.setEvent({event:'PUBLICACION_CREADA'})
+            this.matDialog.closeAll()
           },()=>{
             this.imageService.deleteImage(this.imagenResponseId).subscribe((data)=>{
               console.log("imagen eliminada")
