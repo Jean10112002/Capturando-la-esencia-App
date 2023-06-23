@@ -199,9 +199,14 @@ export class PostComponent implements OnInit, OnDestroy {
 
   openDialogExpandir(imagen:string) {
     this.dialog.open(ModalImgExpandirComponent,{
-      data:imagen,
-      height:'80vh'
+      data:imagen
     });
+  }
+
+
+  likeMusic(){
+    var audio = new Audio("assets/music/water-droplet.mp3");
+    audio.play();
   }
 
 }

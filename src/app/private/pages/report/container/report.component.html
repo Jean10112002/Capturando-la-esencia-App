@@ -1,5 +1,14 @@
+<body style="display: flex; width: 100%; height: 100%;">
 
-<div *ngIf="ResponseResultados$ | async as resultados">
-<app-table-categoria [dataInformation]="categoria" *ngFor="let categoria of resultados.Categorias" />
-<app-table-like-comentario [dataInformation]="resultados.mayorLikesComentarios"></app-table-like-comentario>
-</div>
+  <div class="navegador">
+    <app-navbar [user]="user"></app-navbar>
+  </div>
+
+  <div *ngIf="ResponseResultados$ | async as resultados" class="cuerpo">
+
+    <app-table-categoria [dataInformation]="categoria" *ngFor="let categoria of resultados.Categorias"/>
+    <app-table-like-comentario [dataInformation]="resultados.mayorLikesComentarios"></app-table-like-comentario>
+
+  </div>
+
+</body>
