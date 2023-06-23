@@ -211,7 +211,7 @@
                   (input)="updateCharCount()"
                   placeholder="Escribe una Descripcion"
                   formControlName="pie"
-                  maxlength="200"
+                  maxlength="100"
                 ></textarea>
                 <div
                   *ngIf="tlfResponsive"
@@ -222,8 +222,7 @@
               </div>
               <div class="container-descripcion-error">
                 <span class="descripcion-pie-contador"
-                  >{{ charCount }}/200</span
-                >
+                  >{{ charCount }}/100</span>
               </div>
             </div>
             <div class="categoria-container">

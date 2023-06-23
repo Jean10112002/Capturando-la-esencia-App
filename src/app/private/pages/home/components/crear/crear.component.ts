@@ -117,7 +117,7 @@ user$:Observable<Participante>;
       pie: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(200),
+        Validators.maxLength(100),
       ]),
       provincia: new FormControl('', [Validators.required]),
       canton: new FormControl('', [Validators.required]),
