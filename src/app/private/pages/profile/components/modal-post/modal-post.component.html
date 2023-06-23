@@ -5,7 +5,7 @@
   *ngIf="post"
 >
   <div class="imagen">
-    <img [src]="post.imagen.imagen_url" alt="" />
+    <img (click)="openDialogExpandir(post.imagen.imagen_url)" [src]="post.imagen.imagen_url" alt="" class="imagen_photo" />
   </div>
   <div class="contenido">
     <div class="user">

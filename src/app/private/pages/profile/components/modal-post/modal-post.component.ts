@@ -15,6 +15,7 @@ import { EnventEmissorService } from 'src/app/private/services/envent-emissor.se
 import { eventEmissorI } from 'src/app/private/interfaces/event-emissor/event-emissor.interface';
 import { ModalCalificarPostComponent } from '../../../home/components/modal-calificar-post/modal-calificar-post.component';
 import { DatePipe } from '@angular/common';
+import { ModalImgExpandirComponent } from '../../../home/components/modal-img-expandir/modal-img-expandir.component';
 
 @Component({
   selector: 'app-modal-post',
@@ -204,5 +205,10 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     }else{
       return false
     }
+  }
+  openDialogExpandir(imagen:string) {
+    this.dialog.open(ModalImgExpandirComponent,{
+      data:imagen
+    });
   }
 }

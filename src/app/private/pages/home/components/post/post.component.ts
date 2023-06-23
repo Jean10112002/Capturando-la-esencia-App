@@ -197,8 +197,10 @@ export class PostComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialogExpandir() {
-    this.dialog.open(ModalImgExpandirComponent);
+  openDialogExpandir(imagen:string) {
+    this.dialog.open(ModalImgExpandirComponent,{
+      data:imagen
+    });
   }
 
 }
