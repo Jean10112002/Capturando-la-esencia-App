@@ -36,30 +36,28 @@ export class ModalPostComponent implements OnInit, OnDestroy {
   user$: Observable<Participante> =
     this.dataServiceUser.getInformationParticipante();
 
-
-
-    currentDateTime!: any;
-    //calificar
-    startCalificar = config.startCalificar;
-    endCalificar = config.endCalificar;
-    isInDateRangeCalificar!: any;
-    isInTimeRangeCalificar!: any;
-    shouldShowComponentCalificar!: boolean;
-    //photo participante
-    startPhotoParticipante = config.startPhotoParticipante;
-    endPhotoParticipante = config.endPhotoParticipante;
-    isInDateRangePhotoParticipante!: any;
-    isInTimeRangePhotoParticipante!: any;
-    shouldShowComponentPhotoParticipante!: boolean;
+  currentDateTime!: any;
+  //calificar
+  startCalificar = config.startCalificar;
+  endCalificar = config.endCalificar;
+  isInDateRangeCalificar!: any;
+  isInTimeRangeCalificar!: any;
+  shouldShowComponentCalificar!: boolean;
+  //photo participante
+  startPhotoParticipante = config.startPhotoParticipante;
+  endPhotoParticipante = config.endPhotoParticipante;
+  isInDateRangePhotoParticipante!: any;
+  isInTimeRangePhotoParticipante!: any;
+  shouldShowComponentPhotoParticipante!: boolean;
   constructor(
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
     private readonly dialog: MatDialog,
     private readonly postService: PostService,
     private readonly notify: ToastrService,
-    private readonly eventEmissorService:EnventEmissorService,
+    private readonly eventEmissorService: EnventEmissorService,
     @Inject(MAT_DIALOG_DATA) private id_post: number,
-    private readonly datePipe:DatePipe
+    private readonly datePipe: DatePipe
   ) {
     this.currentDateTime = this.datePipe.transform(
       new Date(),
@@ -79,8 +77,10 @@ export class ModalPostComponent implements OnInit, OnDestroy {
       this.currentDateTime >= this.startPhotoParticipante &&
       this.currentDateTime <= this.endPhotoParticipante;
     this.isInTimeRangePhotoParticipante =
-      this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
-      this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
+      this.currentDateTime.split(' ')[1] >=
+        this.startPhotoParticipante.split(' ')[1] &&
+      this.currentDateTime.split(' ')[1] <=
+        this.endPhotoParticipante.split(' ')[1];
     this.shouldShowComponentPhotoParticipante =
       this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
     this.userAdminJurado$ = this.dataServiceUser.getData();
@@ -88,7 +88,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     this.postService.getPost(this.id_post).subscribe((data) => {
       this.post = data;
       this.likeCount = this.post?.like.length;
-      this.postCount=this.post?.comentario__post.length;
+      this.postCount = this.post?.comentario__post.length;
       this.user$
         .pipe(takeUntil(this.destroy$))
         .subscribe((user: Participante) => {
@@ -96,24 +96,27 @@ export class ModalPostComponent implements OnInit, OnDestroy {
           this.user = user;
         });
     });
-    eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
-      if(event.event=='AUMENTAR_COMENTARIO'&&event.id==this.post.id){
-        this.postCount++;
-      }
-      if (event.event == 'CALIFICACION_CREADA' && event.id == this.post.id) {
-        this.postService
-          .getPost(this.post.id)
-          .subscribe((post) => (this.post = post));
-      }
-    })
+    eventEmissorService
+      .getEvent()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: eventEmissorI) => {
+        if (event.event == 'AUMENTAR_COMENTARIO' && event.id == this.post.id) {
+          this.postCount++;
+        }
+        if (event.event == 'CALIFICACION_CREADA' && event.id == this.post.id) {
+          this.postService
+            .getPost(this.post.id)
+            .subscribe((post) => (this.post = post));
+        }
+      });
   }
   ngOnInit(): void {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  desactiveModal(){
-    this.dialog.closeAll()
+  desactiveModal() {
+    this.dialog.closeAll();
   }
   deletePost() {
     this.postService.deletePost(this.post.id).subscribe((res) => {
@@ -122,22 +125,22 @@ export class ModalPostComponent implements OnInit, OnDestroy {
       this.sendEventUpdateParticipante();
     });
   }
-  sendEventUpdateParticipante(){
+  sendEventUpdateParticipante() {
     this.eventEmissorService.setEvent({
-      event:'POST_ELIMINADO',
-      id:this.post.id
+      event: 'POST_ELIMINADO',
+      id: this.post.id,
     });
   }
-  sendEventAddLike(){
+  sendEventAddLike() {
     this.eventEmissorService.setEvent({
-      event:'LIKE_AGREGAR',
-      id:this.post.id
+      event: 'LIKE_AGREGAR',
+      id: this.post.id,
     });
   }
-  sendEventRemoveLike(){
+  sendEventRemoveLike() {
     this.eventEmissorService.setEvent({
-      event:'LIKE_QUITAR',
-      id:this.post.id
+      event: 'LIKE_QUITAR',
+      id: this.post.id,
     });
   }
 
@@ -155,7 +158,7 @@ export class ModalPostComponent implements OnInit, OnDestroy {
           this.isLikeOfMe = true;
           this.like_id = res.Post.id;
           this.likeCount++;
-          this.sendEventAddLike()
+          this.sendEventAddLike();
         });
     }
   }
@@ -191,24 +194,26 @@ export class ModalPostComponent implements OnInit, OnDestroy {
     });
   }
   openDialogCalificar() {
-     this.dialog.open(ModalCalificarPostComponent,{
-      data:this.post
+    this.dialog.open(ModalCalificarPostComponent, {
+      data: this.post,
     });
-
-
   }
-  verifyThisPostCalificated(user:UserI):boolean{
-    const post:any=this.post.calificacion.filter(post=>post.user_id==user.id);
-    console.log(post)
-    if(post.length>0){
+  verifyThisPostCalificated(user: UserI): boolean {
+    const post: any = this.post.calificacion.filter(
+      (post) => post.user_id == user.id
+    );
+    console.log(post);
+    if (post.length > 0) {
       return true;
-    }else{
-      return false
+    } else {
+      return false;
     }
   }
-  openDialogExpandir(imagen:string) {
-    this.dialog.open(ModalImgExpandirComponent,{
-      data:imagen
+  openDialogExpandir(imagen: string) {
+    this.dialog.open(ModalImgExpandirComponent, {
+      data: imagen,
+      width: '100%',
+      height: '100%',
     });
   }
 }

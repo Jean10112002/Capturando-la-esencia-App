@@ -58,6 +58,14 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           console.error('ERROR DE SERVIDOR', 'top right');
           /*  this.notificacion.error(error.error.error,'Proceso Erroneo'); */
           console.log(error.error);
+          if(error.error.messages){
+            Object.entries(error.error?.messages).forEach(([key, value]:any) => {
+            this.notificacion.error(value, 'Proceso Erroneo');
+
+            });
+          }else{
+            this.notificacion.error(error.error.error, 'Proceso Erroneo');
+          }
            this.router.navigate(['login']);
         }
 
@@ -65,7 +73,6 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
     } else {
       console.error('OTRO TIPO DE ERROR', 'top right');
     }
-    this.notificacion.error(error.error.error, 'Proceso Erroneo');
     console.log(error)
     return throwError(error);
   }

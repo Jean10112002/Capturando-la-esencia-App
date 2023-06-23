@@ -199,7 +199,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   openDialogExpandir(imagen:string) {
     this.dialog.open(ModalImgExpandirComponent,{
-      data:imagen
+      data:imagen,
+      width:'100%',
+      height:'100%'
     });
   }
 
