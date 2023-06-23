@@ -4,21 +4,7 @@
     <h2 class="nombre click" [routerLink]="['/profile/', post.participante.id]">
       {{ post.participante.nombres | titlecase }}
     </h2>
-    <ng-container *ngIf="userAdminJurado$ | async as user">
-      <ng-container *ngIf="user.rol === 'admin'">
-        <button
-          class="btn-delete"
-          mat-button
-          [matMenuTriggerFor]="menu"
-          #menuTrigger
-        >
-          <b>...</b>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="deletePost()">Eliminar</button>
-        </mat-menu>
-      </ng-container>
-    </ng-container>
+
   </div>
 
   <div class="imagen">
