@@ -1,15 +1,35 @@
 .btn-send{
   outline: none;
-  width: 20%;
+
 }
+
+.btn-send:focus {
+  outline: none; /* Elimina el borde de enfoque */
+}
+
 .container-comment{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  text-align: center;
   align-items: center;
   width: 100%;
-  background-color: red;
-  flex-wrap: nowrap;
 }
- mat-form-field{
-  width: 70%;
+
+/* mat-form-field{
+  width: 90%;
+} */
+
+.div-comment{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+h3{
+  margin: 0;
+  padding: 0;
 }

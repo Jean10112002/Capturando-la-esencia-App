@@ -78,3 +78,11 @@ td span {
   font-size: 9pt;
   color: rgba(255, 0, 0, 0.645);
 }
+
+button{
+  margin-top: 10px;
+}
+
+button:focus {
+  outline: none; /* Elimina el borde de enfoque */
+}
