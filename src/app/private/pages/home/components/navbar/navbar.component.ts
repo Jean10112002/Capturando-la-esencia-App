@@ -36,12 +36,12 @@ export class NavbarComponent implements OnInit {
   isInTimeRangePhotoParticipante!: any;
   shouldShowComponentPhotoParticipante!: boolean;
   //admin reporte
-  startReporteAdmin=config.startReporte
+  startReporteAdmin = config.startReporte
   isInDateRangeReporteAdmin!: any;
   isInTimeRangeReporteAdmin!: any;
   shouldShowComponentReporteAdmin!: boolean;
 
-  constructor(private datePipe:DatePipe) {
+  constructor(private datePipe: DatePipe) {
     this.currentDateTime = this.datePipe.transform(
       new Date(),
       'yyyy-MM-dd HH:mm:ss'
@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
       this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
     this.shouldShowComponentPhotoParticipante =
       this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
-      //admin
+    //admin
     this.isInDateRangeReporteAdmin =
       this.currentDateTime >= this.startReporteAdmin
     this.isInTimeRangeReporteAdmin =
@@ -72,18 +72,16 @@ export class NavbarComponent implements OnInit {
     this.shouldShowComponentReporteAdmin =
       this.isInDateRangeReporteAdmin && this.isInTimeRangeReporteAdmin;
   }
-  ngOnInit() {}
+  ngOnInit() { }
 
   @Input() user!: UserI | Participante;
 
   showDialog = false;
-  /* openDialog() {
-    this.showDialog = true;
-  } */
-
   openDialog() {
-    this.dialog.open(CrearComponent, {width:"80%",height:"90%"});
+    this.showDialog = true;
   }
+
+
 
   openDialogSearch(
     enterAnimationDuration: string,

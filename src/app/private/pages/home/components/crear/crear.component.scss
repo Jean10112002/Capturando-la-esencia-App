@@ -17,9 +17,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.373);
+    background-color: rgba(0, 0, 0, 0.623);
     /* Fondo oscuro con transparencia */
-    z-index: 10;
+    z-index: 98;
     /* Asegúrate de que el z-index del fondo oscuro sea inferior al cuadro de diálogo */
 }
 
@@ -32,7 +32,6 @@
     right: 20px;
     cursor: pointer;
     margin: 20px;
-    z-index: 4000;
 }
 
 .overlay-close img {
@@ -57,6 +56,9 @@
     border-bottom: 1px solid #282828;
 }
 
+.container-head-responsive {
+    //border-bottom-left-radius: 5px;
+}
 
 .container-head-close {
     display: none;
@@ -146,43 +148,7 @@
     // background-repeat: no-repeat;
     // background-size: 58% 100%;
     // border-bottom-right-radius: 0px;
-    background-color: #1d1d1d00;
-}
-
-.container-fondo-agua {
-    background-image: url('https://i.gifer.com/IKYX.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-.container-fondo-clima {
-    background-image: url('https://i.gifer.com/7AY9.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-.container-fondo-paisaje {
-    background-image: url('https://i.gifer.com/YS5X.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-.container-fondo-PersonasNaturaleza {
-    background-image: url('https://i.pinimg.com/originals/08/0f/49/080f49552d458c659f194507aa5e5f16.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-.container-fondo-PlantasHongos {
-    background-image: url('https://1.bp.blogspot.com/-bqL9UcCaVtE/YWqb_4glu6I/AAAAAAAAWTM/y7JA9RJUhuIcb-SxPH2CgAsC9QbKMHXggCLcBGAsYHQ/w400-h225/Du8.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-.container-fondo-VidaSilvestre {
-    background-image: url('https://i.gifer.com/Jr6a.gif');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    // background-color: #1e8440;
 }
 
 .container-foto {
@@ -199,6 +165,48 @@
     background-color: rgb(0, 0, 0);
 }
 
+.container-fondo-agua {
+    // background-image: url('https://i.gifer.com/IKYX.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #001549;
+}
+
+.container-fondo-clima {
+    // background-image: url('https://i.gifer.com/7AY9.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #003d4e;
+}
+
+.container-fondo-paisaje {
+    // background-image: url('https://i.gifer.com/YS5X.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #2b003e;
+}
+
+.container-fondo-PersonasNaturaleza {
+    // background-image: url('https://culturainquieta.com/images/stories/Julien_Douvier/1.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #05260f;
+}
+
+.container-fondo-PlantasHongos {
+    // background-image: url('https://1.bp.blogspot.com/-bqL9UcCaVtE/YWqb_4glu6I/AAAAAAAAWTM/y7JA9RJUhuIcb-SxPH2CgAsC9QbKMHXggCLcBGAsYHQ/w400-h225/Du8.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #300b20;
+}
+
+.container-fondo-VidaSilvestre {
+    // background-image: url('https://i.gifer.com/3uUk.gif');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    background-color: #2a2a2a;
+}
+
 .container-foto-show {
     cursor: pointer;
     padding: 0px;
@@ -211,7 +219,7 @@
 }
 
 .container-foto-show-responsive {
-    background-color: #b4b4b486;
+    background-color: #b4b4b400;
     border-bottom-left-radius: 10px;
     cursor: auto;
     pointer-events: none;
@@ -312,25 +320,25 @@
     align-items: center;
     height: 50px;
     border-bottom: 1px solid #ccc;
-    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.177);
+    // box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.177);
 }
 
 .descripcion-perfil {
     width: 30px;
     border-radius: 50%;
-    margin: 5px;
+    margin: 0 0 0 5px;
 }
 
 .descripcion-usuario {
-    font-size: 9pt;
-    margin: 0;
+    margin-top: 0;
+    height: auto;
+    text-align: center;
+    text-align: justify;
+    padding: 0;
+    margin-left: 2px;
+    display: block;
+    font-size: 10px;
     font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .descripcion-usuario{
-    font-size: 7pt;
-  }
 }
 
 .container-descripcion-body {
@@ -342,6 +350,7 @@
     overflow-x: hidden;
     //overflow-y:  overlay;
     overflow-y: auto;
+    padding-top: 5px;
 }
 
 .container-descripcion-body span {
@@ -389,6 +398,7 @@
     margin: 0 auto;
     height: 40%;
     flex-grow: 1;
+    margin-top: 2px;
 }
 
 .container-descripcion-error {
@@ -472,18 +482,17 @@
 .my-custom-dropdown {
     color: #333333;
     height: 100%;
-    font-size: 9pt;
+    font-size: 10px;
 }
 
 .my-custom-option {
     background-color: #f2f2f2;
     color: #333333;
     cursor: pointer;
-    font-size: 50px;
+    font-size: 10px;
 }
 
 .my-custom-option span {
-    font-size: 15px;
     height: 20px;
 }
 
@@ -548,8 +557,8 @@
 .my-custom-dropdown::placeholder,
 .descripcion-pie::placeholder,
 .descripcion-titulo::placeholder {
-    color: #7f7e7e;
-    font-size: 9pt;
+    color: #3c3c3c;
+    font-size: 10px;
 }
 
 .descripcion-pie:focus,
@@ -649,11 +658,6 @@
     border: none;
 }
 
-.ventana-emergente-cancelar:hover{
-  color: #479600;
-}
-
-
 .ventana-emergente-titulo {
     width: 100%;
     height: 50%;
@@ -725,7 +729,123 @@ button:focus {
     margin-left: 5px;
 }
 
-@media only screen and (max-width: 590px) {
+.container-head-post:hover {
+    transform: scale(0);
+}
+
+@media only screen and (max-width: 766px) {
+    .dialog-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        padding-right: 0;
+        display: block;
+        z-index: 99;
+        background-color: #ffffff;
+    }
+    .container-head {
+        margin: 0;
+        border-radius: 0;
+        align-items: center;
+        display: flex;
+        height: 9%;
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .container-head-close {
+        display: block;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        cursor: pointer;
+        margin: 5px;
+        left: 0;
+    }
+    .container {
+        border-radius: 0px;
+        padding: 0px;
+        display: flex;
+        margin: 0;
+        // justify-content: center;
+        margin-right: 0;
+        // box-sizing: border-box;
+        // position: absolute;
+        // right: 0;
+        // z-index: 999;
+        // flex-grow: 0;
+        width: 40%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        left: 30%;
+        position: relative;
+    }
+    .container-responsive {
+        position: static;
+        left: 0;
+    }
+    .container form {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+    }
+    .container-foto {
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .container-foto-show {
+        cursor: pointer;
+        padding: 0px;
+        text-align: center;
+        margin: 0;
+        height: 100%;
+        align-items: center;
+        flex-direction: column;
+        display: flex;
+        width: 100%;
+    }
+    .foto-show {
+        // max-width: 100%;
+        // max-height: 50%;
+        width: auto;
+        height: auto;
+        padding: 0;
+        border-radius: 10px;
+        max-width: 98%;
+        margin: 0;
+        max-height: 85%;
+    }
+    .container-descripcion {
+        margin: 0;
+        width: 60%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        z-index: 999;
+    }
+    .container-descripcion-body {
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-top: 5px;
+    }
+    .descripcion-lugar,
+    .container-descripcion-combobox,
+    .descripcion-pie,
+    .descripcion-titulo {
+        border-top-right-radius: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
     .dialog-container {
         position: fixed;
         top: 50%;
@@ -745,16 +865,20 @@ button:focus {
         display: flex;
         background-color: #006aff00;
         margin: 0;
+        justify-content: center;
+        left: 0;
+        position: none;
     }
     .container-head {
         margin: 0;
         border-radius: 0;
         align-items: center;
         display: flex;
-        height: 10%;
+        height: 8%;
         background-color: #6a788700;
         padding: 0;
         width: 100%;
+        justify-content: center;
     }
     .container-head-close {
         display: block;
@@ -791,7 +915,7 @@ button:focus {
         align-items: center;
         width: 100%;
         justify-content: center;
-        height: 10%;
+        height: 7%;
     }
     .descripcion-perfil {
         width: 35px;
@@ -801,14 +925,13 @@ button:focus {
     .container-descripcion-body {
         width: 100%;
         height: 90%;
-        padding: 10px;
     }
     .container-descripcion-body::-webkit-scrollbar {
         width: 0px;
     }
     .descripcion-pie {
         background-color: #a4a4a434;
-        width: 70%;
+        width: 60%;
     }
     .container-descripcion-foto-responsive {
         margin: 0;
@@ -818,7 +941,9 @@ button:focus {
         display: flex;
     }
     .container-descripcion-foto-responsive img {
-        max-height: 100px;
+        max-height: 80px;
+        max-width: 95%;
+        border-radius: 5px;
     }
     .container-descripcion-categoria {
         width: 100%;
@@ -839,22 +964,18 @@ button:focus {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
-    .descripcion-usuario{
-      font-size: 12pt;
-      margin-left: 3px;
+    .container-descripcion-body {
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-top: 5px;
     }
-}
-
-.my-custom-dropdown{
-  display: flex;
-  justify-content: left;
-  text-align: start;
-}
-
-.my-custom-option{
-  display: flex;
-  text-align: center;
-  align-items: center;
-  padding: 5px;
+    .descripcion-lugar,
+    .container-descripcion-combobox,
+    .descripcion-pie,
+    .descripcion-titulo {
+        border-top-right-radius: 5px;
+    }
+    .container-foto {
+        width: 100%;
+    }
 }

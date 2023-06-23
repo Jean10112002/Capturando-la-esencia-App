@@ -15,7 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { animaciones } from 'src/app/core/shared/animation/animacion';
 import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/private/services/post.service';
@@ -28,7 +28,6 @@ import { config } from 'src/config/config';
 import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-crear',
@@ -39,24 +38,21 @@ import { MatDialog } from '@angular/material/dialog';
 export class CrearComponent implements OnInit, AfterViewInit {
   estado = 'oculto';
   file!: File;
-  imagenResponseId!:any;
-avatar:string=config.avatarUrl;
-user$:Observable<Participante>;
+  imagenResponseId!: any;
+  avatar: string = config.avatarUrl;
+  user$: Observable<Participante>;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private notificacion: ToastrService,
     private readonly postService: PostService,
     private readonly imageService: ImagenService,
-    private readonly dataServiceUser:UserInformationService,
-    private readonly eventEmissorService:EnventEmissorService,
-    private readonly matDialog:MatDialog
+    private readonly dataServiceUser: UserInformationService,
+    private readonly eventEmissorService: EnventEmissorService
   ) {
-    this.user$=this.dataServiceUser.getInformationParticipante();
+    this.user$ = this.dataServiceUser.getInformationParticipante();
   }
   tlfResponsive = false;
-  resolution(): boolean {
-    return this.breakpointObserver.isMatched('(max-width: 480px)');
-  }
+
   submitForm() {
     if (this.imagenForm.valid) {
       console.log("valido form")
@@ -65,7 +61,7 @@ user$:Observable<Participante>;
       this.imageService
         .createImage(imagen)
         .subscribe((res: ImagenCreateResponseI) => {
-          this.imagenResponseId=res.imagen.id;
+          this.imagenResponseId = res.imagen.id;
           const fechaActual = new Date();
           const anio = fechaActual.getFullYear();
           const mes = fechaActual.getMonth() + 1; // Se agrega 1 ya que los meses se indexan desde 0
@@ -77,7 +73,7 @@ user$:Observable<Participante>;
             descripcion: this.imagenForm.get('pie')?.value,
             lugar: this.imagenForm.get('lugar')?.value,
             ciudad: this.imagenForm.get('canton')?.value.label,
-            fecha:fechaFormateada,
+            fecha: fechaFormateada,
             imagen_id: res.imagen.id,
             categoria_id: this.imagenForm.get('categoria')?.value.id,
           };
@@ -85,14 +81,14 @@ user$:Observable<Participante>;
           this.postService.createPost(post).subscribe((res) => {
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
-            this.eventEmissorService.setEvent({event:'PUBLICACION_CREADA'})
-            this.matDialog.closeAll()
-          },()=>{
-            this.imageService.deleteImage(this.imagenResponseId).subscribe((data)=>{
+            this.eventEmissorService.setEvent({ event: 'PUBLICACION_CREADA' })
+          }, () => {
+            this.imageService.deleteImage(this.imagenResponseId).subscribe((data) => {
               console.log("imagen eliminada")
             });
           });
         });
+      this.closeDialog.emit();
     } else {
       this.notificacion.error('Llenar todos los campos', 'Proceso Erroneo');
     }
@@ -102,22 +98,35 @@ user$:Observable<Participante>;
     setTimeout(() => {
       this.estado = 'visible';
     }, 100);
-    this.tlfResponsive = this.resolution();
+
   }
 
-  imagenForm!: FormGroup;
 
+  imagenForm!: FormGroup;
+  resolution(): boolean {
+    return this.breakpointObserver.isMatched('(max-width: 480px)');
+  }
+  tabletResponsive = false;
   ngOnInit(): void {
+
+    this.breakpointObserver.observe(['(max-width: 766px)'])
+      .subscribe(result => {
+        this.tabletResponsive = result.matches;
+      });
+    this.breakpointObserver.observe(['(max-width: 480px)'])
+      .subscribe(result => {
+        this.tlfResponsive = result.matches;
+      });
     this.imagenForm = new FormGroup({
       imagen: new FormControl(null, Validators.required),
       titulo: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(3),
       ]),
       pie: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(100),
+        Validators.maxLength(200),
       ]),
       provincia: new FormControl('', [Validators.required]),
       canton: new FormControl('', [Validators.required]),
@@ -173,7 +182,7 @@ user$:Observable<Participante>;
     if (file.type.startsWith('image/')) {
       const maxSizeBytes = 10 * 1024 * 1024; // 10 MB
       const minSizeBytes = 1 * 1024 * 1024; // 1 MB
-      console.log(minSizeBytes,maxSizeBytes)
+      // console.log(minSizeBytes,maxSizeBytes);
       const maxWidth = 4032;
       const maxHeight = 4032;
       this.selectedImage = null;
@@ -183,6 +192,7 @@ user$:Observable<Participante>;
         const width = image.width;
         const height = image.height;
         const fileSize = file.size;
+        console.log(width, height);
         console.log(fileSize);
         if (width <= maxWidth && height <= maxHeight) {
           if (fileSize <= maxSizeBytes) {
@@ -220,7 +230,11 @@ user$:Observable<Participante>;
   @Output() closeDialog: EventEmitter<any> = new EventEmitter();
 
   onClose() {
-    this.showVentanaEmergente = true;
+    if (this.selectedImage !== null && this.imagenForm.invalid) {
+      this.showVentanaEmergente = true;
+    } else {
+      this.closeDialog.emit();
+    }
   }
 
   //Div que se desplega
@@ -691,12 +705,12 @@ user$:Observable<Participante>;
   //Categorias
 
   categorias = [
-    { id: 3, label: 'Agua' },
-    { id: 6, label: 'Clima' },
-    { id: 2, label: 'Paisaje' },
-    { id: 1, label: 'Personas y Naturaleza' },
+    { id: 1, label: 'Agua' },
+    { id: 2, label: 'Clima' },
+    { id: 3, label: 'Paisaje' },
+    { id: 4, label: 'Personas y Naturaleza' },
     { id: 5, label: 'Plantas y Hongos' },
-    { id: 4, label: 'Vida silvestre' },
+    { id: 6, label: 'Vida silvestre' },
   ];
   selectedOptionCategoria: any;
   fondoCategoria = 0;
@@ -710,18 +724,17 @@ user$:Observable<Participante>;
     if (this.onCategoriaFondo) {
       switch (containerValue) {
         case 1:
-          return ['container-fondo-PersonasNaturaleza'];
-        case 2:
-          return ['container-fondo-paisaje'];
-        case 3:
           return ['container-fondo-agua'];
+        case 2:
+          return ['container-fondo-clima'];
+        case 3:
+          return ['container-fondo-paisaje'];
         case 4:
-          return ['container-fondo-VidaSilvestre'];
+          return ['container-fondo-PersonasNaturaleza'];
         case 5:
           return ['container-fondo-PlantasHongos'];
         case 6:
-          return ['container-fondo-clima'];
-
+          return ['container-fondo-VidaSilvestre'];
         default:
           return [];
       }

@@ -1,76 +1,47 @@
-<body
-  style="
+<body style="
     display: flex;
     width: 100%;
     height: 100%;
     justify-content: center;
     position: relative;
-  "
->
-  <div class="navegador">
-    <app-navbar [user]="user"></app-navbar>
-  </div>
 
-  <div class="cuerpo">
-    <div class="scroll">
-      <div class="categoria">
-        <app-chip-category
-          class="app-chip-category"
-          (newItemEvent)="recibirCategoria($event)"
-        ></app-chip-category>
-      </div>
-
-      <div
-        #scroll
-        class="scroll-infinito"
-        infinite-scroll
-        (scrolled)="onScrollDown()"
-      >
-        <ng-container *ngIf="posts">
-          <app-post
-            (eventEmiiter)="recibirPosts($event)"
-            class="app-post"
-            *ngFor="let post of posts.data"
-            [post]="post"
-          ></app-post>
-        </ng-container>
-      </div>
-      <button
-        (click)="goToTopScroll()"
-        *ngIf="showButton"
-        mat-fab
-        color="primary"
-        aria-label="Example icon button with a bookmark icon"
-      >
-        <mat-icon>arrow_upward</mat-icon>
-      </button>
-      <ng-container *ngIf="posts.data.length < 1">
-        <h5>No hay fotos</h5>
-      </ng-container>
+  ">
+    <div style="z-index: 999;" class="navegador">
+        <app-navbar [user]="user"></app-navbar>
     </div>
 
-    <ng-container *ngIf="user">
-      <div [ngSwitch]="user.rol" class="user">
-        <div *ngSwitchCase="'participante'">
-          <app-user-information  [routerLink]="['/profile/', user.id]"
-            class="app-user-information"
-            [user]="user"
-          ></app-user-information>
+    <div class="cuerpo">
+        <div class="scroll">
+            <div class="categoria">
+                <app-chip-category class="app-chip-category" (newItemEvent)="recibirCategoria($event)"></app-chip-category>
+            </div>
+
+            <div #scroll class="scroll-infinito" infinite-scroll (scrolled)="onScrollDown()">
+                <ng-container *ngIf="posts">
+                    <app-post (eventEmiiter)="recibirPosts($event)" class="app-post" *ngFor="let post of posts.data" [post]="post"></app-post>
+                </ng-container>
+            </div>
+            <button (click)="goToTopScroll()" *ngIf="showButton" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+        <mat-icon>arrow_upward</mat-icon>
+      </button>
+            <ng-container *ngIf="posts.data.length < 1">
+                <h5>No hay fotos</h5>
+            </ng-container>
         </div>
-        <div *ngSwitchCase="'jurado'">
-          <app-user-information [routerLink]="['/calificacion/']"
-            class="app-user-information"
-            [user]="user"
-          ></app-user-information>
-        </div>
-        <div *ngSwitchCase="'admin'">
-          <app-user-information
-            class="app-user-information"
-            [user]="user"
-          ></app-user-information>
-        </div>
-      </div>
-     <!--  <div class="user">
+
+        <ng-container *ngIf="user">
+            <div [ngSwitch]="user.rol" class="user">
+                <div *ngSwitchCase="'participante'">
+                    <app-user-information [routerLink]="['/profile/', user.id]" class="app-user-information" [user]="user"></app-user-information>
+                </div>
+                <div *ngSwitchCase="'jurado'">
+                    <app-user-information [routerLink]="['/calificacion/']" class="app-user-information" [user]="user"></app-user-information>
+                </div>
+                <div *ngSwitchCase="'admin'">
+                    <app-user-information class="app-user-information" [user]="user"></app-user-information>
+                </div>
+            </div>
+            <!--  <div class="user">
         <div
           *ngIf="user.rol === 'participante'"
           [routerLink]="['/profile/', user.id]"
@@ -93,6 +64,6 @@
           ></app-user-information>
         </div>
       </div> -->
-    </ng-container>
-  </div>
+        </ng-container>
+    </div>
 </body>
