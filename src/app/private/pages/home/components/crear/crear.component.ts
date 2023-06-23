@@ -184,7 +184,7 @@ user$:Observable<Participante>;
         const height = image.height;
         const fileSize = file.size;
         console.log(fileSize);
-        if (width <= maxWidth || height <= maxHeight) {
+        if (width <= maxWidth && height <= maxHeight) {
           if (fileSize <= maxSizeBytes) {
             if (fileSize >= minSizeBytes) {
               this.siEsImagen = false;
