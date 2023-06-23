@@ -19,6 +19,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDividerModule} from '@angular/material/divider';
 
 
+import { MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator'
 
 
 @NgModule({
@@ -36,7 +38,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatChipsModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+
     ],
   exports: [MatButtonModule,
     MatDialogModule,
@@ -51,7 +56,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatChipsModule,
     MatProgressSpinnerModule,
     MatDividerModule
-  ],
+  ,
+    MatBadgeModule,MatTableModule,MatPaginatorModule],
   declarations: [],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
 })

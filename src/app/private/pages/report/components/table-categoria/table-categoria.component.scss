@@ -1,0 +1,46 @@
+.mat-elevation-z8{
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  overflow-x: auto;
+
+}
+.tablacontainer {
+  width: 95%;
+  border-collapse:initial;
+
+
+}
+
+
+.tablacontainer th{
+   background-color: #479600;
+   color: white;
+}
+.text-table{
+  text-align: center;
+
+}
+h1{
+
+  text-align: center;
+}
+ th,
+ td {
+  border: 1px solid #858585; /* bordes de celda */
+  padding: 8px; /* espacio interno de celda */
+  text-align: center;
+}
+
+.juradodate th {
+ background-color:#ced248 ;
+ color: #020202;
+
+}
+
+
+
+

@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserInformationService } from './services/user-information.service';
 import { ReportComponent } from './pages/report/container/report.component';
 import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
+import { TableCategoriaComponent } from './pages/report/components/table-categoria/table-categoria.component';
+import { TableLikeComentarioComponent } from './pages/report/components/table-like-comentario/table-like-comentario.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -97,6 +99,10 @@ import { ModalImgExpandirComponent } from './pages/home/components/modal-img-exp
     ModalPostComponent,
     ModalImgExpandirComponent,
 
+     CalificacionComponent,
+     TableCategoriaComponent,
+     TableLikeComentarioComponent,
+    ReportComponent
 
   ],
   imports: [
