@@ -1,12 +1,13 @@
 <h1 mat-dialog-title><h2>Comentarios</h2></h1>
 <mat-dialog-content class="mat-content">
+
   <ng-container *ngIf="user.rol === 'participante'">
     <app-modal-create-comment
       (newItemEvent)="recibirPost($event)"
       *ngIf="isCommentOfMe"
     />
   </ng-container>
-  <mat-divider></mat-divider>
+
   <ng-container *ngIf="post$ | async as post">
     <app-list-user-comment
       [participante]="post"
