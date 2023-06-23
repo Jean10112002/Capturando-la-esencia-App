@@ -90,7 +90,8 @@ export class NavbarComponent implements OnInit {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(SearchUserComponent, {
-      width: '100%',
+      width: '50%',
+      minWidth: '300px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
