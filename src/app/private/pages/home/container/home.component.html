@@ -40,7 +40,19 @@
                 <div *ngSwitchCase="'admin'">
                     <app-user-information class="app-user-information" [user]="user"></app-user-information>
                 </div>
+
+                <div>
+                  <div class="tutorial">
+                    <h4 class="txt-tutorial" style="position: fixed;">Tutorial aquí</h4>
+                  </div>
+
+                  <div class="video-container" style="position: fixed;">
+                    <iframe src="https://www.youtube.com/embed/6kxcENOfVvw" allowfullscreen></iframe>
+                  </div>
+                </div>
+
             </div>
+
             <!--  <div class="user">
         <div
           *ngIf="user.rol === 'participante'"
