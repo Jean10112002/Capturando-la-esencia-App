@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
       return items;
     }
 
-    return items.filter(item => item.cedula.toLowerCase().includes(term.toLowerCase()));
+    return items.filter(item => item.nombres.toLowerCase().includes(term.toLowerCase()));
   }
 
 }
