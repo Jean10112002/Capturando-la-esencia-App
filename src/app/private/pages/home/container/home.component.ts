@@ -49,7 +49,7 @@ export class HomeComponent implements OnDestroy {
     private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document,
     private readonly eventEmissorService: EnventEmissorService,
-
+    
   ) {
     authService.userInformation().subscribe((user: UserProfileI) => {
       this.user = user.user;
@@ -87,6 +87,8 @@ export class HomeComponent implements OnDestroy {
       });
 
   }
+
+
   @HostListener('window:scroll')
   onWindowScroll(): void {
     const yOffSet = window.pageXOffset;

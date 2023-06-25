@@ -119,7 +119,8 @@ import { ModalImgExpandirComponent } from './pages/home/components/modal-img-exp
     //Filter
     NgSelectModule,
     SharedModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+
   ],
   providers: [
     //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo

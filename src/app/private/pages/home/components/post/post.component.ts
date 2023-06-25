@@ -4,7 +4,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output, Renderer2
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
@@ -27,6 +27,8 @@ import { ModalCalificarPostComponent } from '../modal-calificar-post/modal-calif
 import { DatePipe } from '@angular/common';
 import { ModalImgExpandirComponent } from '../modal-img-expandir/modal-img-expandir.component';
 
+
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -46,30 +48,36 @@ export class PostComponent implements OnInit, OnDestroy {
   userAdminJurado$!: Observable<UserI>;
   user$: Observable<Participante> =
     this.dataServiceUser.getInformationParticipante();
-    currentDateTime!: any;
-    //calificar
-    startCalificar = config.startCalificar;
-    endCalificar = config.endCalificar;
-    isInDateRangeCalificar!: any;
-    isInTimeRangeCalificar!: any;
-    shouldShowComponentCalificar!: boolean;
-    //photo participante
-    startPhotoParticipante = config.startPhotoParticipante;
-    endPhotoParticipante = config.endPhotoParticipante;
-    isInDateRangePhotoParticipante!: any;
-    isInTimeRangePhotoParticipante!: any;
-    shouldShowComponentPhotoParticipante!: boolean;
+  currentDateTime!: any;
+  //calificar
+  startCalificar = config.startCalificar;
+  endCalificar = config.endCalificar;
+  isInDateRangeCalificar!: any;
+  isInTimeRangeCalificar!: any;
+  shouldShowComponentCalificar!: boolean;
+  //photo participante
+  startPhotoParticipante = config.startPhotoParticipante;
+  endPhotoParticipante = config.endPhotoParticipante;
+  isInDateRangePhotoParticipante!: any;
+  isInTimeRangePhotoParticipante!: any;
+  shouldShowComponentPhotoParticipante!: boolean;
 
 
 
   constructor(
+
     private readonly dataServiceUser: UserInformationService,
     private readonly interaccionService: InteraccionService,
     private readonly dialog: MatDialog,
     private readonly postService: PostService,
     private readonly notify: ToastrService,
     private readonly eventEmissorService: EnventEmissorService,
-    private readonly datePipe:DatePipe
+    private readonly datePipe: DatePipe,
+    private renderer: Renderer2,
+
+
+
+
   ) {
     this.currentDateTime = this.datePipe.transform(
       new Date(),
@@ -110,6 +118,39 @@ export class PostComponent implements OnInit, OnDestroy {
 
       });
   }
+
+
+  getDomainFromEmail(email: any) {
+    const atIndex = email.indexOf('@');
+    if (atIndex !== -1) {
+      return email.substring(atIndex + 1);
+    }
+    return '';
+  }
+
+
+  openGmail(dni: string, foto: any) {
+
+
+    const recipient = 'filyp007lfcm117@gmail.com';
+    const subject = 'Reporte de Foto';
+    const message = 'Estudiante : ' + dni + ' url de la foto : ' + foto +' Motivo del reporte: ';
+
+    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${encodeURIComponent(message)}`;
+    const newTab = this.renderer.createElement('a');
+
+    this.renderer.setAttribute(newTab, 'href', url);
+    this.renderer.setAttribute(newTab, 'target', '_blank');
+    this.renderer.setStyle(newTab, 'display', 'none');
+
+    this.renderer.appendChild(document.body, newTab);
+    newTab.click();
+    this.renderer.removeChild(document.body, newTab);
+  }
+
+
+
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -197,14 +238,14 @@ export class PostComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialogExpandir(imagen:string) {
-    this.dialog.open(ModalImgExpandirComponent,{
-      data:imagen
+  openDialogExpandir(imagen: string) {
+    this.dialog.open(ModalImgExpandirComponent, {
+      data: imagen
     });
   }
 
 
-  likeMusic(){
+  likeMusic() {
     var audio = new Audio("assets/music/water-droplet.mp3");
     audio.play();
   }
