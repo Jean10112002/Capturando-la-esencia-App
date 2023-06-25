@@ -111,10 +111,10 @@ export class NavbarComponent implements OnInit {
   abrirEnlaceVideo() {
 
     if(this.user?.rol === 'admin'){
-      window.open('https://www.youtube.com/embed/0tLZeCnEzSI', '_blank');
+      window.open('https://www.youtube.com/watch?v=0tLZeCnEzSI', '_blank');
 
     }else if(this.user?.rol === 'jurado'){
-      window.open('https://www.youtube.com/embed/yz7hnUH_iEo', '_blank');
+      window.open('https://www.youtube.com/watch?v=yz7hnUH_iEo', '_blank');
     }else if(this.user?.rol === 'participante'){
       window.open('https://www.youtube.com/watch?v=6kxcENOfVvw', '_blank');
     }

@@ -29,6 +29,11 @@ mat-icon,
     align-items: center;
 }
 
+.reacciones:hover,
+.report-email:hover {
+    transform: scale(1.1);
+}
+
 .click-like {
     cursor: pointer;
 }
