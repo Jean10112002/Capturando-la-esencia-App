@@ -134,6 +134,9 @@ export class CrearComponent implements OnInit, AfterViewInit {
       categoria: new FormControl('', [Validators.required]),
     });
   }
+  handleLinkClick(event: Event) {
+    event.stopPropagation();
+  }
   //Animaciones para los inputs
 
   estadoFondo = 'normal'; // Estado inicial del fondo
