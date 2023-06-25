@@ -15,13 +15,18 @@
 
     <div class="likes-comentarios-calificar" *ngIf="userAdminJurado$ | async as user">
         <ng-container *ngIf="shouldShowComponentPhotoParticipante">
-            <div *ngIf="user$ | async as userParticipante">
+            <div style="display: flex; " *ngIf="user$ | async as userParticipante">
                 <mat-icon *ngIf="
             userParticipante.rol === 'participante' &&
             user.rol !== 'participante'
           " aria-hidden="false" aria-label="Example favorite icon" fontIcon="favorite" (click)="likePost()" (click)="likeMusic()" class="reacciones" ngClass="{{ isLikeOfMe ? 'like-heart':'color-icons' }}"></mat-icon>
+
             </div>
+
         </ng-container>
+        <div *ngIf="user$ | async as userParticipante" class="reprotFoto">
+            <img *ngIf="userParticipante.rol === 'participante'" style="right: 0; position: absolute;" (click)="openGmail(post.participante.cedula,post.imagen.imagen_url)" style=" width: 20px; height: 20px; cursor: pointer; " src="/assets/icon/reporte.png " alt=" ">
+        </div>
         <ng-container *ngIf="shouldShowComponentCalificar">
             <ng-container *ngIf="userAdminJurado$ | async as user">
                 <div class="boton3" *ngIf="user.rol === 'jurado'">
@@ -31,7 +36,7 @@
                 </div>
             </ng-container>
         </ng-container>
-        <img (click)="openGmail(post.participante.cedula,post.imagen.imagen_url)" style=" width: 20px; height: 20px; cursor: pointer; " src="/assets/icon/reporte.png " alt=" ">
+
     </div>
 
     <div class="likes " style="margin-top: 10px; ">
