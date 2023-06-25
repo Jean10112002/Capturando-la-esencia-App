@@ -106,4 +106,10 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['login']);
     });
   }
+
+
+  abrirEnlaceVideo() {
+    window.open('https://www.youtube.com/watch?v=6kxcENOfVvw', '_blank');
+  }
+
 }
