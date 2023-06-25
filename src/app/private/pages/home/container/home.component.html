@@ -45,10 +45,22 @@
                   <div class="tutorial">
                     <h4 class="txt-tutorial" style="position: fixed;">Tutorial aquí</h4>
                   </div>
-
-                  <div class="video-container" style="position: fixed;">
-                    <iframe src="https://www.youtube.com/embed/6kxcENOfVvw" allowfullscreen></iframe>
+                  <div *ngSwitchCase="'participante'">
+                    <div class="video-container" style="position: fixed;"   >
+                      <iframe src="https://www.youtube.com/embed/6kxcENOfVvw" allowfullscreen ></iframe>
+                    </div>
                   </div>
+                  <div *ngSwitchCase="'jurado'">
+                    <div class="video-container" style="position: fixed;"   >
+                      <iframe src="https://www.youtube.com/embed/yz7hnUH_iEo" allowfullscreen ></iframe>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'admin'">
+                    <div class="video-container" style="position: fixed;"   >
+                      <iframe src="https://www.youtube.com/embed/0tLZeCnEzSI" allowfullscreen ></iframe>
+                    </div>
+                  </div>
+
                 </div>
 
             </div>
