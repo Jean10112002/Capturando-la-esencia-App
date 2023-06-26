@@ -98,9 +98,20 @@
               <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
                 >Solo se permiten archivos PNG, JPG, JPEG.</span
               >
-              <span style="color: rgb(255, 174, 0)" *ngIf="sizeImagen"
+              <span style="color: rgb(255, 174, 0); margin-bottom: 1em;" *ngIf="sizeImagen"
                 >No se permite imagen con mas de 10MB</span
               >
+              <div>
+                <a  href="https://www.youtube.com/watch?v=YQ_VY_Bju3w" style="color: rgb(19, 77, 224)" *ngIf="sizeImagen"
+                >Video como minificar Imagen</a
+              >
+              </div>
+             <div>
+
+              <a href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg" style="color: rgb(22, 39, 222)" *ngIf="sizeImagen"
+                >Sitio web minificar Imagen</a
+              >
+             </div>
               <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
                 >No se permite imagen con menos de 1MB</span
               >

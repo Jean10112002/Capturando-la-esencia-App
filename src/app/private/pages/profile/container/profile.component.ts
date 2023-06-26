@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
       })
     });
     eventEmissorService.getEvent().pipe(takeUntil(this.destroy$)).subscribe((event:eventEmissorI)=>{
-      if(event.event=='POST_ELIMINADO'){
+      if(event.event=='POST_ELIMINADO' || event.event=='PUBLICACION_CREADA'){
         this.userInformation$ = this.participanteService.oneParticipante(this.id);
       }
     })
