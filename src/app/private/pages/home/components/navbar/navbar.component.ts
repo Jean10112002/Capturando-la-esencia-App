@@ -90,11 +90,13 @@ export class NavbarComponent implements OnInit {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(SearchUserComponent, {
-      width: '100%',
+      width: '50%',
+      minWidth: '300px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
   }
+  
   closeDialog() {
     this.showDialog = false;
   }
@@ -107,4 +109,17 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['login']);
     });
   }
+
+  abrirEnlaceVideo() {
+
+    if(this.user?.rol === 'admin'){
+      window.open('https://www.youtube.com/watch?v=0tLZeCnEzSI', '_blank');
+
+    }else if(this.user?.rol === 'jurado'){
+      window.open('https://www.youtube.com/watch?v=yz7hnUH_iEo', '_blank');
+    }else if(this.user?.rol === 'participante'){
+      window.open('https://www.youtube.com/watch?v=6kxcENOfVvw', '_blank');
+    }
+  }
+
 }

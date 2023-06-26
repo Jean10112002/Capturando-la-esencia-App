@@ -16,9 +16,18 @@ h1{
   align-items: center;
 }
 
-.mat-content{
-  padding: 15px 20px;
-}
 app-modal-create-comment{
   width: 100%;
+}
+
+.mat-content{
+  padding: 7.5px 10px;
+}
+
+//670
+
+@media (max-width: 670px) {
+  .mat-content{
+    padding: 5px 5px;
+  }
 }

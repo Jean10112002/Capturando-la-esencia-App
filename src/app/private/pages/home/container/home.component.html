@@ -69,6 +69,29 @@
             [user]="user"
           ></app-user-information>
         </div>
+
+        <div class="video">
+          <div *ngSwitchCase="'participante'">
+            <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+            <div class="video-container" style="position: fixed;">
+              <iframe class="video-iframe" src="https://www.youtube.com/embed/6kxcENOfVvw" allowfullscreen ></iframe>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'jurado'">
+            <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+            <div class="video-container" style="position: fixed;">
+              <iframe src="https://www.youtube.com/embed/yz7hnUH_iEo" allowfullscreen ></iframe>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'admin'">
+            <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+            <div class="video-container" style="position: fixed;">
+              <iframe src="https://www.youtube.com/embed/0tLZeCnEzSI" allowfullscreen ></iframe>
+            </div>
+          </div>
+        </div>
       </div>
      <!--  <div class="user">
         <div

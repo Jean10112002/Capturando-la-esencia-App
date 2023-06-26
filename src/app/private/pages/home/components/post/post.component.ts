@@ -174,8 +174,8 @@ export class PostComponent implements OnInit, OnDestroy {
 
   openDialogComment() {
     const dialogRef = this.dialog.open(ModalUserCommentsComponent, {
-      width: '80%',
-      minWidth: '292px',
+      width: '65%',
+      minWidth: '280px',
       data: this.post.id,
     });
   }
