@@ -66,7 +66,7 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
           }else{
             this.notificacion.error(error.error.error, 'Proceso Erroneo');
           }
-           this.router.navigate(['login']);
+          /*  this.router.navigate(['login']); */
         }
 
       }
