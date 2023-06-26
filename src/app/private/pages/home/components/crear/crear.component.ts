@@ -29,6 +29,7 @@ import { Participante } from 'src/app/private/interfaces/post/post.interface';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-crear',
@@ -49,7 +50,7 @@ user$:Observable<Participante>;
     private readonly imageService: ImagenService,
     private readonly dataServiceUser:UserInformationService,
     private readonly eventEmissorService:EnventEmissorService,
-    private readonly matDialog:MatDialog
+    private readonly matDialog:MatDialog,private datePipe:DatePipe
   ) {
     this.user$=this.dataServiceUser.getInformationParticipante();
   }
@@ -66,12 +67,10 @@ user$:Observable<Participante>;
         .createImage(imagen)
         .subscribe((res: ImagenCreateResponseI) => {
           this.imagenResponseId=res.imagen.id;
-          const fechaActual = new Date();
-          const anio = fechaActual.getFullYear();
-          const mes = fechaActual.getMonth() + 1; // Se agrega 1 ya que los meses se indexan desde 0
-          const dia = fechaActual.getDate();
-
-          const fechaFormateada = `${anio}-${mes}-${dia}`;
+          const fechaFormateada=this.datePipe.transform(
+            new Date(),
+            'yyyy-MM-dd HH:mm:ss'
+          );
           const post = {
             titulo: this.imagenForm.get('titulo')?.value,
             descripcion: this.imagenForm.get('pie')?.value,

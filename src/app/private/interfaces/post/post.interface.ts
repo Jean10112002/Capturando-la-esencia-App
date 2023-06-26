@@ -4,7 +4,7 @@ export interface PostCreateI{
   descripcion:string,
   lugar:string,
   ciudad:string,
-  fecha:string,
+  fecha:any,
   imagen_id:number,
   categoria_id:number
 }
