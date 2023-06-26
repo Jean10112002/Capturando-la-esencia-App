@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 100%; background-color: transparent;">
+<div style="width: 100%; height: 100%; background-color: transparent">
   <div class="ventana-fondo" *ngIf="showVentanaEmergente"></div>
 
   <div class="dialog-overlay">
@@ -8,7 +8,6 @@
   </div>
 
   <div [@opacidadAnimacion]="estado" class="dialog-container">
-
     <div class="container-head" [class.container-head-responsive]="isContainer">
       <button
         class="container-head-close"
@@ -44,7 +43,15 @@
     </div>
 
     <div class="container" [class.container-responsive]="isContainer">
-      <form [formGroup]="imagenForm" style="display: flex; justify-content: center; text-align: center; align-items: center;">
+      <form
+        [formGroup]="imagenForm"
+        style="
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          align-items: center;
+        "
+      >
         <div
           class="container-foto"
           [ngClass]="getClassByContainerValue(fondoCategoria)"
@@ -74,7 +81,15 @@
                 >Arrastra o Seleciona la foto</span
               >
             </div>
-            <div class="container-foto-div" style="display: flex; justify-content: center; text-align: center; align-items: center;">
+            <div
+              class="container-foto-div"
+              style="
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+              "
+            >
               <div class="container-foto-ng">
                 <ng-container class="container-show-foto" *ngIf="selectedImage">
                   <img
@@ -93,32 +108,7 @@
                 </ng-container>
               </div>
             </div>
-            <div class="container-foto-error" *ngIf="selectedImage == null">
-              <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
-              <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
-                >Solo se permiten archivos PNG, JPG, JPEG.</span
-              >
-              <span style="color: rgb(255, 174, 0); margin-bottom: 1em;" *ngIf="sizeImagen"
-                >No se permite imagen con mas de 10MB</span
-              >
-              <div>
-                <a  href="https://www.youtube.com/watch?v=YQ_VY_Bju3w" style="color: rgb(19, 77, 224)" *ngIf="sizeImagen"
-                >Video como minificar Imagen</a
-              >
-              </div>
-             <div>
 
-              <a href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg" style="color: rgb(22, 39, 222)" *ngIf="sizeImagen"
-                >Sitio web minificar Imagen</a
-              >
-             </div>
-              <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
-                >No se permite imagen con menos de 1MB</span
-              >
-              <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
-                >La resolucion excede las 4032 x 4032
-              </span>
-            </div>
           </div>
 
           <input
@@ -130,8 +120,26 @@
             style="display: none"
             formControlName="imagen"
           />
-        </div>
 
+        </div>
+        <div class="container-foto-error" *ngIf="selectedImage == null" >
+          <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
+          <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
+            >Solo se permiten archivos PNG, JPG, JPEG.</span
+          >
+          <span  style="color: #ff0000" *ngIf="sizeImagen">
+            <p>El peso exede mas de 10MB</p>
+            <p style="font-size: 10px;" >Si va a reducir el peso asegurese que no exeda menos de 1MB</p>
+            <a  target="_blank" style="color: #2fa0d7; cursor: pointer;display: block; " href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Reducir peso aqui</a>
+            <a  target="_blank" style="color: #2fa0d7; cursor: pointer; display: block; " href="https://www.youtube.com/results?search_query=sanka+de+boss">Tutorial aqui</a>
+           </span>
+          <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
+            >No se permite imagen con menos de 1MB</span
+          >
+          <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
+            >La resolucion excede las 4032 x 4032
+          </span>
+        </div>
         <div
           [@expandirAnimacion]="descripcionAnimation"
           class="container-descripcion"
@@ -233,7 +241,8 @@
               </div>
               <div class="container-descripcion-error">
                 <span class="descripcion-pie-contador"
-                  >{{ charCount }}/100</span>
+                  >{{ charCount }}/100</span
+                >
               </div>
             </div>
             <div class="categoria-container">
@@ -273,7 +282,6 @@
                       [(ngModel)]="selectedCategoria"
                       (change)="onOptionSelectedCategoria($event)"
                       formControlName="categoria"
-
                     >
                       <ng-template
                         ng-option-tmp
@@ -436,12 +444,19 @@
   <div class="ventana-emergente" *ngIf="showVentanaEmergente">
     <div class="ventana-emergente-titulo">
       <div>
-        <h2 style="color: red;">¿Descartar publicación?</h2>
+        <h2 style="color: red">¿Descartar publicación?</h2>
         <h5>Si sales, no se guardarán los cambios.</h5>
       </div>
     </div>
 
-    <button  class="ventana-emergente-cancelar" mat-dialog-close>Descartar</button>
-    <button  class="ventana-emergente-cancelar" (click)="cancelarVentanaEmergente()">Cerrar</button>
+    <button class="ventana-emergente-cancelar" mat-dialog-close>
+      Descartar
+    </button>
+    <button
+      class="ventana-emergente-cancelar"
+      (click)="cancelarVentanaEmergente()"
+    >
+      Cerrar
+    </button>
   </div>
 </div>
