@@ -77,7 +77,7 @@
             "
           >
             <div class="container-foto-mesaje" *ngIf="selectedImage == null">
-              <span style="color: rgb(0, 0, 0)"
+              <span style="color: rgb(109, 107, 107)"
                 >Arrastra o Seleciona la foto</span
               >
             </div>
@@ -109,6 +109,25 @@
               </div>
             </div>
 
+            <div class="container-foto-error" *ngIf="selectedImage == null" >
+              <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
+              <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
+                >Solo se permiten archivos PNG, JPG, JPEG.</span
+              >
+              <span  style="color: #ff0000" *ngIf="sizeImagen">
+                <p>El peso exede mas de 10MB</p>
+                <p style="font-size: 10px;" >Si va a reducir el peso asegurese que no exeda menos de 1MB</p>
+                <a  target="_blank" style="color: #2fa0d7; cursor: pointer;display: block; " href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Reducir peso aqui</a>
+                <a  target="_blank" style="color: #2fa0d7; cursor: pointer; display: block; " href="https://www.youtube.com/results?search_query=sanka+de+boss">Tutorial aqui</a>
+               </span>
+              <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
+                >No se permite imagen con menos de 1MB</span
+              >
+              <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
+                >La resolucion excede las 4032 x 4032
+              </span>
+            </div>
+
           </div>
 
           <input
@@ -122,24 +141,7 @@
           />
 
         </div>
-        <div class="container-foto-error" *ngIf="selectedImage == null" >
-          <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
-          <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
-            >Solo se permiten archivos PNG, JPG, JPEG.</span
-          >
-          <span  style="color: #ff0000" *ngIf="sizeImagen">
-            <p>El peso exede mas de 10MB</p>
-            <p style="font-size: 10px;" >Si va a reducir el peso asegurese que no exeda menos de 1MB</p>
-            <a  target="_blank" style="color: #2fa0d7; cursor: pointer;display: block; " href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Reducir peso aqui</a>
-            <a  target="_blank" style="color: #2fa0d7; cursor: pointer; display: block; " href="https://www.youtube.com/results?search_query=sanka+de+boss">Tutorial aqui</a>
-           </span>
-          <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
-            >No se permite imagen con menos de 1MB</span
-          >
-          <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
-            >La resolucion excede las 4032 x 4032
-          </span>
-        </div>
+
         <div
           [@expandirAnimacion]="descripcionAnimation"
           class="container-descripcion"

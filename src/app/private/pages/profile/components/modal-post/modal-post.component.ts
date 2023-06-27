@@ -214,4 +214,10 @@ export class ModalPostComponent implements OnInit, OnDestroy {
       data: imagen,
     });
   }
+
+  likeMusic(){
+    var audio = new Audio("assets/music/water-droplet.mp3");
+    audio.play();
+  }
+
 }
