@@ -1,7 +1,7 @@
 <div
   mat-dialog-content
   class="mat-dialog-content"
-  style="width: 100%; height: 100%; padding: 0"
+  style="width: 100%; padding: 0;"
   *ngIf="post"
 >
   <div class="imagen">
@@ -95,6 +95,7 @@
           aria-label="Example favorite icon"
           fontIcon="favorite"
           (click)="likePost()"
+          (click)="likeMusic()"
           class="reacciones"
           ngClass="{{ isLikeOfMe && 'like-heart' }}"
         ></mat-icon>

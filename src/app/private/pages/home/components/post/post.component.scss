@@ -39,6 +39,30 @@ mat-icon,.btn-delete,.photo-post{
   font-family: 'Times New Roman', Times, serif;
 }
 
+@media (max-width:513px) {
+  .nombre{
+    font-size: 10pt;
+  }
+}
+
+@media (max-width:450px) {
+  .nombre{
+    font-size: 8pt;
+  }
+}
+
+@media (max-width:387px) {
+  .nombre{
+    font-size: 7pt;
+  }
+}
+
+@media (max-width:355px) {
+  .nombre{
+    font-size: 5pt;
+  }
+}
+
 .img{
   width: 100%;
   border-radius: 5px;
@@ -96,6 +120,12 @@ mat-icon,.btn-delete,.photo-post{
 
 .likes{
   font-size: 11pt;
+}
+
+@media (max-width:460px) {
+  .likes{
+    font-size: 8pt;
+  }
 }
 
 .like{
