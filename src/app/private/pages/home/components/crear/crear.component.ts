@@ -1,9 +1,12 @@
+import { style } from '@angular/animations';
 import {
   Component,
   OnInit,
   EventEmitter,
   Output,
   AfterViewInit,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 
 import {
@@ -737,5 +740,11 @@ user$:Observable<Participante>;
   }
   cancelarVentanaEmergente() {
     this.showVentanaEmergente = false;
+  }
+  @ViewChild('error') diverror!: ElementRef;
+
+  cerrarError():void{
+    this.diverror.nativeElement.style.display = 'none';
+
   }
 }

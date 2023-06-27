@@ -7,59 +7,67 @@
     </button>
   </div>
 
-  <div [@opacidadAnimacion]="estado" class="dialog-container">
-    <div class="container-head" [class.container-head-responsive]="isContainer">
-      <button
-        class="container-head-close"
-        *ngIf="divVisible"
-        (click)="onClose()"
-      >
-        <img src="/assets/icon/close.png" alt="" />
-      </button>
-      <button
-        class="container-head-back"
-        *ngIf="!divVisible"
-        (click)="toggleDivVisibility()"
-      >
-        <img src="/assets/icon/back.png" alt="" />
-      </button>
-      Publicar fotografia
-      <button
-        class="container-head-continue"
-        *ngIf="SiguienteVisible && divVisible && noEsImagen === false"
-        (click)="toggleDivVisibility()"
-      >
-        <img src="/assets/icon/next.png" alt="" />
-      </button>
-      <button
-        [class.container-head-post-responsive]="imagenForm.valid"
-        class="container-head-post"
-        *ngIf="SiguienteVisible && !divVisible"
-        [disabled]="!imagenForm.valid"
-        (click)="submitForm()"
-      >
-        Publicar
-      </button>
-    </div>
+  <div [@opacidadAnimacion]="estado" class="dialog-container" style="height: 60%; display: block;  justify-content: center; text-align: center; background-color: red;" >
+<div style="width: 100%; display: flex; justify-content: center;">
+  <div class="container-head" [class.container-head-responsive]="isContainer" style="width: 100%;padding: 10px 0;">
+    <button
+      class="container-head-close"
+      *ngIf="divVisible"
+      (click)="onClose()"
+    >
+      <img src="/assets/icon/close.png" alt="" />
+    </button>
+    <button
+      class="container-head-back"
+      *ngIf="!divVisible"
+      (click)="toggleDivVisibility()"
+    >
+      <img src="/assets/icon/back.png" alt="" />
+    </button>
 
-    <div class="container" [class.container-responsive]="isContainer">
+      Publicar fotografia
+
+
+    <button
+      class="container-head-continue"
+      *ngIf="SiguienteVisible && divVisible && noEsImagen === false"
+      (click)="toggleDivVisibility()"
+      (click)="cerrarError()"
+    >
+      <img src="/assets/icon/next.png" alt="" />
+    </button>
+    <button
+      [class.container-head-post-responsive]="imagenForm.valid"
+      class="container-head-post"
+      *ngIf="SiguienteVisible && !divVisible"
+      [disabled]="!imagenForm.valid"
+      (click)="submitForm()"
+    >
+      Publicar
+    </button>
+  </div>
+</div>
+
+
+    <div class="container" style="width: 100%; height: 90%;background-color: #ffff;" [class.container-responsive]="isContainer">
       <form
         [formGroup]="imagenForm"
         style="
           display: flex;
+          width: 100%;
           justify-content: center;
-          text-align: center;
-          align-items: center;
+          text-align: start;
+          align-items: start;
         "
       >
         <div
-          class="container-foto"
+          class="container-foto"  style="width: 50%;height: 100%;display: flex; justify-content: center; align-items: center;"
           [ngClass]="getClassByContainerValue(fondoCategoria)"
           [class.container-foto-responsive]="isResponsive"
         >
           <div
             [class.container-foto-show-responsive]="isResponsive"
-            class="container-foto-show"
+            class="container-foto-show" style="width: 100%; height: 100%;"
             (click)="
               fileInput.click();
               $event.stopPropagation();
@@ -76,20 +84,19 @@
               $event.preventDefault()
             "
           >
-            <div class="container-foto-mesaje" *ngIf="selectedImage == null">
-              <span style="color: rgb(109, 107, 107)"
+            <div class="container-foto-mesaje" style="width: 100%;"  *ngIf="selectedImage == null">
+              <span style="color: rgb(109, 107, 107);font-size: 10pt;"
                 >Arrastra o Seleciona la foto</span
               >
             </div>
-            <div
+             <div
               class="container-foto-div"
               style="
+              width: 100%;
                 display: flex;
                 justify-content: center;
                 text-align: center;
-                align-items: center;
-              "
-            >
+                align-items: center;">
               <div class="container-foto-ng">
                 <ng-container class="container-show-foto" *ngIf="selectedImage">
                   <img
@@ -109,26 +116,8 @@
               </div>
             </div>
 
-            <div class="container-foto-error" *ngIf="selectedImage == null" >
-              <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
-              <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
-                >Solo se permiten archivos PNG, JPG, JPEG.</span
-              >
-              <span  style="color: #ff0000" *ngIf="sizeImagen">
-                <p>El peso exede mas de 10MB</p>
-                <p style="font-size: 10px;" >Si va a reducir el peso asegurese que no exeda menos de 1MB</p>
-                <a  target="_blank" style="color: #2fa0d7; cursor: pointer;display: block; " href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Reducir peso aqui</a>
-                <a  target="_blank" style="color: #2fa0d7; cursor: pointer; display: block; " href="https://www.youtube.com/results?search_query=sanka+de+boss">Tutorial aqui</a>
-               </span>
-              <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
-                >No se permite imagen con menos de 1MB</span
-              >
-              <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
-                >La resolucion excede las 4032 x 4032
-              </span>
-            </div>
-
           </div>
+
 
           <input
             type="file"
@@ -136,7 +125,7 @@
             [disabled]="!divVisible"
             (change)="onFileSelected($event)"
             #fileInput
-            style="display: none"
+            style="display: none; width: 90%;"
             formControlName="imagen"
           />
 
@@ -144,7 +133,7 @@
 
         <div
           [@expandirAnimacion]="descripcionAnimation"
-          class="container-descripcion"
+          class="container-descripcion" style="width: 50%;"
           [class.container-descripcion-responsive]="isContainer"
           [hidden]="divVisible"
         >
@@ -440,6 +429,24 @@
           </div>
         </div>
       </form>
+      <div class="container-foto-error" id="error" style="position: absolute;top: 80%;left: 50%;background-color: brown; transform: translate(-80%, -50%);"  *ngIf="selectedImage == null" >
+        <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
+        <span style="color: rgb(255, 174, 0)" *ngIf="noEsImagen"
+          >Solo se permiten archivos PNG, JPG, JPEG.</span
+        >
+        <span  style="color: #ff0000"  *ngIf="sizeImagen">
+          <p>El peso exede mas de 10MB</p>
+          <p style="font-size: 10px;" >Si va a reducir el peso asegurese que no exeda menos de 1MB</p>
+          <a  target="_blank" style="color: #2fa0d7; cursor: pointer;display: block;
+          " href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Como subir de manera correcta la imagen</a>
+         </span>
+        <span style="color: rgb(255, 174, 0)" *ngIf="sizeMinImagen"
+          >No se permite imagen con menos de 1MB</span
+        >
+        <span style="color: rgb(255, 174, 0)" *ngIf="resolucionImagen"
+          >La resolucion excede las 4032 x 4032
+        </span>
+      </div>
     </div>
   </div>
 

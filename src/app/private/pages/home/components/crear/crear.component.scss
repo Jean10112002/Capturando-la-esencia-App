@@ -3,10 +3,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0);
     padding: 0px;
-    z-index: 99;
-    width: auto;
+    width: 510px;
     //height: 450px;
     height: 500px;
 }
@@ -19,7 +17,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.373);
     /* Fondo oscuro con transparencia */
-    z-index: 10;
+
     /* Asegúrate de que el z-index del fondo oscuro sea inferior al cuadro de diálogo */
 }
 
@@ -45,7 +43,7 @@
 
 .container-head {
     position: relative;
-    margin: 0 0 0 0;
+    margin: 0;
     text-align: center;
     background-color: #ffffff;
     border-top-left-radius: 10px;
@@ -124,20 +122,21 @@
 }
 
 .container {
-    background-color: rgb(255, 255, 255);
-    width: auto;
-    height: 91%;
-    display: flex;
-    padding: 0px 0px 0 0px;
+    background-color:#0011ff;
+    width: 100%;
+    height: 100%;
+    padding: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    position: relative;
+
 }
 
 .container form {
     height: 100%;
     width: 100%;
     display: flex;
-    padding: 0px 0px 0 0px;
+    padding: 0;
     margin: 0;
 }
 
@@ -186,12 +185,12 @@
 }
 
 .container-foto {
-    width: 410px;
+    width: 50%;
     margin: 0;
-    height: 100%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: #ffffff;
+
 }
 
 .container-foto-responsive {
@@ -237,6 +236,7 @@
 
 .container-foto-error {
     height: 40%;
+    top: 0;
 }
 
 .container-foto-error img {
@@ -292,7 +292,7 @@
 
 .container-descripcion {
     margin: 0;
-    width: 300px;
+    width: 50%;
     height: 100%;
     background-color: #ffffff;
     border-bottom-right-radius: 10px;
@@ -724,8 +724,13 @@ button:focus {
     display: inline-block;
     margin-left: 5px;
 }
+@media(max-width : 480px){
 
-@media only screen and (max-width: 590px) {
+  .dialog-container{
+  width: 460px;
+  }
+  }
+/* @media only screen and (max-width: 590px) {
     .dialog-container {
         position: fixed;
         top: 50%;
@@ -844,7 +849,7 @@ button:focus {
       font-size: 12pt;
       margin-left: 3px;
     }
-}
+} */
 
 .my-custom-dropdown{
   display: flex;
@@ -858,3 +863,5 @@ button:focus {
   align-items: center;
   padding: 5px;
 }
+
+
