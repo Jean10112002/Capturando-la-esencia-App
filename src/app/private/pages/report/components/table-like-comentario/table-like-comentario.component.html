@@ -3,35 +3,35 @@
     <h1><b>Popularidad</b> </h1>
   <table mat-table [dataSource]="dataSource" >
       <ng-container matColumnDef="titulo">
-        <th mat-header-cell *matHeaderCellDef style="border-radius: 10px 0 0 0;">TITULO DEL POST</th>
+        <th mat-header-cell *matHeaderCellDef style="border-radius: 10px 0 0 0;">Título del Post</th>
         <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
       </ng-container>
      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef>DESCRIPCION DEL POST</th>
+        <th mat-header-cell *matHeaderCellDef>Descripción del Post</th>
         <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
       </ng-container>
       <ng-container matColumnDef="nombreCategoria">
-        <th mat-header-cell *matHeaderCellDef>CATEGORIA</th>
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
         <td mat-cell *matCellDef="let element">{{ element.categoria.nombre  }}</td>
       </ng-container>
       <ng-container matColumnDef="nombres">
-        <th mat-header-cell *matHeaderCellDef>NOMBRES</th>
+        <th mat-header-cell *matHeaderCellDef>Nombres</th>
         <td mat-cell *matCellDef="let element">{{ element.participante.nombres |titlecase}}</td>
       </ng-container>
 
       <ng-container matColumnDef="cedula">
-        <th mat-header-cell *matHeaderCellDef>CEDULA</th>
+        <th mat-header-cell *matHeaderCellDef>Cédula</th>
         <td mat-cell *matCellDef="let element">{{ element.participante.cedula }}</td>
       </ng-container>
 
 
       <ng-container matColumnDef="like_count">
-        <th mat-header-cell *matHeaderCellDef>CONTEO DE LIKES</th>
+        <th mat-header-cell *matHeaderCellDef>Conteo de Likes</th>
         <td mat-cell *matCellDef="let element">{{ element.like_count }}</td>
       </ng-container>
 
       <ng-container matColumnDef="comentario__post_count">
-        <th mat-header-cell *matHeaderCellDef style="border-radius: 0 10px 0 0;">CONTEO DE COMENTARIOS</th>
+        <th mat-header-cell *matHeaderCellDef style="border-radius: 0 10px 0 0;">Conteo de Comentarios</th>
         <td mat-cell *matCellDef="let element">{{ element.comentario__post_count }}</td>
       </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
