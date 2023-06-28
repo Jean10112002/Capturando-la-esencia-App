@@ -1,10 +1,10 @@
 <mat-chip-listbox aria-label="Fish selection" *ngIf="categories$ | async as categorias">
   <div style="width: 100%; justify-content: space-around;">
-    <mat-chip-option color = "warn" selected (click)="eventCategoria(0)">
+    <mat-chip-option  selected (click)="eventCategoria(0)">
       <h2 style="font-size: 8pt; margin: 0px;">Todos</h2>
     </mat-chip-option>
 
-    <mat-chip-option *ngFor="let categoria of categorias.Categorias" color="primary" (click)="eventCategoria(categoria.id)">
+    <mat-chip-option  *ngFor="let categoria of categorias.Categorias"  (click)="eventCategoria(categoria.id)">
       <h3 style="font-size: 8pt; margin: 0px;">{{ categoria.nombre }}</h3>
     </mat-chip-option>
   </div>

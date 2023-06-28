@@ -70,8 +70,8 @@ export class ModalCreateCommentComponent {
     this.comentarios$ = this.comentarioService.getComentarios();
   }
   activateComment(mensaje: string, id_comentario: number) {
-    this.optionSelected = mensaje;
-    this.comentarioId = id_comentario;
+      this.optionSelected = mensaje;
+      this.comentarioId = id_comentario;
   }
   sendComment() {
     const fechaActual = new Date();

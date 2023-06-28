@@ -168,23 +168,27 @@ p{
 
 }
 
- .boton3{
-  background-color: rgb(45, 171, 45);
+ .boton3:hover{
+  transform: scale(1);
+}
+
+.boton3{
   border-radius: 25px;
-  padding: 2px 6px;
+  padding: 2px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   color:white;
-  font-size: 11pt;
-  transition: all 0.3s ease;
+  font-size: 10pt;
   cursor: pointer;
-  box-shadow: 0px 0px 10px 3px rgba(21, 248, 0, 0.563);
+  transition: all 0.3s ease;
  }
+ .botonCalificar{
+  background-color: rgb(242, 15, 15);
+  box-shadow: 0px 0px 20px 5px rgba(242, 15, 15, 0.563);
 
- .boton3:hover{
-
-  box-shadow: 0px 0px 10px 3px rgba(248, 244, 0, 0.545);
-  transform: scale(1);
-
-}
+ }
+.botonCalificado{
+  background-color: rgb(45, 171, 45);
+  box-shadow: 0px 0px 20px 5px rgba(21, 248, 0, 0.563);
+ }

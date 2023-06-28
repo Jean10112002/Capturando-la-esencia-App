@@ -62,17 +62,17 @@
 
     <div class="descripcion">
       <h1>Descripción</h1>
-      <p>{{ post.descripcion }}</p>
+      <p>{{ post.descripcion|titlecase }}</p>
     </div>
 
     <div class="categoria">
       <h1>Categoría</h1>
-      <p>{{ post.categoria.nombre }}</p>
+      <p>{{ post.categoria.nombre|titlecase }}</p>
     </div>
 
     <div class="lugar">
       <h1>Lugar</h1>
-      <p>{{ post.lugar }}</p>
+      <p>{{ post.lugar|titlecase }}</p>
     </div>
 
     <div class="likes">
@@ -80,7 +80,7 @@
         <b> {{ likeCount }} </b> Me gusta</a
       >
       <a class="like" mat-button (click)="openDialog()">
-        <b>{{ postCount }}</b> Comentarios</a
+        <b>{{ postCount }}</b> {{postCount==1?'Comentario':'Comentarios'}}</a
       >
     </div>
 
@@ -102,7 +102,7 @@
       </div>
       <ng-container *ngIf="shouldShowComponentCalificar">
         <ng-container *ngIf="userAdminJurado$ | async as user">
-          <div class="boton3" *ngIf="user.rol === 'jurado'">
+          <div class="boton3" [ngClass]="verifyThisPostCalificated(user) ? 'botonCalificado':'botonCalificar'" *ngIf="user.rol === 'jurado'">
             <a class="cali" (click)="openDialogCalificar()">{{
               verifyThisPostCalificated(user) ? "Ver Calificación" : "Calificar"
             }}</a>
@@ -111,7 +111,7 @@
       </ng-container>
     </div>
 
-    <p style="margin: 0; color: rgba(201, 203, 204, 0.926); padding-top: 10px;" class="like"> {{ post.fecha }} </p>
+    <p style="margin: 0; color: rgba(201, 203, 204, 0.926); padding-top: 10px;" class="like"> {{ post.fecha | date }}-{{post.fecha | date:'HH:mm-ss' }} </p>
 
   </div>
 </div>

@@ -9,7 +9,7 @@
   <div class="contenido">
 
     <div class="rubrica">
-    <p> {{user?.nombre|titlecase}}-{{user?.apellido|titlecase}} </p>
+    <p> {{user.nombre|titlecase}}-{{user.apellido|titlecase}} </p>
 
       <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" >
         <table style="border: 1px 1px 0px 1px solid;">
@@ -64,7 +64,7 @@
 
         </table>
 
-        <button *ngIf="!IsCalificated" mat-button color="primary" type="submit">Confirmar Calificación</button>
+        <button *ngIf="!IsCalificated" mat-button color="accent" type="submit">Confirmar Calificación</button>
 
       </form>
     </div>

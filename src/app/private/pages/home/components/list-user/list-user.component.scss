@@ -5,6 +5,11 @@
   margin: 10px 0px;
   align-items: center;
   padding: 0px 15px;
+  transition: 1s all linear;
+  &:hover{
+  background-color: rgba(105, 105, 105, 0.245);
+    border-radius: 1em;
+  }
 }
 
 .avatar{
