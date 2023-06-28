@@ -4,6 +4,7 @@
       class="img"
       [src]="post.imagen.imagen_url"
       alt="Imagen de referencia para calificar"
+      (click)="openDialogExpandir(post.imagen.imagen_url)"
     />
   </div>
   <div class="contenido">

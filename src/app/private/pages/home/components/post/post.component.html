@@ -65,7 +65,7 @@
     </div>
     <p class="parrafo">{{ post.descripcion | titlecase }}</p>
     <div style="display: flex; justify-content: center;">
-      <p class="categoria"> {{ post.fecha | date }}-{{post.fecha | date:'HH:mm-ss' }}</p>
+      <p class="categoria"> {{ post.fecha | date }} {{post.fecha | date:'HH:mm:ss' }}</p>
     </div>
   </div>
 </div>

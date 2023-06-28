@@ -9,6 +9,7 @@ import { CalificacionService } from 'src/app/private/services/calificacion.servi
 import { EnventEmissorService } from 'src/app/private/services/envent-emissor.service';
 import { UserInformationService } from 'src/app/private/services/user-information.service';
 import { UserI } from 'src/app/public/interfaces/Login.response.interface';
+import { ModalImgExpandirComponent } from '../modal-img-expandir/modal-img-expandir.component';
 
 @Component({
   selector: 'app-calificar-post',
@@ -24,6 +25,11 @@ export class CalificarPostComponent implements OnDestroy{
   constructor(private formBuilder: FormBuilder,private toastService:ToastrService,private calificarService:CalificacionService,private dataServiceUser:UserInformationService,private eventEmitterService:EnventEmissorService, private matDialog:MatDialog) {
     dataServiceUser.getData().pipe(takeUntil(this.destroy$)).subscribe(data=>{
       this.user=data;
+    });
+  }
+  openDialogExpandir(imagen:string) {
+    this.matDialog.open(ModalImgExpandirComponent,{
+      data:imagen
     });
   }
   ngOnDestroy(): void {
