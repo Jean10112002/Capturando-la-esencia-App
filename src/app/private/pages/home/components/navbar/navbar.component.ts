@@ -77,13 +77,11 @@ export class NavbarComponent implements OnInit {
   @Input() user!: UserI | Participante;
 
   showDialog = false;
-  /* openDialog() {
+   openDialog() {
     this.showDialog = true;
-  } */
-
-  openDialog() {
-    this.dialog.open(CrearComponent, {width:"80%",height:"90%"});
   }
+
+
 
   openDialogSearch(
     enterAnimationDuration: string,
@@ -96,7 +94,7 @@ export class NavbarComponent implements OnInit {
       exitAnimationDuration,
     });
   }
-  
+
   closeDialog() {
     this.showDialog = false;
   }
