@@ -1,3 +1,7 @@
 app-list-user{
   cursor: pointer;
 }
+
+button:focus{
+  outline: none; /* Elimina el borde de enfoque */
+}

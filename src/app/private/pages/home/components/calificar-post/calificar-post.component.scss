@@ -88,3 +88,14 @@ button{
 button:focus {
   outline: none; /* Elimina el borde de enfoque */
 }
+
+input:focus{
+ outline: none;
+}
+
+.boton-calificar{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
