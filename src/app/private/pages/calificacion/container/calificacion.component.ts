@@ -98,7 +98,7 @@ export class CalificacionComponent {
     console.log('hacer peticion');
     if (this.next_page_url !== null) {
       this.postService
-        .getPostPaginate(this.next_page_url)
+        .getPostPaginatewithoutCalificacion(this.next_page_url)
         .pipe(map((res) => res.Posts))
         .subscribe((data) => {
           console.log(data)

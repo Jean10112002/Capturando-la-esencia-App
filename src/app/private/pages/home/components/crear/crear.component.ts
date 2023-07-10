@@ -774,22 +774,22 @@ export class CrearComponent implements OnInit, AfterViewInit {
   getClassByContainerValue(containerValue: number): string[] {
     if (this.onCategoriaFondo && !this.divVisible) {
       switch (containerValue) {
-        case 1:
-          this.isBlinking = true;
-          return ['container-fondo-agua'];
-        case 2:
-          this.isBlinking = true;
-          return ['container-fondo-clima'];
         case 3:
           this.isBlinking = true;
+          return ['container-fondo-agua'];
+        case 6:
+          this.isBlinking = true;
+          return ['container-fondo-clima'];
+        case 2:
+          this.isBlinking = true;
           return ['container-fondo-paisaje'];
-        case 4:
+        case 1:
           this.isBlinking = true;
           return ['container-fondo-PersonasNaturaleza'];
         case 5:
           this.isBlinking = true;
           return ['container-fondo-PlantasHongos'];
-        case 6:
+        case 4:
           this.isBlinking = true;
           return ['container-fondo-VidaSilvestre'];
         default:
