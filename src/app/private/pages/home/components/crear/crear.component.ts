@@ -74,10 +74,11 @@ export class CrearComponent implements OnInit, AfterViewInit {
   tlfResponsive = false;
 
   submitForm() {
-    if (this.imagenForm.valid) {
-      console.log("valido form")
-      const imagen = new FormData();
-      imagen.append('imagen', this.file);
+    if (this.imagenForm.valid&&this.imagenNoValida) {
+      const imagen={
+        "imagen_url":this.imagenForm.get('imagen')?.value
+      };
+
       this.imageService
         .createImage(imagen)
         .subscribe((res: ImagenCreateResponseI) => {
@@ -95,16 +96,10 @@ export class CrearComponent implements OnInit, AfterViewInit {
             imagen_id: res.imagen.id,
             categoria_id: this.imagenForm.get('categoria')?.value.id,
           };
-          console.log(post);
           this.postService.createPost(post).subscribe((res) => {
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
             this.eventEmissorService.setEvent({ event: 'PUBLICACION_CREADA' })
-
-          }, () => {
-            this.imageService.deleteImage(this.imagenResponseId).subscribe((data) => {
-              console.log("imagen eliminada")
-            });
           });
         });
     } else {
