@@ -1,0 +1,19 @@
+<div> <!-- AQUI VA EN *ngFor RECORRELO AQUI PARA NO MODIFICAR LOS ESTILOS -->
+  <div class="cuerpo">
+    <div class="avatar">
+      <img class="img-user" [src]="avatar" alt="">
+    </div>
+    <div class="contenido"  >
+
+      <div class="nombre button-profile" (click)="goToProfile(participante.participante.id)">
+        <h3 class="nombre-user">{{participante.participante.nombres |titlecase}}</h3>
+      </div>
+
+      <div class="comentario">
+        <P class="comentario-user"> {{participante.comentario.mensaje}}</P>
+      </div>
+
+    </div>
+  </div>
+</div>
+

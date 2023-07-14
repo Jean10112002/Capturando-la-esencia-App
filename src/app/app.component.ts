@@ -11,9 +11,9 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
+
+
   title = 'app_capturando_la_esencia';
-
-
 
 
 }

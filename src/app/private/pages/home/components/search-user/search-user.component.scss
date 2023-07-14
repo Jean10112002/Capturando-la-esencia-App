@@ -1,0 +1,43 @@
+
+app-list-user{
+  cursor: pointer;
+}
+
+.content-buscar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.buscar{
+  margin-top: 10px;
+  width: 90%;
+}
+
+.titulo-modal{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 10px;
+  padding: 0;
+}
+
+h1{
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+@media (max-width: 920px) {
+  h1{
+    font-size: 12pt;
+  }
+}
+
+.modal-content{
+  padding: 0;
+  margin: 0;
+}

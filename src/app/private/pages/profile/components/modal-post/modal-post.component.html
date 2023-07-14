@@ -1,0 +1,120 @@
+<div
+  mat-dialog-content
+  class="mat-dialog-content"
+  style="width: 100%; padding: 0;"
+  *ngIf="post"
+>
+  <div class="imagen">
+    <img
+      (click)="openDialogExpandir(post.imagen.imagen_url)"
+      [src]="post.imagen.imagen_url"
+      alt=""
+      class="imagen_photo"
+    />
+  </div>
+  <div class="contenido">
+    <div class="user">
+
+      <div class="avatar">
+        <img class="img-user" [src]="avatar" alt="imagen de usuario" />
+      </div>
+
+      <div class="nombre">
+        <h3
+          class="nombre-user pointer"
+          (click)="desactiveModal()"
+          [routerLink]="['/profile/', post.participante.id]"
+        >
+          {{ post.participante.nombres | titlecase }}
+        </h3>
+      </div>
+
+      <div class="cedula">
+        <h3 class="nombre-user">{{ post.participante.cedula }}</h3>
+      </div>
+
+      <div class="btn-eliminar">
+        <ng-container class="content-btn" *ngIf="userAdminJurado$ | async as user">
+          <ng-container class="content-btn" *ngIf="user.rol === 'admin'">
+
+            <button
+              class="btn-delete"
+              [matMenuTriggerFor]="menu"
+              #menuTrigger
+            >
+              <b style="padding: 0; margin: 0;">...</b>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deletePost()">Eliminar</button>
+            </mat-menu>
+
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="titulo">
+      <h1>Título</h1>
+      <p>{{ post.titulo | titlecase }}</p>
+    </div>
+
+    <div class="descripcion">
+      <h1>Descripción</h1>
+      <p>{{ post.descripcion|titlecase }}</p>
+    </div>
+
+    <div class="categoria">
+      <h1>Categoría</h1>
+      <p>{{ post.categoria.nombre|titlecase }}</p>
+    </div>
+
+    <div class="lugar">
+      <h1>Lugar</h1>
+      <p>{{ post.lugar|titlecase }}</p>
+    </div>
+
+    <div class="likes">
+      <a class="like click-like" mat-button (click)="openModal('250ms', '400ms')">
+        <b> {{ likeCount }} </b> Me gusta</a
+      >
+      <a class="like" mat-button (click)="openDialog()">
+        <b>{{ postCount }}</b> {{postCount==1?'Comentario':'Comentarios'}}</a
+      >
+    </div>
+
+    <div class="likes-comentarios-calificar" style="margin-top: 10px;" *ngIf="user">
+      <div
+        *ngIf="
+          user.rol == 'participante' && shouldShowComponentPhotoParticipante
+        "
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example favorite icon"
+          fontIcon="favorite"
+          (click)="likePost()"
+          (click)="likeMusic()"
+          class="reacciones"
+          ngClass="{{ isLikeOfMe && 'like-heart' }}"
+        ></mat-icon>
+      </div>
+      <ng-container *ngIf="shouldShowComponentCalificar">
+        <ng-container *ngIf="userAdminJurado$ | async as user">
+          <div class="boton3" [ngClass]="verifyThisPostCalificated(user) ? 'botonCalificado':'botonCalificar'" *ngIf="user.rol === 'jurado'">
+            <a class="cali" (click)="openDialogCalificar()">{{
+              verifyThisPostCalificated(user) ? "Ver Calificación" : "Calificar"
+            }}</a>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <p style="margin: 0; color: rgba(201, 203, 204, 0.926); padding-top: 10px;" class="like">{{ post.fecha | date }} {{post.fecha | date:'HH:mm:ss' }} </p>
+
+  </div>
+</div>
+<!-- <div
+  mat-dialog-actions style="border-top: 1px solid ; border-color: rgb(129, 129, 129); display: flex; justify-content: space-between;">
+</div> -->

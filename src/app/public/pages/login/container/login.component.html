@@ -1,1 +1,73 @@
-<p>login works!</p>
+<body>
+  <div class="section">
+  <div class="container">
+    <div class="row full-height justify-content-center">
+      <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+          <h6 id="letras-seccion" class="mb-0 pb-3"><span>Estudiante </span><span>Jurado</span></h6>
+                <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                <label for="reg-log"></label>
+          <div class="card-3d-wrap mx-auto">
+            <form class=" card-3d-wrapper">
+              <div class="card-front">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-3 pb-3">Bienvenidos Estudiantes</h4>
+                    <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+                      <div class="form-group">
+                        <input type="email" class="form-style" placeholder="Correo Electrónico" formControlName="email" required>
+                        <i class="input-icon uil uil-at"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                          <span *ngIf="myForm.get('email')?.hasError('required')">El correo electrónico es obligatorio.</span>
+                          <span *ngIf="myForm.get('email')?.hasError('email')">El correo electrónico es inválido.</span>
+                        </mat-error>
+                      </div>
+
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Contraseña" formControlName="password" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                          <span *ngIf="myForm.get('password')?.hasError('required')">La contraseña es obligatoria.</span>
+                        </mat-error>
+                      </div>
+
+                      <button mat-button class="btn mt-4" type="submit" [disabled]="myForm.invalid">Ingresar</button>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
+              <div class="card-back">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-3 pb-3">Bienvenidos Jurados</h4>
+                    <form class="example-form" [formGroup]="myForm" (ngSubmit)="onSubmitJurado(myForm.value)">
+                      <div class="form-group">
+                        <input type="email" class="form-style" placeholder="Correo Electrónico" formControlName="email" required>
+                        <i class="input-icon uil uil-at"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                          <span *ngIf="myForm.get('email')?.hasError('required')">El correo electrónico es obligatorio.</span>
+                          <span *ngIf="myForm.get('email')?.hasError('email')">El correo electrónico es inválido.</span>
+                        </mat-error>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Contraseña" formControlName="password" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                        <mat-error class="error-message" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                          <span *ngIf="myForm.get('password')?.hasError('required')">La contraseña es obligatoria.</span>
+                        </mat-error>
+                      </div>
+
+                      <button mat-button class="btn mt-4" type="submit" [disabled]="myForm.invalid">Ingresar</button>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+</body>

@@ -1,0 +1,25 @@
+<h1 mat-dialog-title><h2>Comentarios</h2></h1>
+<mat-dialog-content class="mat-content">
+
+  <ng-container *ngIf="user.rol === 'participante'">
+    <app-modal-create-comment
+      (newItemEvent)="recibirPost($event)"
+      *ngIf="isCommentOfMe"
+    />
+  </ng-container>
+
+  <ng-container *ngIf="post$ | async as post">
+    <app-list-user-comment
+      [participante]="post"
+      *ngFor="let post of post.comentario__post"
+      class="app-list-user-comment"
+    ></app-list-user-comment>
+    <ng-container *ngIf="post.comentario__post.length<1">
+      <h5>No hay comentarios, sé el primero en comentar.</h5>
+    </ng-container>
+  </ng-container>
+</mat-dialog-content>
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->

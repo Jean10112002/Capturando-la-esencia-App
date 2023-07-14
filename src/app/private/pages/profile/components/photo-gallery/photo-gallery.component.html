@@ -1,1 +1,10 @@
-<p>photo-gallery works!</p>
+<section class="seccion-perfil-usuario">
+<div class="perfil-usuario-body">
+  <div class="perfil-usuario-footer" >
+    <app-photo [photo]="p" *ngFor="let p of photo"  />
+    <ng-container *ngIf="photo.length<1">
+      <h5>No hay fotos de este participante</h5>
+    </ng-container>
+  </div>
+</div>
+</section>

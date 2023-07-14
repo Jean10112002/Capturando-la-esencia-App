@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { PrivateRoutingModule } from './private-routing.module';
 import { PrivateComponent } from './private.component';
 import { HomeComponent } from './pages/home/container/home.component';
@@ -16,16 +16,52 @@ import { ListUserLikePostComponent } from './pages/home/components/list-user-lik
 import { ShowPostComponent } from './pages/home/components/show-post/show-post.component';
 import { PhotoGalleryComponent } from './pages/profile/components/photo-gallery/photo-gallery.component';
 import { CalificarPostComponent } from './pages/home/components/calificar-post/calificar-post.component';
+import { CalificacionService } from './services/calificacion.service';
+import { CategoriaService } from './services/categoria.service';
+import { ComentarioService } from './services/comentario.service';
+import { InteraccionService } from './services/interaccion.service';
+import { ParticipanteService } from './services/participante.service';
+import { PostService } from './services/post.service';
+import { ImagenService } from './services/imagen.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UserInformationService } from './services/user-information.service';
+import { ReportComponent } from './pages/report/container/report.component';
+import { CalificacionComponent } from './pages/calificacion/container/calificacion.component';
+import { TableCategoriaComponent } from './pages/report/components/table-categoria/table-categoria.component';
+import { TableLikeComentarioComponent } from './pages/report/components/table-like-comentario/table-like-comentario.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+import { ChipCategoryComponent } from './pages/home/components/chip-category/chip-category.component'; // Importa el módulo
+import { HeaderProfileComponent } from './pages/profile/components/header-profile/header-profile.component';
+import { PhotoComponent } from './pages/profile/components/photo/photo.component';
+import { SharedModule } from '../core/shared/shared.module';
+import { ListUserCommentComponent } from './pages/home/components/list-user-comment/list-user-comment.component';
+import { ModalUserCommentsComponent } from './pages/home/components/modal-user-comments/modal-user-comments.component';
+import { ModalCalificarPostComponent } from './pages/home/components/modal-calificar-post/modal-calificar-post.component';
+import { HeaderProfileJuradoComponent } from './pages/calificacion/components/header-profile-jurado/header-profile-jurado.component';
+import { PhotoGalleryCalificarComponent } from './pages/calificacion/components/photo-gallery-calificar/photo-gallery-calificar.component';
+import { ToastComponent } from '../core/shared/components/toast/toast.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ModalCreateCommentComponent } from './pages/home/components/modal-create-comment/modal-create-comment.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ModalPostComponent } from './pages/profile/components/modal-post/modal-post.component';
+import { EnventEmissorService } from './services/envent-emissor.service';
+import { ModalImgExpandirComponent } from './pages/home/components/modal-img-expandir/modal-img-expandir.component';
 
 
 @NgModule({
   declarations: [
+
     PrivateComponent,
     HomeComponent,
-
+    ModalUserCommentsComponent,
+    ListUserCommentComponent,
+    ModalCalificarPostComponent,
     CrearComponent,
+
      ProfileComponent,
      NavbarComponent,
      UserInformationComponent,
@@ -35,19 +71,68 @@ import { CalificarPostComponent } from './pages/home/components/calificar-post/c
      ListUserLikePostComponent,
      ShowPostComponent,
      PhotoGalleryComponent,
-     CalificarPostComponent
+     CalificarPostComponent,
+     ReportComponent,
+     CalificacionComponent,
+     ChipCategoryComponent,
+
+    ProfileComponent,
+    NavbarComponent,
+    UserInformationComponent,
+    PostComponent,
+    SearchUserComponent,
+    ListUserComponent,
+    ListUserLikePostComponent,
+    ShowPostComponent,
+    PhotoGalleryComponent,
+    CalificarPostComponent,
+    ReportComponent,
+    CalificacionComponent,
+    ChipCategoryComponent,
+    HeaderProfileComponent,
+    PhotoComponent,
+    HeaderProfileJuradoComponent,
+    PhotoGalleryCalificarComponent,
+    ToastComponent,
+    FilterPipe,
+    ModalCreateCommentComponent,
+    ModalPostComponent,
+    ModalImgExpandirComponent,
+
+     CalificacionComponent,
+     TableCategoriaComponent,
+     TableLikeComentarioComponent,
+    ReportComponent
 
   ],
   imports: [
     PrivateRoutingModule,
     CommonModule,
+    HttpClientModule,
     //Angular
     FormsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
 
     //Angular Matirial
-    MaterialModule
+    MaterialModule,
+    //Filter
+    NgSelectModule,
+    SharedModule,
+    InfiniteScrollModule
   ],
-
+  providers: [
+    //aqui van los servicios inyectados para que sean proveidos los demas componentes de este modulo
+    CalificacionService,
+    CategoriaService,
+    ComentarioService,
+    InteraccionService,
+    ParticipanteService,
+    PostService,
+    ImagenService,
+    UserInformationService,
+    EnventEmissorService,
+    DatePipe
+  ],
 })
-export class PrivateModule { }
+export class PrivateModule {}

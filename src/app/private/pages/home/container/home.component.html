@@ -1,2 +1,92 @@
-<p>home works!</p>
-<button (click)="openDialog()">Abrir cuadro de diálogo</button>
+<body style="
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+  ">
+    <div style="z-index: 999;" class="navegador">
+        <app-navbar [user]="user"></app-navbar>
+    </div>
+
+    <div class="cuerpo">
+        <div class="scroll">
+            <div class="categoria">
+                <app-chip-category class="app-chip-category" (newItemEvent)="recibirCategoria($event)"></app-chip-category>
+            </div>
+
+            <div #scroll class="scroll-infinito" infinite-scroll (scrolled)="onScrollDown()">
+                <ng-container *ngIf="posts">
+                    <app-post (eventEmiiter)="recibirPosts($event)" class="app-post" *ngFor="let post of posts.data" [post]="post"></app-post>
+                </ng-container>
+            </div>
+            <button (click)="goToTopScroll()" *ngIf="showButton" mat-fab color="light" aria-label="Example icon button with a bookmark icon" style="width: 45px; height: 45px; margin-bottom: 20px;">
+              <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+            <ng-container *ngIf="posts.data.length < 1">
+                <h5 style="margin-top: 30px; margin-left: 40%;">No hay publicaciones, por el momento</h5>
+            </ng-container>
+        </div>
+
+        <ng-container *ngIf="user">
+            <div [ngSwitch]="user.rol" class="user">
+                <div *ngSwitchCase="'participante'">
+                    <app-user-information [routerLink]="['/profile/', user.id]" class="app-user-information" [user]="user"></app-user-information>
+                </div>
+                <div *ngSwitchCase="'jurado'">
+                    <app-user-information [routerLink]="['/calificacion/']" class="app-user-information" [user]="user"></app-user-information>
+                </div>
+                <div *ngSwitchCase="'admin'">
+                    <app-user-information [user]="user"></app-user-information>
+                </div>
+
+                <div class="video">
+                    <div *ngSwitchCase="'participante'">
+                        <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+                        <div class="video-container" style="position: fixed;">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/qN6uL5L3tbY" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div *ngSwitchCase="'jurado'">
+                        <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+                        <div class="video-container" style="position: fixed;">
+                            <iframe src="https://www.youtube.com/embed/fUz5NiqEpbw" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div *ngSwitchCase="'admin'">
+                        <h4 class="txt-tutorial" style="position: fixed;">Tutorial</h4>
+                        <div class="video-container" style="position: fixed;">
+                            <iframe src="https://www.youtube.com/embed/syMX3JqEYTo" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--  <div class="user">
+        <div
+          *ngIf="user.rol === 'participante'"
+          [routerLink]="['/profile/', user.id]"
+        >
+          <app-user-information
+            class="app-user-information"
+            [user]="user"
+          ></app-user-information>
+        </div>
+        <div *ngIf="user.rol === 'jurado'" [routerLink]="['/calificacion/']">
+          <app-user-information
+            class="app-user-information"
+            [user]="user"
+          ></app-user-information>
+        </div>
+        <div *ngIf="user.rol === 'admin'">
+          <app-user-information
+            class="app-user-information"
+            [user]="user"
+          ></app-user-information>
+        </div>
+      </div> -->
+        </ng-container>
+    </div>
+</body>

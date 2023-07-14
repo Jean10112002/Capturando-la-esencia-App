@@ -1,0 +1,194 @@
+.user{
+  display: flex;
+}
+.pointer,.imagen_photo, .btn-delete{
+  cursor: pointer;
+}
+.avatar{
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.like-heart{
+  color: red;
+}
+.nombre{
+  width: 65%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.cedula{
+ width: 20%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+}
+
+.btn-eliminar{
+ width: 5%;
+ display: flex;
+ border: none;
+ padding: 0;
+}
+
+.btn-delete{
+  width: 90%;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.btn-delete:focus ,.btn-eliminar:focus{
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+.btn-delete:hover{
+  background-color: rgba(182, 181, 181, 0.347);
+  border-radius: 15px;
+}
+
+.reacciones{
+  font-size: 17pt;
+}
+.img-user{
+  width: 90%;
+  max-width: 40px;
+  border-radius: 50px;
+}
+.click-like{
+  cursor: pointer;
+}
+mat-icon,.btn-delete{
+  cursor: pointer;
+}
+.nombre-user{
+  font-size: 9pt;
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  color: rgb(60, 60, 60);
+}
+.likes{
+  font-size: 11pt;
+}
+.likes-comentarios-calificar{
+  display: flex;
+  justify-content: space-between;
+  margin-right:10px;
+}
+.like{
+  margin-right: 10px;
+  text-decoration: none; color:black
+}
+.imagen{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.imagen img{
+  object-fit: contain;
+  width: 100%;
+}
+.contenido
+{
+  width: 40%;
+  height: 100%;
+  margin: 20px 10px 20px 20px;
+  //margin: 10px 0px;
+
+}
+
+.acciones{
+  display: flex;
+}
+.comentario{
+  margin-left: 10px;
+}
+.mat-mdc-dialog-content{
+  display: flex;
+}
+h1
+{
+  margin:0;
+  font-size: 12pt;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
+}
+
+p{
+  font-size: 10pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.titulo{
+  margin-top: 10px;
+}
+
+@media (max-width: 1020px) {
+  .mat-dialog-content {
+   display: block;
+  }
+  .imagen{
+    width: 100%;
+  }
+  .contenido{
+    width: 100%;
+    margin: 10px 0px;
+    padding-left: 10px;
+  }
+  .avatar{
+    width: 10%;
+  }
+  .nombre{
+    width: 90%;
+  }
+}
+
+.ng-container{
+  width: 100%;
+}
+
+.content-btn{
+  width: 100%;
+  display: flex;
+}
+
+@media (max-width: 1280px) {
+  .nombre-user{
+    font-size: 7pt;
+  }
+
+}
+
+ .boton3:hover{
+  transform: scale(1);
+}
+
+.boton3{
+  border-radius: 25px;
+  padding: 2px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:white;
+  font-size: 10pt;
+  cursor: pointer;
+  transition: all 0.3s ease;
+ }
+ .botonCalificar{
+  background-color: rgb(242, 15, 15);
+  box-shadow: 0px 0px 20px 5px rgba(242, 15, 15, 0.563);
+
+ }
+.botonCalificado{
+  background-color: rgb(45, 171, 45);
+  box-shadow: 0px 0px 20px 5px rgba(21, 248, 0, 0.563);
+ }

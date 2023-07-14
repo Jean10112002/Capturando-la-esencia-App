@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  apiUrl: 'http://my-prueba-url'
+  production: false,
+  avatarUrl:'https://res.cloudinary.com/darohu37k/image/upload/v1686431916/Minimizar%20img/Avatar_1_1_jrtrbu.png',
+  apiUrl: 'https://mb-production.up.railway.app/api/'
 };

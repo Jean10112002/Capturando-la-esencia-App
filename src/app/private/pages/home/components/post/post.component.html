@@ -1,1 +1,71 @@
-<p>post works!</p>
+<div class="cards" *ngIf="post">
+  <div class="perfil">
+    <img class="avatar" [src]="avatar" alt="" />
+    <h2 class="nombre click" [routerLink]="['/profile/', post.participante.id]">
+      {{ post.participante.nombres | titlecase }}
+    </h2>
+
+  </div>
+
+  <div class="imagen">
+    <img class="click-like" (click)="openDialogExpandir(post.imagen.imagen_url)" class="img photo-post" [src]="post.imagen.imagen_url" alt="" />
+    <h4 class="lugar">
+      <i class="input-icon uil uil-map-marker-alt"></i>
+      {{ post.ciudad | titlecase }} - {{ post.lugar | titlecase }}
+    </h4>
+  </div>
+
+  <div
+    class="likes-comentarios-calificar"
+    *ngIf="userAdminJurado$ | async as user"
+  >
+    <ng-container *ngIf="shouldShowComponentPhotoParticipante">
+      <div *ngIf="user$ | async as userParticipante">
+        <mat-icon
+          *ngIf="
+            userParticipante.rol === 'participante' &&
+            user.rol !== 'participante'
+          "
+          aria-hidden="false"
+          aria-label="Example favorite icon"
+          fontIcon="favorite"
+          (click)="likePost()"
+          (click)="likeMusic()"
+          class="reacciones"
+          ngClass="{{ isLikeOfMe ? 'like-heart':'color-icons' }}"
+        ></mat-icon>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="shouldShowComponentCalificar">
+      <ng-container *ngIf="userAdminJurado$ | async as user">
+        <div class="boton3" [ngClass]="verifyThisPostCalificated(user) ? 'botonCalificado':'botonCalificar'" *ngIf="user.rol === 'jurado'">
+          <a class="cali" (click)="openDialogCalificar()">{{
+            verifyThisPostCalificated(user) ? "Ver Calificación" : "Calificar"
+          }}</a>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="likes" style="margin-top: 10px;">
+    <a class="like click-like" (click)="openModal('250ms', '400ms')">
+      <b> {{ likeCount }} </b> Me gusta</a
+    >
+    <a class="like click-like" (click)="openDialogComment()">
+      <b>{{ postCount }}</b>  {{postCount==1?'Comentario':'Comentarios'}} </a
+    >
+  </div>
+
+  <div class="descripcion">
+    <div class="encabezado">
+      <h1 class="titulo">{{ post.titulo |titlecase }}</h1>
+      <h3 class="categoria">
+        Categoria: {{ post.categoria.nombre | titlecase }}
+      </h3>
+    </div>
+    <p class="parrafo">{{ post.descripcion | titlecase }}</p>
+    <div style="display: flex; justify-content: center;">
+      <p class="categoria"> {{ post.fecha | date }} {{post.fecha | date:'HH:mm:ss' }}</p>
+    </div>
+  </div>
+</div>

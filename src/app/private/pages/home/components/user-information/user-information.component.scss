@@ -1,0 +1,45 @@
+.container{
+  margin-top: 20px;
+  display: flex;
+  width: 420px;
+  height: 45px;
+  padding: 0;
+  position: fixed;
+  transition: all 1s linear ;
+}
+.foto-div{
+  width: 12%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+img{
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.texto{
+  width: 85%;
+  padding: 3px 7px;
+}
+.h2-div{
+  height: 60%;
+  color: rgb(0, 0, 0);
+}
+.h3-div{
+height: 40%;
+color: dimgrey;
+}
+
+p{
+  width: 100%;
+  height: auto;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.container:hover{
+  transform: scale(0.9);
+}

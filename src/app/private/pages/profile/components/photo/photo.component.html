@@ -1,0 +1,13 @@
+<div class="blog-card spring-fever">
+
+  <div class="card" mat-button (click)="openDialog()" style="cursor: pointer; --i:url({{photo.imagen.imagen_url}})">
+    <div class="cards">
+        <h2> {{photo.categoria.nombre}} </h2>
+        <div *ngIf="photo.comentario__post && photo.like">
+          <i class="input-icon uil uil-heart"> {{likeCount}}  </i>
+          <i class="input-icon uil uil-comment-dots"> {{commentCount}} </i>
+        </div>
+    </div>
+  </div>
+</div>
+

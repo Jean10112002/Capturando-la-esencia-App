@@ -1,1 +1,5 @@
-<p>list-user works!</p>
+<div class="perfil" >
+  <img class="avatar" [src]="avatar" alt="" />
+  <h2 class="nombre"> {{user.nombres |titlecase}} </h2>
+  <h5 class="cedula"> {{user.cedula}} </h5>
+</div>

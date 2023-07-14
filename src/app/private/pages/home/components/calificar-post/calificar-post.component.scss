@@ -1,0 +1,101 @@
+.modal{
+  display: flex;
+}
+
+.imagen{
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contenido{
+  width: 40%;
+  padding: 10px 10px 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.img{
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.rubrica{
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+}
+
+tr{
+  text-align: center;
+  border: 1px solid;
+}
+
+input{
+  width: 15px;
+  height: 15px;
+}
+
+.sobre{
+  accent-color: rgba(8, 138, 8, 0.7);
+}
+.nota{
+  accent-color: rgba(243, 247, 23, 0.7);
+}
+.apro{
+  accent-color: rgba(237, 167, 3, 0.7);
+}
+.insu{
+  accent-color: rgba(248, 27, 27, 0.7);
+}
+
+th{
+  font-size: 8pt;
+}
+
+@media (max-width: 970px) {
+  th{
+    font-size: 7pt;
+  }
+}
+@media (max-width: 870px) {
+  th{
+    font-size: 6pt;
+  }
+}
+
+td{
+  border-left: 1px solid;
+}
+
+td span {
+  font-size: 9pt;
+  color: rgba(255, 0, 0, 0.645);
+}
+
+
+button{
+  margin-top: 10px;
+}
+
+button:focus {
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+input:focus{
+ outline: none;
+}
+
+.boton-calificar{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}

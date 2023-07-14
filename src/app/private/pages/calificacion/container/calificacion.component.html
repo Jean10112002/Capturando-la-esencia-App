@@ -1,0 +1,25 @@
+<body style="display: flex; width: 100%; height: 100%;">
+  <div class="navegador" style="z-index: 100;">
+    <app-navbar [user]="user"></app-navbar>
+  </div>
+  <div class="cuerpo">
+    <div class="categoria">
+      <app-chip-category style="z-index: 200; margin-bottom: 20px; display: flex; justify-content: center; text-align: center; align-items: center;" (newItemEvent)="recibirCategoria($event)" />
+    </div>
+    <ng-container *ngIf="jurado">
+      <div>
+        <app-header-profile-jurado [jurado]="jurado"></app-header-profile-jurado>
+      </div>
+      <div>
+        <ng-container *ngIf="posts" style="z-index: -10;">
+          <app-photo-gallery-calificar [photo]="posts.data" infinite-scroll (scrolled)="onScrollDown()" />
+          <button (click)="goToTopScroll()" *ngIf="showButton" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+            <mat-icon>arrow_upward</mat-icon>
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</body>
+
+
