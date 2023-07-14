@@ -17,7 +17,7 @@
         <button class="container-head-continue" *ngIf="SiguienteVisible && divVisible  && selectedImage !== null" (click)="toggleDivVisibility()">
       <img src="/assets/icon/next.png" alt="" />
     </button>
-        <button [class.container-head-post-responsive]="imagenForm.valid" class="container-head-post" *ngIf="SiguienteVisible && !divVisible" [disabled]="!imagenForm.valid" (click)="submitForm()">
+        <button [class.container-head-post-responsive]="imagenForm.valid && imagenNoValida" class="container-head-post" *ngIf="true" [disabled]="!imagenForm.valid && !imagenNoValida" (click)="submitForm()">
       Publicar
     </button>
     </div>
@@ -25,266 +25,194 @@
     <div class="container" [class.container-responsive]="isContainer">
         <form [formGroup]="imagenForm">
             <div class="container-foto" [ngClass]="getClassByContainerValue(fondoCategoria)" [class.container-foto-responsive]="isResponsive">
-                <div [class.container-foto-show-responsive]="isResponsive" class="container-foto-show" (click)="disableEvents ? true :  fileInput.click(); $event.stopPropagation(); $event.preventDefault()" (drop)="disableEvents ? true  : onFileDropped($event);$event.stopPropagation();$event.preventDefault()"
-                    (dragover)="disableEvents ? true : onDragOver($event);$event.stopPropagation();$event.preventDefault()">
-                    <div class="container-foto-mesaje" *ngIf="selectedImage == null">
-                        <span style="color: rgb(84, 84, 84)">Arrastra o  selecciona la imagen</span
-            >
-          </div>
-          <div   class="container-foto-div">
-            <div class="container-foto-ng">
-              <ng-container class="container-show-foto" *ngIf="selectedImage">
-                <img  [ngClass]="{'blinking-image': isBlinking}"
+                <div class="container-foto-show">
 
-                  class="foto-show"
-                  [class.foto-show-responsive]="isResponsive"
-                  [src]="selectedImage"
-                />
-              </ng-container>
+                    <div class="container-foto-div">
+                        <div class="container-foto-ng">
 
-              <ng-container *ngIf="!selectedImage">
-                <img
-                  class="container-selection-foto"
-                  src="/assets/icon/gallery.png"
-                  alt="Arrastra o seleccioná la imagen"
-                />
-              </ng-container>
-            </div>
-          </div>
-          <div   class="container-foto-error" *ngIf="selectedImage == null">
-            <div (click)="handleLinkClick($event)" style="cursor: default; padding: 0 10px;">
-               <img *ngIf="IconWarnig" src="/assets/icon/warning.gif" alt="" />
-            <span   style="color: #ffae00" *ngIf="noEsImagen">
-              Solo se permiten archivos PNG, JPG, JPEG.</span
-            >
-            <span  style="color: #ffae00" *ngIf="sizeImagen">
-             <p>El peso exede mas de 10MB</p>
+                            <img [ngClass]="{'blinking-image': isBlinking}" class="foto-show" [class.foto-show-responsive]="isResponsive" src="{{imagenForm.get('imagen')?.value}}" />
 
-             <a target="_blank" style="color: #2fa0d7; cursor: pointer;display: block;" href="https://www.iloveimg.com/es/comprimir-imagen/comprimir-jpg">Ir a reducir peso</a>
-             <a target="_blank" style="color: #2fa0d7; cursor: pointer; display: block;" href="https://www.youtube.com/watch?v=qN6uL5L3tbY">Ir a video tutorial</a>
-            </span>
-
-                        <span style="color: #ffae00" *ngIf="sizeMinImagen">
-                          <p>No se permite imagen con menos de 1MB</p>
-
-              </span
-            >
-            <span    style="color: #ffae00 ;z-index: 999;  " *ngIf="resolucionImagen">
-              <p>La dimension  excede las 4032 × 4032</p>
-
-              </span>
+                        </div>
                     </div>
 
                 </div>
+
+                <input type="file" accept="image/png, image/jpeg, image/jpg" [disabled]="false" (change)="onFileSelected($event)" #fileInput style="display: none" formControlName="imagen" />
             </div>
 
-            <input type="file" accept="image/png, image/jpeg, image/jpg" [disabled]="false" (change)="onFileSelected($event)" #fileInput style="display: none" formControlName="imagen" />
-    </div>
-
-    <div [@expandirAnimacion]="descripcionAnimation" class="container-descripcion" [class.container-descripcion-responsive]="isContainer" [hidden]="divVisible">
-        <div class="container-descripcion-head" *ngIf="user$ | async as user">
-            <img class="descripcion-perfil" [src]="avatar" alt="" />
-            <span class="descripcion-usuario">
+            <div class="container-descripcion" [class.container-descripcion-responsive]="isContainer">
+                <div class="container-descripcion-head" *ngIf="user$ | async as user">
+                    <img class="descripcion-perfil" [src]="avatar" alt="" />
+                    <span class="descripcion-usuario">
             {{ user.nombres | titlecase }}
           </span>
-        </div>
+                </div>
 
-        <div class="container-descripcion-body">
-            <div class="container-descripcion-titulo-error">
-                <div class="container-descripcion-titulo">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="
+                <div style=" height: 89%;" class="container-descripcion-body">
+                    <div class="container-descripcion-titulo-error">
+                        <div class="container-descripcion-titulo">
+                            <span class="icons-validation">
+                <img *ngIf="
                     !(
                       imagenForm.get('titulo')?.hasError('required') ||
                       imagenForm.get('titulo')?.hasError('minlength')
                     )
-                  "
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="
+                  " src="/assets/icon/approved.png" alt="" />
+                <img *ngIf="
                     imagenForm.get('titulo')?.hasError('required') ||
                     imagenForm.get('titulo')?.hasError('minlength')
-                  "
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
+                  " src="/assets/icon/invalided.png" alt="" />
               </span>
 
-                    <input style="font-size: 13px; color: #454545;" [class.linea-invalidada]="
+                            <input style="font-size: 13px; color: #454545;" [class.linea-invalidada]="
                   imagenForm.get('titulo')?.hasError('required') ||
                   imagenForm.get('titulo')?.hasError('minlength')
                 " type="text" class="descripcion-titulo" placeholder="Título de portada" formControlName="titulo" maxlength="50" />
-                </div>
-                <div class="container-descripcion-error">
-                    <!-- <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('required')">Titulo es requerido.</span>
+                        </div>
+                        <div class="container-descripcion-error">
+                            <!-- <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('required')">Titulo es requerido.</span>
                             <span style="color: red;" *ngIf="imagenForm.get('titulo')?.hasError('minlength')">Al menos 4 caracteres.</span> -->
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="container-descripcion-pie-error container-descripcion-titulo-error">
-                <div class="container-descripcion-pie container-descripcion-titulo">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="
+                    <div style="height: 25%;" class="container-descripcion-pie-error container-descripcion-titulo-error">
+                        <div class="container-descripcion-pie container-descripcion-titulo">
+                            <span class="icons-validation">
+                <img *ngIf="
                     imagenForm.get('pie')?.hasError('required') ||
                     imagenForm.get('pie')?.hasError('minlength')
-                  "
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="
+                  " src="/assets/icon/invalided.png" alt="" />
+                <img *ngIf="
                     !(
                       imagenForm.get('pie')?.hasError('required') ||
                       imagenForm.get('pie')?.hasError('minlength')
                     )
-                  "
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
+                  " src="/assets/icon/approved.png" alt="" />
               </span>
 
-                    <textarea style="color: #333333; font-size: 13px; padding-top: 13px;" [class.linea-invalidada]="
+                            <textarea style="color: #333333; font-size: 13px; padding-top: 13px;" [class.linea-invalidada]="
                   imagenForm.get('pie')?.hasError('required') ||
                   imagenForm.get('pie')?.hasError('minlength')
                 " class="descripcion-pie" [(ngModel)]="textareaContent" (input)="updateCharCount()" placeholder="Escribe una descripción" formControlName="pie" maxlength="100"></textarea>
-                    <div *ngIf="tlfResponsive" class="container-descripcion-foto-responsive">
-                        <img [src]="selectedImage" alt="" />
+                            <div *ngIf="tlfResponsive" class="container-descripcion-foto-responsive">
+                                <img [src]="selectedImage" alt="" />
+                            </div>
+                        </div>
+                        <div class="container-descripcion-error">
+                            <span class="descripcion-pie-contador">{{ charCount }}/100</span>
+                        </div>
                     </div>
-                </div>
-                <div class="container-descripcion-error">
-                    <span class="descripcion-pie-contador">{{ charCount }}/100</span>
-                </div>
-            </div>
-            <div class="categoria-container">
-                <div class="container-categoria-provincia">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="imagenForm.get('categoria')?.hasError('required')"
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="!imagenForm.get('categoria')?.hasError('required')"
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
+                    <div class="categoria-container">
+                        <div class="container-categoria-provincia">
+                            <span class="icons-validation">
+                <img *ngIf="imagenForm.get('categoria')?.hasError('required')" src="/assets/icon/invalided.png"
+                  alt="" />
+                <img *ngIf="!imagenForm.get('categoria')?.hasError('required')" src="/assets/icon/approved.png"
+                  alt="" />
               </span>
-                    <div class="container-descripcion-provincia">
-                        <div [class.linea-invalidada-select]="
+                            <div class="container-descripcion-provincia">
+                                <div [class.linea-invalidada-select]="
                     imagenForm.get('categoria')?.hasError('required')
                   " [class.linea-invalidada]="
                     imagenForm.get('categoria')?.hasError('required')
                   " class="container-descripcion-combobox">
-                            <ng-select notFoundText="No existe esa categoria :(" class="my-custom-dropdown" [items]="categorias" bindLabel="label" [searchable]="true" placeholder="{{
+                                    <ng-select notFoundText="No existe esa categoria :(" class="my-custom-dropdown" [items]="categorias" bindLabel="label" [searchable]="true" placeholder="{{
                       selectedOptionCategoria ? categoriaHolder : 'Categorías'
                     }}" (clear)="onClearSelectedCategoria()" [(ngModel)]="selectedCategoria" (change)="onOptionSelectedCategoria($event)" formControlName="categoria">
-                                <ng-template ng-option-tmp let-option="item" let-index="index ">
-                                    <div class="my-custom-option">
-                                        <span class="option-label">{{ option.label }}</span>
-                                    </div>
-                                </ng-template>
-                            </ng-select>
+                                        <ng-template ng-option-tmp let-option="item" let-index="index ">
+                                            <div class="my-custom-option">
+                                                <span class="option-label">{{ option.label }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- <span style="color: red;" *ngIf="imagenForm.get('categoria')?.hasError('required')">El campo de categoria es requerido.</span> -->
                     </div>
-                </div>
 
-                <!-- <span style="color: red;" *ngIf="imagenForm.get('categoria')?.hasError('required')">El campo de categoria es requerido.</span> -->
-            </div>
-
-            <div class="container-descripcion-ubication">
-                <div class="container-ubication-provincia">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="imagenForm.get('provincia')?.hasError('required')"
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="!imagenForm.get('provincia')?.hasError('required')"
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
+                    <div class="container-descripcion-ubication">
+                        <div class="container-ubication-provincia">
+                            <span class="icons-validation">
+                <img *ngIf="imagenForm.get('provincia')?.hasError('required')" src="/assets/icon/invalided.png"
+                  alt="" />
+                <img *ngIf="!imagenForm.get('provincia')?.hasError('required')" src="/assets/icon/approved.png"
+                  alt="" />
               </span>
-                    <div class="container-descripcion-provincia">
-                        <div [class.linea-invalidada-select]="
+                            <div class="container-descripcion-provincia">
+                                <div [class.linea-invalidada-select]="
                     imagenForm.get('provincia')?.hasError('required')
                   " [class.linea-invalidada]="
                     imagenForm.get('provincia')?.hasError('required')
                   " class="container-descripcion-combobox">
-                            <ng-select notFoundText="No se encontro la Provincia :(" class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{
+                                    <ng-select notFoundText="No se encontro la Provincia :(" class="my-custom-dropdown" [items]="provincias" bindLabel="label" [searchable]="true" placeholder="{{
                       selectedOption ? provinciaHolder : 'Provincias'
                     }}" (clear)="onClearSelection()" [disabled]="disableProvincias" [(ngModel)]="selectedProvincia" (change)="onProvinciaSelected()" (change)="onOptionSelected()" formControlName="provincia">
-                                <ng-template ng-option-tmp let-option="item" let-index="index">
-                                    <div class="my-custom-option">
-                                        <span>{{ option.label }}</span>
-                                        <!-- Contenido personalizado de la opción -->
-                                    </div>
-                                </ng-template>
-                            </ng-select>
+                                        <ng-template ng-option-tmp let-option="item" let-index="index">
+                                            <div class="my-custom-option">
+                                                <span>{{ option.label }}</span>
+                                                <!-- Contenido personalizado de la opción -->
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="container-ubication-provincia">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="imagenForm.get('canton')?.hasError('required')"
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="!imagenForm.get('canton')?.hasError('required')"
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
+                        <div class="container-ubication-provincia">
+                            <span class="icons-validation">
+                <img *ngIf="imagenForm.get('canton')?.hasError('required')" src="/assets/icon/invalided.png" alt="" />
+                <img *ngIf="!imagenForm.get('canton')?.hasError('required')" src="/assets/icon/approved.png" alt="" />
               </span>
-                    <div class="container-descripcion-provincia">
-                        <div [class.linea-invalidada-select]="
+                            <div class="container-descripcion-provincia">
+                                <div [class.linea-invalidada-select]="
                     imagenForm.get('canton')?.hasError('required')
                   " [class.linea-invalidada]="
                     imagenForm.get('canton')?.hasError('required')
                   " class="container-descripcion-combobox">
-                            <ng-select notFoundText="No se encontro el Canton :(" class="my-custom-dropdown" [items]="filteredCantones" bindLabel="label" [searchable]="true" placeholder="{{
+                                    <ng-select notFoundText="No se encontro el Canton :(" class="my-custom-dropdown" [items]="filteredCantones" bindLabel="label" [searchable]="true" placeholder="{{
                       selectedOptionCanton ? cantonHolder : 'Cantones'
                     }}" (clear)="onClearSelectedCanton()" [(ngModel)]="selectedCanton" (change)="onOptionSelectedCanton()" formControlName="canton">
-                                <ng-template ng-option-tmp let-option="item" let-index="index">
-                                    <div class="my-custom-option">
-                                        <span>{{ option.label }}</span>
-                                    </div>
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <span style="color: red" *ngIf="imagenForm.get('canton')?.hasError('required')">
+                                        <ng-template ng-option-tmp let-option="item" let-index="index">
+                                            <div class="my-custom-option">
+                                                <span>{{ option.label }}</span>
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <span style="color: red" *ngIf="imagenForm.get('canton')?.hasError('required')">
                 </span>
-                    </div>
-                </div>
-                <div class="container-ubication-provincia">
-                    <span class="icons-validation">
-                <img
-                  *ngIf="imagenForm.get('lugar')?.hasError('required')"
-                  src="/assets/icon/invalided.png"
-                  alt=""
-                />
-                <img
-                  *ngIf="!imagenForm.get('lugar')?.hasError('required')"
-                  src="/assets/icon/approved.png"
-                  alt=""
-                />
+                            </div>
+                        </div>
+                        <div style="height: 25%; padding: 0;" class="container-ubication-provincia">
+                            <span class="icons-validation">
+                <img *ngIf="imagenForm.get('lugar')?.hasError('required')" src="/assets/icon/invalided.png" alt="" />
+                <img *ngIf="!imagenForm.get('lugar')?.hasError('required')" src="/assets/icon/approved.png" alt="" />
               </span>
-                    <div class="container-descripcion-lugar">
-                        <input style="color: #4e4e4e; font-size: 13px;" maxlength="50" type="text " [class.linea-invalidada]="
+                            <div class="container-descripcion-lugar">
+                                <input style="color: #4e4e4e; font-size: 13px;" maxlength="50" type="text " [class.linea-invalidada]="
                     imagenForm.get('lugar')?.hasError('required')
                   " class="descripcion-lugar" placeholder="Lugar" formControlName="lugar" />
+                            </div>
+
+                        </div>
+                        <div style="height: 25%; padding: 0;" class="container-ubication-provincia">
+                            <span class="icons-validation">
+                <img *ngIf="!imagenNoValida" src="/assets/icon/invalided.png" alt="" />
+                <img *ngIf="imagenNoValida" src="/assets/icon/approved.png" alt="" />
+              </span>
+                            <div class="container-descripcion-lugar">
+                                <input style="color: #4e4e4e; font-size: 13px;" type="text " [class.linea-invalidada]="
+                                !imagenNoValida
+                " class="descripcion-lugar" placeholder="Url de imagen" formControlName="imagen" />
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 
 <div class="ventana-emergente" *ngIf="showVentanaEmergente">
