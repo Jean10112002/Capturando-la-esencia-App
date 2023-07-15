@@ -9,9 +9,9 @@ export const config = {
   startPhotoParticipante:"2023-07-17 00:00:00",
   endPhotoParticipante:"2023-08-04 23:59:59",
   startReporte:"2023-08-18 00:00:00"  */
-  startCalificar:"2023-07-14 22:38:00",
-  endCalificar:"2023-07-14 22:55:59",
-  startPhotoParticipante:"2023-07-14 22:55:00",
-  endPhotoParticipante:"2023-07-14 22:57:59",
-  startReporte:"2023-07-14 22:41:00"
+  startCalificar:"2023-07-14 00:00:00",
+  endCalificar:"2023-08-14 23:59:59",
+  startPhotoParticipante:"2023-07-14 00:00:00",
+  endPhotoParticipante:"2023-08-14 23:59:59",
+  startReporte:"2023-07-14 00:00:00"
 };
