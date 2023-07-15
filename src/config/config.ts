@@ -11,7 +11,7 @@ export const config = {
   startReporte:"2023-08-18 00:00:00" */
    startCalificar: '2023-06-11 00:00:00',
   endCalificar: '2023-07-16 23:59:59',
-  startPhotoParticipante: '2023-06-10 00:00:00',
-  endPhotoParticipante: '2023-07-10 23:59:59',
+  startPhotoParticipante: '2023-07-14 22:15:00',
+  endPhotoParticipante: '2023-07-14 22:20:00',
   startReporte: '2023-06-19 08:00:00',
 };
