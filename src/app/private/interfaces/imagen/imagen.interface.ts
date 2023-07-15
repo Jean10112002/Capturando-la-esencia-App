@@ -9,6 +9,5 @@ export interface ImagenCreateResponseI {
 
 export interface Imagen {
   imagen_url: string;
-  id_imagen:  string;
   id:         number;
 }

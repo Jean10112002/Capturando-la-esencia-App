@@ -50,16 +50,35 @@ export class CrearComponent implements OnInit, AfterViewInit {
     private readonly dataServiceUser: UserInformationService,
     private readonly eventEmissorService: EnventEmissorService,
     private datePipe: DatePipe
+
   ) {
     this.user$ = this.dataServiceUser.getInformationParticipante();
+    this.imagenForm = new FormGroup({
+      imagen: new FormControl(null, Validators.required),
+      titulo: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      pie: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(200),
+      ]),
+      provincia: new FormControl('', [Validators.required]),
+      canton: new FormControl('', [Validators.required]),
+      lugar: new FormControl('', [Validators.required]),
+      categoria: new FormControl('', [Validators.required]),
+    });
+    this.validarImagen();
   }
   tlfResponsive = false;
 
   submitForm() {
-    if (this.imagenForm.valid) {
-      console.log("valido form")
-      const imagen = new FormData();
-      imagen.append('imagen', this.file);
+    if (this.imagenForm.valid&&this.imagenNoValida) {
+      const imagen={
+        "imagen_url":this.imagenForm.get('imagen')?.value
+      };
+
       this.imageService
         .createImage(imagen)
         .subscribe((res: ImagenCreateResponseI) => {
@@ -77,22 +96,47 @@ export class CrearComponent implements OnInit, AfterViewInit {
             imagen_id: res.imagen.id,
             categoria_id: this.imagenForm.get('categoria')?.value.id,
           };
-          console.log(post);
           this.postService.createPost(post).subscribe((res) => {
             this.notificacion.success('Publicación creada', 'Proceso Exitoso');
             this.closeVentanaEmergente();
             this.eventEmissorService.setEvent({ event: 'PUBLICACION_CREADA' })
-
-          }, () => {
-            this.imageService.deleteImage(this.imagenResponseId).subscribe((data) => {
-              console.log("imagen eliminada")
-            });
           });
         });
     } else {
       this.notificacion.error('Llenar todos los campos', 'Proceso Erroneo');
     }
+
+
   }
+  imagenNoValida = false;
+validarImagen(){
+  this.imagenForm.get('imagen')?.valueChanges.subscribe((valor ) =>{
+    if( ! (valor.trim('')== '')){
+      const img:any= new Image();
+
+      img.src = valor;
+      img.onload = () => {
+        console.log(img.width,img.height);
+        if (img.width <= 4032 && img.height <= 4032) {
+          console.log('La imagen cumple con las dimensiones requeridas.');
+          this.imagenNoValida = true;
+        } else {
+          console.log('La imagen excede las dimensiones permitidas.');
+          this.notificacion.error('La imagen excede las dimensiones permitidas. Intente con otra imagen','Proceso erroneo')
+          this.imagenNoValida = false;
+        }
+      };
+      img.onerror = () => {
+        console.log('No se pudo cargar la imagen, no es valida.');
+        this.notificacion.error('No se pudo cargar la imagen, no es valida. Intente con otra imagen','Proceso erroneo')
+        this.imagenNoValida = false;
+
+      };
+    }
+
+  })
+
+}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -117,22 +161,7 @@ export class CrearComponent implements OnInit, AfterViewInit {
       .subscribe(result => {
         this.tlfResponsive = result.matches;
       });
-    this.imagenForm = new FormGroup({
-      imagen: new FormControl(null, Validators.required),
-      titulo: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      pie: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(200),
-      ]),
-      provincia: new FormControl('', [Validators.required]),
-      canton: new FormControl('', [Validators.required]),
-      lugar: new FormControl('', [Validators.required]),
-      categoria: new FormControl('', [Validators.required]),
-    });
+
   }
 
   disableEvents = false;
