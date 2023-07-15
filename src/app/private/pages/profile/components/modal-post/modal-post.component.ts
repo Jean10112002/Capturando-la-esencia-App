@@ -74,15 +74,13 @@ export class ModalPostComponent implements OnInit, OnDestroy {
       this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
     //partiicpante
     this.isInDateRangePhotoParticipante =
-      this.currentDateTime >= this.startPhotoParticipante &&
-      this.currentDateTime <= this.endPhotoParticipante;
-    this.isInTimeRangePhotoParticipante =
-      this.currentDateTime.split(' ')[1] >=
-        this.startPhotoParticipante.split(' ')[1] &&
-      this.currentDateTime.split(' ')[1] <=
-        this.endPhotoParticipante.split(' ')[1];
-    this.shouldShowComponentPhotoParticipante =
-      this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
+    this.currentDateTime >= this.startPhotoParticipante &&
+    this.currentDateTime <= this.endPhotoParticipante;
+  this.isInTimeRangePhotoParticipante =
+    this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
+    this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
+  this.shouldShowComponentPhotoParticipante =
+    this.isInDateRangePhotoParticipante && this.isInTimeRangePhotoParticipante;
     this.userAdminJurado$ = this.dataServiceUser.getData();
     this.user$ = this.dataServiceUser.getInformationParticipante();
     this.postService.getPost(this.id_post).subscribe((data) => {

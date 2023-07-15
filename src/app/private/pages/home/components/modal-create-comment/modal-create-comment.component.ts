@@ -60,13 +60,13 @@ export class ModalCreateCommentComponent {
       this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
     //partiicpante
     this.isInDateRangePhotoParticipante =
-      this.currentDateTime >= this.startPhotoParticipante &&
-      this.currentDateTime <= this.endPhotoParticipante;
-    this.isInTimeRangePhotoParticipante =
-      this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
-      this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
-    this.shouldShowComponentPhotoParticipante =
-      this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
+    this.currentDateTime >= this.startPhotoParticipante &&
+    this.currentDateTime <= this.endPhotoParticipante;
+  this.isInTimeRangePhotoParticipante =
+    this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
+    this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
+  this.shouldShowComponentPhotoParticipante =
+    this.isInDateRangePhotoParticipante && this.isInTimeRangePhotoParticipante;
     this.comentarios$ = this.comentarioService.getComentarios();
   }
   activateComment(mensaje: string, id_comentario: number) {

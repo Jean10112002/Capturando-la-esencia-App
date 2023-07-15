@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit {
       this.currentDateTime.split(' ')[1] >= this.startPhotoParticipante.split(' ')[1] &&
       this.currentDateTime.split(' ')[1] <= this.endPhotoParticipante.split(' ')[1];
     this.shouldShowComponentPhotoParticipante =
-      this.isInDateRangeCalificar && this.isInTimeRangeCalificar;
+      this.isInDateRangePhotoParticipante && this.isInTimeRangePhotoParticipante;
       //admin
     this.isInDateRangeReporteAdmin =
       this.currentDateTime >= this.startReporteAdmin
