@@ -8,10 +8,10 @@ export const config = {
   endCalificar:"2023-08-16 23:59:59",
   startPhotoParticipante:"2023-07-17 00:00:00",
   endPhotoParticipante:"2023-08-04 23:59:59",
-  startReporte:"2023-08-18 00:00:00" */
-   startCalificar: '2023-06-11 00:00:00',
-  endCalificar: '2023-07-16 23:59:59',
-  startPhotoParticipante: '2023-06-10 00:00:00',
-  endPhotoParticipante: '2023-07-10 23:59:59',
-  startReporte: '2023-06-19 08:00:00',
+  startReporte:"2023-08-18 00:00:00"  */
+  startCalificar:"2023-07-14 22:38:00",
+  endCalificar:"2023-07-14 22:39:59",
+  startPhotoParticipante:"2023-07-14 22:33:00",
+  endPhotoParticipante:"2023-07-14 22:34:59",
+  startReporte:"2023-07-14 22:41:00"
 };
