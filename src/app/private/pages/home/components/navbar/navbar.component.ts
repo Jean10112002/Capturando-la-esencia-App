@@ -115,7 +115,7 @@ export class NavbarComponent implements OnInit {
     }else if(this.user?.rol === 'jurado'){
       window.open('https://www.youtube.com/watch?v=fUz5NiqEpbw', '_blank');
     }else if(this.user?.rol === 'participante'){
-      window.open('https://www.youtube.com/watch?v=qN6uL5L3tbY', '_blank');
+      window.open('https://www.youtube.com/watch?v=Uda8N3KKoTE&t', '_blank');
     }
   }
 
