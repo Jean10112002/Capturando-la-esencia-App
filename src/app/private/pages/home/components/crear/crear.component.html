@@ -17,7 +17,7 @@
         <button class="container-head-continue" *ngIf="SiguienteVisible && divVisible  && selectedImage !== null" (click)="toggleDivVisibility()">
       <img src="/assets/icon/next.png" alt="" />
     </button>
-        <button [class.container-head-post-responsive]="imagenForm.valid && imagenNoValida" class="container-head-post" *ngIf="true" [disabled]="!imagenForm.valid && !imagenNoValida" (click)="submitForm()">
+        <button #miBoton   [class.container-head-post-responsive]="imagenForm.valid && imagenNoValida" class="container-head-post" *ngIf="true" [disabled]="!imagenForm.valid && !imagenNoValida" (click)="submitForm()">
       Publicar
     </button>
     </div>
