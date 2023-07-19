@@ -33,14 +33,17 @@ export class PostService {
     return this.http.delete(`${this.api}post/${id}`)
   }
   getPostPaginate(url:string){
-    const page=url.split('=')
+    /* const page=url.split('=')
     console.log(page)
-    return this.http.get<PostAllPaginateI>(`${this.api}post?page=${page[1]}`);
+    return this.http.get<PostAllPaginateI>(`${this.api}post?page=${page[1]}`); */
+    const urlnueva=url.replace(/^http:/, 'https:');
+    console.log(urlnueva)
+    return this.http.get<PostAllPaginateI>(urlnueva);
   }
   getPostPaginatewithoutCalificacion(url:string){
-    const page=url.split('=')
-    console.log(page)
-    return this.http.get<PostAllPaginateI>(`${this.api}post/search/sincalificacion?page=${page[1]}`);
+    const urlnueva=url.replace(/^http:/, 'https:');
+    console.log(urlnueva)
+    return this.http.get<PostAllPaginateI>(urlnueva);
   }
 
 }
