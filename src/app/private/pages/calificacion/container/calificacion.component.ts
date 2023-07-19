@@ -83,8 +83,16 @@ export class CalificacionComponent {
       .getPostsWithoutCalificacion()
       .pipe(map((res) => res.Posts))
       .subscribe((data) => {
-        this.posts=data;
-        this.next_page_url=data.next_page_url;
+
+        /* this.posts=data;
+        this.next_page_url=data.next_page_url; */
+        const newData = data.data.filter(
+          (post) => !this.posts.data.some((p) => p.id === post.id)
+        );
+          console.log(data,newData)
+        this.posts.data = this.posts.data.concat(newData);
+        console.log(this.posts);
+        this.next_page_url = data.next_page_url;
       });
 
   }

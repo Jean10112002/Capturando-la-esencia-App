@@ -48,8 +48,7 @@ export class HomeComponent implements OnDestroy {
     private readonly postService: PostService,
     private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document,
-    private readonly eventEmissorService: EnventEmissorService,
-
+    private readonly eventEmissorService: EnventEmissorService
   ) {
     authService.userInformation().subscribe((user: UserProfileI) => {
       this.user = user.user;
@@ -64,20 +63,19 @@ export class HomeComponent implements OnDestroy {
       }
     });
     eventEmissorService
-    .getEvent()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((event: eventEmissorI) => {
-      if (event.event == 'PUBLICACION_CREADA' ) {
-        postService
-        .getPosts()
-        .pipe(map((res) => res.Posts))
-        .subscribe((data) => {
-          this.posts = data;
-          this.next_page_url = data.next_page_url;
-        });
-      }
-
-    });
+      .getEvent()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: eventEmissorI) => {
+        if (event.event == 'PUBLICACION_CREADA') {
+          postService
+            .getPosts()
+            .pipe(map((res) => res.Posts))
+            .subscribe((data) => {
+              this.posts = data;
+              this.next_page_url = data.next_page_url;
+            });
+        }
+      });
     postService
       .getPosts()
       .pipe(map((res) => res.Posts))
@@ -85,7 +83,6 @@ export class HomeComponent implements OnDestroy {
         this.posts = data;
         this.next_page_url = data.next_page_url;
       });
-
   }
   @HostListener('window:scroll')
   onWindowScroll(): void {
@@ -100,8 +97,15 @@ export class HomeComponent implements OnDestroy {
         .getPostPaginate(this.next_page_url)
         .pipe(map((res) => res.Posts))
         .subscribe((data) => {
-          console.log(data);
+          /* console.log(data);
           this.posts.data = this.posts.data.concat(data.data);
+          console.log(this.posts);
+          this.next_page_url = data.next_page_url; */
+          const newData = data.data.filter(
+            (post) => !this.posts.data.some((p) => p.id === post.id)
+          );
+            console.log(data,newData)
+          this.posts.data = this.posts.data.concat(newData);
           console.log(this.posts);
           this.next_page_url = data.next_page_url;
         });
